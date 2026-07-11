@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Engineering"
+  short_description: "Calibrate engineering risk, evidence, and delivery"
+  default_prompt: "Use $yo-engineering to classify this work, select the relevant risk lenses, and produce a concise engineering brief before implementation."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Flow"
+  short_description: "Route ambiguous work through bundled Yo skills"
+  default_prompt: "Use $yo-flow to select the right bundled Yo workflow for this request and preserve the context in the handoff."

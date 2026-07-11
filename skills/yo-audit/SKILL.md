@@ -1,0 +1,155 @@
+---
+name: yo-audit
+description: Independently and read-only verify a commit, pull request, working-tree change, or claimed fix against its intent and acceptance criteria. Use for "audit this change," "review this PR," "did this fix work," "is this safe to merge or ship," and post-implementation verification where evidence must be bound to an exact revision.
+---
+
+# Yo Audit
+
+Perform a neutral, evidence-first review of an exact change. Do not modify source, fix findings, commit, post comments, approve, request changes, merge, or update issues unless the user separately authorizes that action.
+
+Tests and builds may create ordinary local artifacts. Use an isolated worktree or equivalent when the shared checkout, generated files, or audit independence could be contaminated. Never exercise production or other external state merely to complete an audit.
+
+## Independence
+
+Approach the change as a reviewer, not as an advocate for the implementation. The author's explanation establishes intent and known tradeoffs; it is a claim to verify, not evidence to ignore or accept blindly.
+
+Prefer a fresh context when the same agent implemented the change. If a genuinely independent pass is unavailable, disclose that limitation and call the result a self-review rather than overstating independence.
+
+## Audit workflow
+
+### 1. Bind the audit object
+
+Record the repository, comparison, and immutable identity before reading conclusions:
+
+- **single commit:** parent tree to commit SHA;
+- **pull request:** intended base/merge base to current head SHA, including all commits in the PR diff;
+- **branch:** explicit base SHA to tip SHA;
+- **working tree:** HEAD plus staged, unstaged, and relevant untracked changes.
+
+Check repository status and avoid mixing unrelated local changes into the evidence. For a PR, confirm the head again before reporting. If it moved, the earlier evidence remains valid only for the old SHA; re-audit the delta and rerun affected checks before judging the new head.
+
+Use [references/review-method.md](references/review-method.md) for comparison and verdict rules.
+
+### 2. Establish intent and acceptance
+
+Read the user request, issue/spec, PR description, linked design or decision, and relevant comments when available. Extract observable acceptance criteria and deliberate constraints. Separate:
+
+- required behavior;
+- explicitly excluded scope;
+- claimed verification;
+- surprising but intentional tradeoffs;
+- unresolved product or design choices.
+
+If a material requirement is missing, do not invent it. Verify what is knowable and return `INCONCLUSIVE` for the decision that depends on the ambiguity.
+
+### 3. Inspect scope and context
+
+Review every human-authored changed line in scope, then read enough surrounding code, callers, tests, configuration, and history to understand its effect. Classify generated, vendored, lockfile, migration, and documentation changes rather than scanning them as equivalent source.
+
+Check that the diff is cohesive and necessary for the stated intent. Name unrelated edits, accidental generated output, missing companion changes, and rollback-hostile coupling. Do not fail a change solely for a reasonable preference or an out-of-scope pre-existing issue.
+
+### 4. Trace behavior against acceptance
+
+For each acceptance criterion, map:
+
+```markdown
+Criterion -> implementation path -> observable outcome -> verification evidence
+```
+
+Ask whether the change closes the diagnosed mechanism or only masks its symptom. Trace plausible sibling and fallback paths, cleanup on failures, boundary validation, and mixed old/new behavior when relevant.
+
+Apply only the relevant `yo-engineering` lenses: contracts, data/migrations, authorization/security, concurrency, failure/fallback, performance, observability, operability, accessibility, and user experience. If qualified domain review is still needed, state that residual requirement without pretending this audit supplied it.
+
+Use an existing `yo-impact` brief as a map, but independently verify the material consumers touched by the diff.
+
+### 5. Inspect and run verification
+
+Read changed tests. Confirm their oracle exercises the intended behavior and, for regression tests, that sensitivity to the pre-fix mechanism is demonstrated or honestly limited per `yo-test-coverage`.
+
+Run proportionate checks against the exact audited revision:
+
+1. focused tests or reproduction for the changed mechanism;
+2. relevant surrounding or contract/integration tests;
+3. repository verification gate when risk and environment justify it;
+4. current CI/check status for a PR, bound to the same head SHA.
+
+Record exact commands, revision/environment, exit status, counts, and the relevant failure signature. Preserve raw output locally when useful, but report concise sanitized evidence; do not paste secrets or indiscriminate logs.
+
+If a required check cannot run, distinguish an evidence gap from a code defect. Use `INCONCLUSIVE` when the missing evidence is material to the merge/ship decision.
+
+### 6. Write only defensible findings
+
+A blocking finding needs all of:
+
+- a concrete input, state, path, or sequence;
+- the changed file and precise location;
+- the violated requirement, invariant, or safety property;
+- the observable consequence;
+- evidence that the change introduces or fails to resolve it.
+
+Classify findings:
+
+- **Blocker:** credible security, privacy, data-loss, outage, irreversible rollout, or fundamental acceptance failure; must resolve before ship.
+- **Major:** realistic correctness or compatibility failure within scope; must resolve before approval.
+- **Minor:** bounded robustness, maintainability, test, or operability issue that does not invalidate the primary behavior.
+- **Note:** optional improvement, question, or pre-existing/out-of-scope observation.
+
+Explain why. Keep suggestions separate from requirements and avoid comments about the author.
+
+### 7. Decide the verdict
+
+- **PASS:** required evidence supports the acceptance criteria and no Blocker or Major finding remains within the audited scope.
+- **FAIL:** at least one concrete Blocker/Major finding exists, an acceptance criterion demonstrably fails, or required verification reports the target failure.
+- **INCONCLUSIVE:** the target moved, material acceptance is ambiguous, or required evidence/environment is unavailable; no unsupported PASS or defect claim.
+
+Minor findings and notes can accompany PASS. State residual risk and scope limits. PASS means no blocking defect was found in this exact audit, not proof that the system contains no bugs.
+
+## Report
+
+```markdown
+Verdict: PASS | FAIL | INCONCLUSIVE
+Audited: <repo, base..head or working-tree identity>
+
+Acceptance:
+- <criterion>: <supported | failed | unverified> - <evidence>
+
+Findings:
+- [Major] <file:line> <scenario, consequence, and reason>
+- None.
+
+Verification:
+- `<command>` - <result> at <SHA/environment>
+
+Residual risks / limits:
+- <unreviewed domain, unavailable evidence, moving dependency, or none>
+```
+
+Lead with findings when any exist. Be concise enough to act on, but do not impose a word cap that hides evidence.
+
+## Publication boundary
+
+Return the report to the user in chat by default. Auditing a PR does not authorize a GitHub comment, approval, request-changes review, merge, or issue update.
+
+If the user explicitly asks for a GitHub artifact, use `yo-gh-write` to format it, confirm the audited head is still current, and perform only the authorized action. Bind any posted verdict to the audited SHA.
+
+## Guardrails
+
+- Remain read-only even after finding a clear fix.
+- Do not turn absent test infrastructure into a fabricated FAIL or PASS.
+- Do not report speculative edge cases as defects without a reachable scenario and consequence.
+- Do not let green CI replace code/behavior review, or let static review replace needed execution evidence.
+- Do not fail a change for style preference, unrelated debt, or a requirement invented during review.
+- Do not reuse a verdict after the audited object changes.
+- Do not claim merge or production safety beyond the declared scope, environment, and evidence.
+
+## Handoff
+
+- `yo-fix-loop` can triage and resolve accepted findings when the user authorizes changes.
+- `yo-debug` investigates a newly confirmed but unexplained failure.
+- `yo-test-coverage` strengthens missing or insensitive regression proof.
+- `yo-gh-write` drafts or publishes the report only when requested.
+
+## References
+
+- [Review method](references/review-method.md)
+- [Research and decisions](references/sources.md)

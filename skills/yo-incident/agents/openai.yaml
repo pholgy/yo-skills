@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Incident"
+  short_description: "Command incidents through safe recovery"
+  default_prompt: "Use $yo-incident to coordinate and safely mitigate this live incident."

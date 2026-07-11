@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Impact"
+  short_description: "Map consumers, compatibility, and blast radius"
+  default_prompt: "Use $yo-impact to map the consumers, observable effects, compatibility risks, evidence, and unknowns before changing this behavior."

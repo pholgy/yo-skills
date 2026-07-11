@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Debug"
+  short_description: "Diagnose failures with causal evidence"
+  default_prompt: "Use $yo-debug to diagnose this confirmed failure, test competing hypotheses, and report the causal explanation and remaining uncertainty without editing unless I authorize a fix."

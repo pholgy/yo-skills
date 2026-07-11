@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo GH Write"
+  short_description: "Draft polished GitHub engineering text"
+  default_prompt: "Use $yo-gh-write to draft or revise concise, evidence-backed GitHub text."

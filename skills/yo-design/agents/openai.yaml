@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Design"
+  short_description: "Design consequential changes and record decisions"
+  default_prompt: "Use $yo-design to analyze the decision drivers, compare viable alternatives, design the transition and verification, and choose the right design or ADR artifact without writing files unless authorized."

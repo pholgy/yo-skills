@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Dependencies"
+  short_description: "Change dependency graphs with verified trust"
+  default_prompt: "Use $yo-deps to evaluate and verify this dependency change."

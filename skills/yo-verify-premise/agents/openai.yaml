@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Verify Premise"
+  short_description: "Verify current evidence before changing code"
+  default_prompt: "Use $yo-verify-premise to test this claim against the current target and report a calibrated verdict before any edit."

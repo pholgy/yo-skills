@@ -1,0 +1,66 @@
+{
+  "name": "yo-skills-bundle",
+  "bundle_revision": "2026-07-10",
+  "repository_revision": "2026-07-11",
+  "skill_count": 19,
+  "install_targets": {
+    "claude": "%USERPROFILE%\\.claude\\skills",
+    "codex": "%USERPROFILE%\\.codex\\skills",
+    "agents": "%USERPROFILE%\\.agents\\skills"
+  },
+  "entry_points": {
+    "claude_session_baseline": "yo-claude-settings",
+    "codex_session_baseline": "yo-codex-settings",
+    "workflow_router": "yo-flow",
+    "deep_review": "yo-workflow"
+  },
+  "skills": [
+    "yo-audit",
+    "yo-branch",
+    "yo-claude-settings",
+    "yo-codex",
+    "yo-codex-settings",
+    "yo-debug",
+    "yo-deps",
+    "yo-design",
+    "yo-engineering",
+    "yo-feature",
+    "yo-fix-loop",
+    "yo-flow",
+    "yo-gh-write",
+    "yo-impact",
+    "yo-incident",
+    "yo-release",
+    "yo-test-coverage",
+    "yo-verify-premise",
+    "yo-workflow"
+  ],
+  "archive": {
+    "path": "archive",
+    "snapshot_date": "2026-07-10",
+    "skill_snapshots": 19
+  },
+  "optional_assets": {
+    "claude_session_start_bash": "hooks/yo-claude-baseline.sh",
+    "claude_session_start_powershell": "hooks/yo-claude-baseline.ps1"
+  },
+  "installers": {
+    "windows": "install.ps1",
+    "bash": "install.sh",
+    "verify_windows": "verify.ps1",
+    "verify_bash": "verify.sh"
+  },
+  "validation": {
+    "report": "VALIDATION.md",
+    "scenario_matrix": "validation/behavior-scenarios.md",
+    "structure": "skill-creator quick validation",
+    "behavior": "fresh-context scenario tests",
+    "research": "primary sources recorded in each skill's references"
+  },
+  "notes": [
+    "The bundle is self-contained: no non-Yo skill is required by a Yo workflow.",
+    "Dated archives preserve the pre-rewrite skill trees.",
+    "Install all 19 skills for either host; platform-specific skills trigger only in their applicable context.",
+    "Repository-specific GitHub writing conventions live in skills/yo-gh-write/references/repo-profiles.md."
+  ]
+}

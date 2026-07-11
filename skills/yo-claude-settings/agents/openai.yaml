@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Claude Settings"
+  short_description: "Apply the live high-depth Claude baseline"
+  default_prompt: "Use $yo-claude-settings to audit and apply my current Claude Code baseline."

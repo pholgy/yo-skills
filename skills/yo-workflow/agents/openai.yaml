@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Workflow"
+  short_description: "Run evidence-grounded deep review programs"
+  default_prompt: "Use $yo-workflow to map this review surface, choose the simplest effective execution architecture, discover and independently challenge candidates, and report confirmed findings, unresolved risks, and coverage limits read-only."

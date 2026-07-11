@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Codex Settings"
+  short_description: "Apply the live high-depth Codex baseline"
+  default_prompt: "Use $yo-codex-settings to audit and apply my current Codex baseline."
