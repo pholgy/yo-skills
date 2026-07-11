@@ -31,6 +31,11 @@ non-Yo skill.
 Clone or download this repository, open a terminal in its root, then run one
 command.
 
+```bash
+git clone https://github.com/pholgy/yo-skills.git
+cd yo-skills
+```
+
 Windows PowerShell:
 
 ```powershell
@@ -186,3 +191,7 @@ verify it live instead of freezing it into a permanent rule.
 
 See [INSTALL.md](INSTALL.md) for manual installation, the optional Claude hook,
 backup locations, and recovery instructions.
+
+## License
+
+[MIT](LICENSE) — use it, fork it, and adapt it to your own engineering workflow.

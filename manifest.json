@@ -1,5 +1,7 @@
 {
   "name": "yo-skills-bundle",
+  "repository": "https://github.com/pholgy/yo-skills",
+  "license": "MIT",
   "bundle_revision": "2026-07-10",
   "repository_revision": "2026-07-11",
   "skill_count": 19,
