@@ -4,9 +4,11 @@ This is a self-contained pack of 19 software-engineering skills for Claude Code
 and Codex. The bundle favors live evidence, narrow ownership, reversible
 changes, explicit risk, and honest handoffs over ceremony or assumed success.
 
-The 2026-07-10 revision was rebuilt from primary engineering and platform
-sources, then exercised with fresh-context scenario tests. The previous version
-of every skill is preserved under `archive/yo-<name>-2026-07-10/`.
+The bundle was rebuilt from primary engineering and platform sources on
+2026-07-10, then refined on 2026-07-14 with a risk-based direct lane, a compact
+single-bug regression path, target-scoped pre-edit gates, and an opt-in verified
+hook lifecycle. The previous version of every skill is preserved under
+`archive/yo-<name>-2026-07-10/`.
 
 ## Start here
 
@@ -20,7 +22,9 @@ of every skill is preserved under `archive/yo-<name>-2026-07-10/`.
 | Active production impact | `yo-incident` |
 
 Clear requests route directly. `yo-flow` is for genuine ambiguity, not a menu
-that every task must pass through.
+that every task must pass through. Clear low-risk work with focused observable
+proof bypasses Yo routing entirely; small consequential changes still escalate
+by risk rather than line count.
 
 ## Skills
 
@@ -52,9 +56,9 @@ The common routes are deliberately short:
 
 ```text
 Alleged bug
-  yo-verify-premise -> yo-debug if cause is unknown
-  -> yo-impact before an edit -> yo-test-coverage when useful
-  -> yo-audit for an independent final check
+  clear + contained + known cause -> direct compact regression path
+  uncertain premise -> yo-verify-premise -> yo-debug if cause is unknown
+  consequential edit -> yo-impact; yo-audit when independent proof is useful
 
 New consequential capability
   yo-engineering -> yo-design when a decision needs approval -> yo-feature
@@ -71,6 +75,13 @@ Active production impact
 
 Optional steps stay optional. The user's requested outcome and stopping point
 control the route.
+
+A regression test protects behavior from returning; observed RED proof is the
+stronger claim that the same test fails against the pre-fix mechanism. Daily
+known-cause bugs use the focused repository runner (focused Bun test in Bun
+projects), keep test and fix together, and run the repository completion gate.
+RED proof is reserved for risk that justifies sensitivity evidence, not a
+mandatory phase for every fix.
 
 ## What makes `yo-workflow` a deep-review workflow
 

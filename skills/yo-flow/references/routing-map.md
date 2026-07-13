@@ -4,6 +4,24 @@ Read this file before selecting or chaining a destination. Choose the narrowest
 primary skill that owns the user's immediate outcome. Let that skill own later
 handoffs unless the user explicitly asks for an end-to-end route.
 
+## Direct lane: no Yo route
+
+Bypass routing and continue through the normal task workflow when the outcome
+and target are clear, the change is confined to one file or a few directly
+related files for the same local outcome, the work is local and readily
+reversible, one focused read or existing check can establish and prove it, and
+no material security/auth, public-contract, persisted-data/migration,
+concurrency, incident, destructive, deployment, or external-state surface is
+involved. The bounded file scope is a containment guard; risk and observability
+still decide eligibility, and changed-line count alone never does.
+
+The direct lane still discovers the applicable repository instructions and
+verification commands, preserves user work, and runs focused plus proportionate
+existing gates. Exit it when inspection exposes a disputed premise, unknown
+cause, wider consumer/contract surface, unexplained baseline failure, unfaithful
+test seam, or consequential/irreversible effect; route that discovered need
+normally.
+
 ## Immediate routes
 
 | User's immediate outcome | Primary route | Notes |
@@ -43,10 +61,11 @@ the user wants.
 
 Use these only when the user asks for the full path:
 
-- Single alleged bug: `yo-verify-premise` -> `yo-debug` if the cause remains
-  unknown -> `yo-impact` before editing existing behavior ->
-  `yo-test-coverage` when regression protection is appropriate -> `yo-audit`
-  for an independent final check.
+- Single alleged bug that needs a specialized route: `yo-verify-premise` ->
+  `yo-debug` if the cause remains unknown -> `yo-impact` before editing existing
+  behavior -> `yo-test-coverage` when regression protection is appropriate ->
+  `yo-audit` for an independent final check. A clear, contained, known-cause bug
+  may instead use the direct lane with the compact regression contract.
 - Broad or high-risk feature: `yo-engineering` -> `yo-design` when the approach
   needs approval -> `yo-feature`.
 - Multiple findings: `yo-fix-loop`; let it invoke premise, impact, test, and

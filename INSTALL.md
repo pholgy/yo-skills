@@ -12,7 +12,7 @@ moved to a timestamped backup before the bundled replacement is copied.
 The repository installers auto-detect existing user-global hosts, stage and
 verify the source, preserve same-named skills, install all 19, and verify every
 copied file. They perform no network requests and do not modify unrelated skills
-or plugins.
+or plugins. The default path does not install hooks or edit host settings.
 
 Windows PowerShell:
 
@@ -34,6 +34,21 @@ shared `~/.agents/skills` location. Use an explicit `codex`, `claude`, or
 Recommended-installer backups live under
 `~/.yo-skills-backups/<timestamp>/`. If a target install fails, the installer
 moves the incomplete copy aside and restores the previous skills.
+
+To install the optional Claude SessionStart reminder with the skills, opt in
+explicitly:
+
+```powershell
+.\install.ps1 -Target claude -InstallClaudeHook
+```
+
+```bash
+./install.sh --target claude --install-claude-hook
+```
+
+The option requires `claude` among the selected targets, stages and verifies
+both canonical hook files, and preserves same-named installed hooks under the
+same timestamped backup. It never edits `~/.claude/settings.json`.
 
 ## Manual: Claude Code on Windows
 
@@ -123,7 +138,20 @@ Recommended full-tree verification:
 ```
 
 The verification commands compare every file in each selected installed skill
-against this repository. The count-only checks below are a manual fallback.
+against this repository. Add `-IncludeClaudeHook` or
+`--include-claude-hook` with a Claude target to require both installed optional
+hook files to byte-match the repository. Hook verification is opt-in so a
+default skill-only install does not claim ownership of user-managed hooks.
+
+```powershell
+.\verify.ps1 -Target claude -IncludeClaudeHook
+```
+
+```bash
+./verify.sh --target claude --include-claude-hook
+```
+
+The count-only checks below are a manual fallback.
 
 PowerShell:
 
@@ -157,6 +185,11 @@ The skills work without a hook. The optional hook adds a short route reminder
 at startup, resume, clear, and compaction. It intentionally contains no hardcoded
 model, effort, context-window, or instruction-scope values; `yo-claude-settings`
 remains the source of truth.
+
+Prefer the opt-in installer commands above: they back up, copy, and verify both
+canonical scripts. The installer deliberately leaves `settings.json` alone
+because merging a handler is a user-owned configuration decision. The manual
+copy steps below are available when only one platform script is wanted.
 
 Copy the appropriate script:
 
@@ -231,3 +264,9 @@ into the host's `skills` directory.
 The manual commands preserve replaced folders in the per-host `skills-backup`
 directory shown in their examples. The bundle's own pre-rewrite snapshots are
 also available under `archive/`.
+
+When hook installation was opted in, previous hook files are under
+`old-claude-hooks` in the printed backup directory. Move a current managed hook
+aside, restore the desired same-named file, and rerun hook-inclusive
+verification. Restoring hook files does not modify the handler in
+`settings.json`.

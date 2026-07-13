@@ -2,10 +2,12 @@
 name: yo-verify-premise
 description: >-
   Verify a claimed bug, behavior, safety condition, or change premise against
-  the current code and relevant runtime evidence before editing. Use for
-  requests such as "fix X", "investigate Y", "this is broken", "the bug is in
-  Z", review comments that assert behavior, or change requests that assume the
-  system currently works a certain way. Bind the claim to a revision and
+  the current code and relevant runtime evidence before editing. Use when the
+  user asks for verification or investigation, or when a fix depends on a
+  premise that is uncertain, stale, disputed, environment-dependent,
+  consequential, or causally unclear. Do not invoke the full workflow solely
+  because a clear low-risk request says "fix"; a focused read or existing check
+  may establish that premise inline. Bind material claims to a revision and
   environment, choose the cheapest strong evidence, distinguish symptom from
   cause, and report a calibrated verdict. If credible evidence was already
   supplied, validate that it still applies instead of repeating it blindly.
@@ -23,6 +25,9 @@ true in the current target before changing product code.
   issue or PR state as authoritative for the target being changed.
 - Use evidence proportionate to the claim. Prefer a cheap decisive check over a
   broad ritual.
+- For a clear low-risk task, the focused read or existing check can be the whole
+  premise verification. Escalate into this workflow only when its verdict or
+  evidence record changes the safe next action.
 - Distinguish observed symptom, proposed cause, impact, and proposed fix; each
   can have a different evidence state.
 - Never turn failure to reproduce under one environment into proof that the
