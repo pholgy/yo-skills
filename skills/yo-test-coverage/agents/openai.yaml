@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Test Coverage"
   short_description: "Add tests that prove meaningful behavior"
-  default_prompt: "Use $yo-test-coverage to select the faithful test layer, protect the target behavior, and prove the regression test detects the pre-fix mechanism."
+  default_prompt: "Use $yo-test-coverage to add focused, faithful protection and require pre-fix sensitivity proof only when the risk warrants it."

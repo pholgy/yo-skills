@@ -6,7 +6,7 @@
 $output = @{
     hookSpecificOutput = @{
         hookEventName = 'SessionStart'
-        additionalContext = "The personal Yo skills bundle is installed. yo-claude-settings is the authoritative workflow for Claude Code model, effort, instruction-scope, context, memory, and process-ownership work; it derives its answer from live state, not hardcoded values in this reminder. yo-flow owns genuinely ambiguous workflow selection, and yo-incident owns active production impact. An applicable Yo workflow uses its current skill body and preserves the user's requested stopping point. The bundle has no required non-Yo skill dependencies."
+        additionalContext = "The personal Yo skills bundle is installed, and its current skill bodies are the sole workflow authority. Use live state, protect user ownership, choose the smallest workflow that fits the risk, and prove the requested outcome proportionately. yo-claude-settings owns Claude session-baseline and settings requests. yo-flow is only for genuinely ambiguous workflow selection: clear low-risk work bypasses it, and a focused read or existing check may be the whole premise verification. yo-incident owns active production impact. Preserve the user's requested stopping point. The bundle has no required non-Yo skill dependencies."
     }
 }
 

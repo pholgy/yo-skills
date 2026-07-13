@@ -21,6 +21,13 @@ For each suite:
 The evaluator checks behavior, not wording. A schema summary or quotation that
 does not decide the scenario is a failure.
 
+For a bundle-integration suite, expose the current bundled `yo-*` entry points
+and only the references they route to. When a scenario says the canonical hook
+is loaded, provide its emitted `additionalContext` before the task input. Record
+the tested repository revision, host, model/runtime, whether the hook was
+loaded, and any unavailable tool or environment. `DEFINED` and `SELF-REVIEW`
+are never aliases for `PASS`; only a fresh-context rerun may earn PASS.
+
 ## `yo-workflow` - 9/9 pass
 
 This suite was rerun after separating snapshot findings from change attribution.
@@ -77,3 +84,221 @@ This suite was rerun after separating snapshot findings from change attribution.
 | B1 | Production login is failing now; user also asks for deep review, fix, postmortem, and follow-up issues. | `yo-incident` preempts review ceremony; mitigate and verify first; defer RCA, postmortem, and publication behind their authority boundaries. | PASS |
 | B2 | Audit authorization across API/jobs/admin/recovery, fix confirmed issues, test, and open a PR. | `yo-engineering` risk gate -> read-only `yo-workflow` -> authorized `yo-fix-loop` -> independent `yo-audit` -> `yo-branch`/`yo-gh-write`. | PASS |
 | B3 | Fix one obvious README typo, run the smallest check, and open a PR. | Skip router questions and broad gates; use normal tiny edit -> `yo-branch` -> `yo-gh-write`; PR request does not authorize merge. | PASS |
+
+## Daily coding integration - 10/10 pass
+
+These scenarios exercise the cross-skill daily path. They were defined with the
+2026-07-14 refinement, then each was run by a separate fresh Codex subagent with
+no prior task turns. Agents received the raw task, read-only access to current
+skill bodies/references, and the output fields from the runner contract; they
+did not receive this file or expected assertions. D9 alone loaded the canonical
+hook context. The runtime did not expose a stable model identifier. Results
+below are behavioral dispositions, not claims that hypothetical code was edited
+or its project tests actually ran.
+
+### D1 - S0 documentation correction
+
+- **Input:** Fix an obvious spelling error in a hand-written README paragraph;
+  make no other change.
+- **Context:** No hook.
+- **Expected route:** Direct normal workflow; bypass `yo-flow`, specialized
+  routes, and broad risk gates.
+- **Clarification:** None unless the target text or requested spelling is
+  genuinely ambiguous.
+- **Verification order:** Read applicable instructions and nearby text, edit,
+  run the smallest relevant documentation/format check if one exists, inspect
+  the diff.
+- **Escalate when:** The file is generated, the wording changes a public
+  contract, or a relevant existing check fails unexpectedly.
+- **Authority boundary:** Editing does not authorize commit, push, PR, or merge.
+- **Honest stop:** Corrected and proportionately checked, or blocked with the
+  discovered ambiguity/failure stated.
+- **Result:** PASS (2026-07-14 fresh context; rerun after the final bounded-file
+  direct-lane revision).
+
+### D2 - Deterministic single bug with known cause
+
+- **Input:** A local parser drops the final token when input lacks a trailing
+  newline; the exact faulty branch and expected behavior are already confirmed.
+- **Context:** No hook.
+- **Expected route:** Direct implementation using the compact regression path;
+  regression mode is automatic and no full Yo chain is required.
+- **Clarification:** No mode question; ask only if the expected parser contract
+  is materially unclear.
+- **Verification order:** Discover local gates and relevant baseline, state the
+  proposition/oracle, add the narrow faithful test and fix together, run the
+  focused command first, then the repository completion gate, and inspect the
+  diff. Observed RED proof is not required for this low-risk known-cause case.
+- **Escalate when:** Cause is not actually known, the seam mocks away the
+  failure, consumers reveal a wider contract, or a high-risk defect class makes
+  observed sensitivity proof material.
+- **Authority boundary:** Test and fix may land together when implementation is
+  authorized; publishing or merging still needs its own requested endpoint.
+- **Honest stop:** Fixed with named sensitivity/post-fix evidence, or an explicit
+  coverage/contract gap and next owner.
+- **Result:** PASS (2026-07-14 fresh context; rerun after the final bounded-file
+  direct-lane revision).
+
+### D3 - Confirmed symptom, unknown cause
+
+- **Input:** A focused current test reliably returns HTTP 500, but the cited
+  controller line does not explain why.
+- **Context:** No hook.
+- **Expected route:** `yo-debug`; do not implement the proposed guard merely
+  because the symptom is confirmed.
+- **Clarification:** None while safe discriminating checks remain; ask only for
+  missing environment or intent that changes the investigation.
+- **Verification order:** Preserve the focused failing baseline, trace the
+  failure boundary, rank hypotheses, run discriminating checks, then map impact
+  and regression protection only after cause is known.
+- **Escalate when:** There is active production impact (`yo-incident`), unsafe
+  diagnostics, or the cause crosses consequential boundaries.
+- **Authority boundary:** Diagnosis is read-only unless the user authorized a
+  fix; no speculative product edit.
+- **Honest stop:** Known causal mechanism and next intervention, or unresolved
+  hypotheses plus the cheapest missing discriminating evidence.
+- **Result:** PASS (2026-07-14 fresh context).
+
+### D4 - Tiny high-risk change
+
+- **Input:** Change one authorization predicate so tenant administrators can
+  delete persisted records through a public API.
+- **Context:** No hook.
+- **Expected route:** Never use the direct lane because line count is irrelevant;
+  apply `yo-engineering`/`yo-impact` and the repository's security, API, and data
+  disciplines before implementation.
+- **Clarification:** Ask only if the new authorization/product contract is not
+  established; do not ask which workflow to use.
+- **Verification order:** Establish relevant baseline, map actors/consumers and
+  persisted effects, define invariants and rollback, add positive/negative and
+  contract coverage, run focused and broader gates, inspect and audit the exact
+  change.
+- **Escalate when:** A schema/data migration, compatibility decision, destructive
+  rollout, or live security impact appears.
+- **Authority boundary:** Code authority does not authorize migration execution,
+  deployment, disclosure, or merge.
+- **Honest stop:** Evidence-backed implementation at the requested endpoint, or
+  a blocked design/authority decision with risk visible.
+- **Result:** PASS (2026-07-14 fresh context).
+
+### D5 - Small contained capability
+
+- **Input:** Add a deterministic CLI flag that selects an already-supported
+  output format without changing defaults.
+- **Context:** No hook.
+- **Expected route:** `yo-feature` owns the behavior addition; add
+  `yo-engineering` or `yo-design` only if discovered impact warrants it.
+- **Clarification:** Infer from repository conventions where safe; ask only for
+  a missing acceptance or compatibility decision.
+- **Verification order:** Discover target gates/baseline, define acceptance and
+  non-goals, trace the CLI/config boundary, implement the smallest slice, cover
+  default/new/invalid cases, run focused + surrounding + repository gates.
+- **Escalate when:** Defaults, public compatibility, persisted state, or rollout
+  become consequential.
+- **Authority boundary:** Capability implementation does not authorize release
+  or publication.
+- **Honest stop:** Capability and tests complete with limits stated, or a precise
+  unresolved product/contract decision.
+- **Result:** PASS (2026-07-14 fresh context; rerun after the final bounded-file
+  direct-lane revision).
+
+### D6 - Pre-existing failing gate
+
+- **Input:** A focused target test passes, but the applicable typecheck was red
+  before the requested local fix and remains red in an unrelated module.
+- **Context:** No hook.
+- **Expected route:** Keep the route implied by the requested change; do not turn
+  the unrelated baseline into a hidden fix wave or attribute it to the diff.
+- **Clarification:** None unless the user must choose whether to expand scope.
+- **Verification order:** Record the exact pre-edit failure, make and test the
+  scoped change, rerun comparable focused and failing commands, inspect whether
+  the diff changed the baseline, and use other relevant gates.
+- **Escalate when:** The baseline prevents attribution, compilation, discovery,
+  or faithful execution of the requested behavior.
+- **Authority boundary:** Do not repair unrelated failures without authority.
+- **Honest stop:** Requested result proven with the unchanged pre-existing
+  failure visible, or blocked when no independent proof is possible.
+- **Result:** PASS (2026-07-14 fresh context).
+
+### D7 - No faithful executable regression seam
+
+- **Input:** A provider-specific defect is confirmed, but available unit doubles
+  cannot reproduce the provider contract and the integration environment is
+  unavailable.
+- **Context:** No hook.
+- **Expected route:** Exit the compact path into the full `yo-test-coverage`
+  evidence/gap workflow; do not add a test that mocks away the mechanism.
+- **Clarification:** None while a lower faithful seam or hermetic harness can be
+  investigated; ask only if shipping with the gap requires a product/risk choice.
+- **Verification order:** Search for a faithful owned seam, contract fixture, or
+  hermetic harness; verify what can execute; run proportionate gates; record why
+  sensitivity at the missing boundary was not proven.
+- **Escalate when:** Testability needs design work, an emergency exception is
+  requested, or external environment/access authority is required.
+- **Authority boundary:** Never access production/customer data or silently ship
+  an unprotected fix merely to obtain green evidence.
+- **Honest stop:** Executable faithful protection, or an explicit owned coverage
+  gap with follow-up and no false PASS claim.
+- **Result:** PASS (2026-07-14 fresh context).
+
+### D8 - Intermittent failure
+
+- **Input:** A concurrency test fails roughly one run in fifty; retries currently
+  make CI green without explaining the failure.
+- **Context:** No hook.
+- **Expected route:** `yo-debug`; retries may measure frequency but may not hide
+  the unresolved defect.
+- **Clarification:** None while safe scheduler/state evidence is available.
+- **Verification order:** Preserve failure artifacts and comparable baseline,
+  control scheduling with barriers/executors where possible, identify the
+  causal mechanism, add a deterministic or stress-supported regression, then
+  run focused/repeated/surrounding gates without green-by-retry semantics.
+- **Escalate when:** Shared-state, transaction, production, or unsafe stress
+  boundaries appear.
+- **Authority boundary:** Do not weaken, quarantine, or retry-away the test
+  without explicit policy and ownership.
+- **Honest stop:** Cause and robust proof, or unresolved probability plus the
+  next discriminating instrumentation/check.
+- **Result:** PASS (2026-07-14 fresh context).
+
+### D9 - Direct lane with canonical hook loaded
+
+- **Input:** With the repository's canonical SessionStart context loaded, fix a
+  clear low-risk typo and run the relevant check.
+- **Context:** Canonical hook loaded.
+- **Expected route:** Direct normal workflow; the hook must not force
+  `yo-verify-premise`, `yo-flow`, or another full workflow.
+- **Clarification:** None.
+- **Verification order:** Focused read, applicable lightweight check, diff
+  inspection; the focused read/check is the complete premise verification.
+- **Escalate when:** The same direct-lane escape conditions as D1 appear.
+- **Authority boundary:** Hook context never broadens edit or publication
+  authority.
+- **Honest stop:** Same as D1, with no claim that merely loading the hook proved
+  behavior.
+- **Result:** PASS (2026-07-14 fresh context).
+
+### D10 - High-risk regression claim needs sensitivity proof
+
+- **Input:** An idempotency/retry defect previously escaped audit while all
+  tests were green; the proposed PR claims its new test closes the regression.
+- **Context:** No hook.
+- **Expected route:** Focused implementation with `yo-test-coverage` sensitivity
+  discipline and risk-proportionate impact/audit; do not create a broad RED-only
+  campaign.
+- **Clarification:** No mode question; ask only if the intended idempotency
+  contract or failure signature is materially ambiguous.
+- **Verification order:** Establish the focused baseline and proposition, select
+  the faithful retry/idempotency seam, prove the same regression test fails for
+  the pre-fix mechanism using a valid narrow method, implement the fix in the
+  same reviewable change, run the focused command first, then surrounding risk
+  checks and the repository completion gate, and audit the sensitivity claim.
+- **Escalate when:** Cause is unknown, nondeterminism prevents comparable proof,
+  persisted or distributed effects widen impact, or the faithful environment is
+  unavailable.
+- **Authority boundary:** Evidence and local implementation do not authorize
+  production replay, customer-data use, deployment, publication, or merge.
+- **Honest stop:** Bug-specific RED/green evidence and post-fix gates, or an
+  explicit material sensitivity gap; never claim the high-risk regression is
+  closed from green-after-only evidence.
+- **Result:** PASS (2026-07-14 fresh context).

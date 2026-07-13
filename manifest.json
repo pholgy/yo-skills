@@ -2,8 +2,8 @@
   "name": "yo-skills-bundle",
   "repository": "https://github.com/pholgy/yo-skills",
   "license": "MIT",
-  "bundle_revision": "2026-07-10",
-  "repository_revision": "2026-07-11",
+  "bundle_revision": "2026-07-14",
+  "repository_revision": "2026-07-14",
   "skill_count": 19,
   "install_targets": {
     "claude": "%USERPROFILE%\\.claude\\skills",
@@ -44,7 +44,8 @@
   },
   "optional_assets": {
     "claude_session_start_bash": "hooks/yo-claude-baseline.sh",
-    "claude_session_start_powershell": "hooks/yo-claude-baseline.ps1"
+    "claude_session_start_powershell": "hooks/yo-claude-baseline.ps1",
+    "install_policy": "explicit opt-in, backup-first, settings.json unchanged"
   },
   "installers": {
     "windows": "install.ps1",
@@ -63,6 +64,7 @@
     "The bundle is self-contained: no non-Yo skill is required by a Yo workflow.",
     "Dated archives preserve the pre-rewrite skill trees.",
     "Install all 19 skills for either host; platform-specific skills trigger only in their applicable context.",
+    "Clear low-risk work bypasses routing; observed RED proof is risk-based rather than mandatory for every regression test.",
     "Repository-specific GitHub writing conventions live in skills/yo-gh-write/references/repo-profiles.md."
   ]
 }

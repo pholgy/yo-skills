@@ -78,6 +78,17 @@ Run the same installer again to update. Existing copies of these 19 skills are
 moved to a timestamped directory under `~/.yo-skills-backups/` before the new
 version is installed. Unrelated skills and plugins are not changed.
 
+Claude's optional SessionStart reminder is deliberately opt-in. Install both
+canonical hook files, backup-first, without changing `settings.json`:
+
+```powershell
+.\install.ps1 -Target claude -InstallClaudeHook
+```
+
+```bash
+./install.sh --target claude --install-claude-hook
+```
+
 ## Verify
 
 ```powershell
@@ -90,6 +101,17 @@ version is installed. Unrelated skills and plugins are not changed.
 
 Verification compares every installed file with this repository. A valid
 installation reports 19 matching skills for each selected host.
+
+Include the optional Claude hook in that comparison only when you installed or
+manage it from this bundle:
+
+```powershell
+.\verify.ps1 -Target claude -IncludeClaudeHook
+```
+
+```bash
+./verify.sh --target claude --include-claude-hook
+```
 
 Start a fresh Codex or Claude session after installing so its skill catalog is
 reloaded.
@@ -152,9 +174,12 @@ The installers:
 
 - read only this local repository;
 - perform no downloads or network requests;
-- replace only the 19 skill directories shipped under `skills/`;
+- replace only the 19 skill directories shipped under `skills/` by default;
 - preserve replaced copies before installation;
-- do not modify plugin settings, repositories, or project files.
+- when explicitly opted in, replace only the two named Claude hook files after
+  preserving their previous copies;
+- never edit Claude `settings.json`, plugin settings, repositories, or project
+  files.
 
 Review any skill before installing it, especially when using a fork you did not
 create yourself.

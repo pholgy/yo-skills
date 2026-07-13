@@ -5,12 +5,15 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source_root="$repo_root/skills"
 install_home="${HOME}"
 requested_targets=()
+include_claude_hook=false
 
 usage() {
   cat <<'EOF'
-Usage: ./verify.sh [--target auto|all|codex|claude|agents] [--home PATH]
+Usage: ./verify.sh [--target auto|all|codex|claude|agents] [--home PATH] [--include-claude-hook]
 
 Repeat --target to verify more than one explicit host.
+--include-claude-hook compares both installed optional hook files with the
+repository. It requires claude to be one of the selected targets.
 Default: --target auto
 EOF
 }
@@ -26,6 +29,10 @@ while [[ $# -gt 0 ]]; do
       [[ $# -ge 2 ]] || { echo "Missing value for --home" >&2; exit 2; }
       install_home="$2"
       shift 2
+      ;;
+    --include-claude-hook)
+      include_claude_hook=true
+      shift
       ;;
     -h|--help)
       usage
@@ -97,6 +104,17 @@ fi
 
 [[ ${#selected_targets[@]} -gt 0 ]] || { echo "No installed target was detected." >&2; exit 1; }
 
+if [[ "$include_claude_hook" == true ]]; then
+  claude_selected=false
+  for target in "${selected_targets[@]}"; do
+    [[ "$target" == claude ]] && claude_selected=true
+  done
+  if [[ "$claude_selected" == false ]]; then
+    echo "--include-claude-hook requires claude to be one of the selected targets." >&2
+    exit 2
+  fi
+fi
+
 target_path() {
   case "$1" in
     codex) printf '%s\n' "$install_home/.codex/skills" ;;
@@ -142,6 +160,26 @@ for host in "${selected_targets[@]}"; do
     printf '           mismatches: %s\n' "${mismatches[*]}"
   fi
 done
+
+if [[ "$include_claude_hook" == true ]]; then
+  hook_target_root="$install_home/.claude/hooks"
+  hook_names=(yo-claude-baseline.ps1 yo-claude-baseline.sh)
+  matching_hooks=0
+  hook_mismatches=()
+  for name in "${hook_names[@]}"; do
+    if [[ -f "$hook_target_root/$name" && ! -L "$hook_target_root/$name" ]] &&
+       cmp -s "$repo_root/hooks/$name" "$hook_target_root/$name"; then
+      matching_hooks=$((matching_hooks + 1))
+    else
+      hook_mismatches+=("$name")
+      failed=true
+    fi
+  done
+  printf '  %-7s  %s/%s matching  %s\n' hooks "$matching_hooks" "${#hook_names[@]}" "$hook_target_root"
+  if [[ ${#hook_mismatches[@]} -gt 0 ]]; then
+    printf '           mismatches: %s\n' "${hook_mismatches[*]}"
+  fi
+fi
 
 if [[ "$failed" == true ]]; then
   echo 'Yo Skills verification failed.' >&2

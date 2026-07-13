@@ -64,7 +64,11 @@ Use an existing `yo-impact` brief as a map, but independently verify the materia
 
 ### 5. Inspect and run verification
 
-Read changed tests. Confirm their oracle exercises the intended behavior and, for regression tests, that sensitivity to the pre-fix mechanism is demonstrated or honestly limited per `yo-test-coverage`.
+Read changed tests and confirm their oracle exercises the intended behavior.
+When a PR claims a regression test protects a high-risk bug, or explicitly
+claims sensitivity to the old mechanism, verify the pre-fix sensitivity evidence
+or its honest limitation per `yo-test-coverage`. Do not require observed RED
+proof for every ordinary change.
 
 Run proportionate checks against the exact audited revision:
 

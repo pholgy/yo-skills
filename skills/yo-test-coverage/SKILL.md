@@ -9,6 +9,51 @@ Protect a precise behavioral proposition with a test that can fail for the right
 
 Respect the requested mode: review or planning stays read-only; implementation may add tests and, when authorized, the paired production change.
 
+## Default regression path for one bug
+
+A confirmed deterministic bug with a known cause enters **regression** mode
+automatically. Do not ask the user to choose a mode or require the full workflow
+when this compact path is sufficient:
+
+1. Discover the target's local test idiom, applicable instructions, focused
+   command, and proportionate repository gates. Note a pre-existing failure
+   before attributing it to the change.
+2. State one given/when/then proposition and choose the narrowest faithful layer
+   with an observable behavior, invariant, or owned-boundary oracle.
+3. Add the smallest focused regression test and implement the scoped fix in the
+   same reviewable change. For a known bug in a Bun repository, prefer the
+   narrow focused Bun regression command; otherwise use the repository's native
+   focused runner.
+4. Use red-before-green proof only when the risk justifies proving sensitivity,
+   using a valid pattern in step 5 below. An ordinary clear, low-risk bug does
+   not need a separate RED phase merely to satisfy ceremony.
+5. Run the narrow focused command first, then the repository completion gate;
+   add a surrounding or contract suite only when it protects a distinct risk.
+   Report the test, any required sensitivity evidence, post-fix checks, and gap.
+
+This is the default for a production bug fix, not an absolute claim that every
+defect has a faithful executable seam. If the cause is unknown, route through
+`yo-debug`. If a regression test would mock away the mechanism, cannot execute
+in the available environment, or an incident exception applies, use the full
+workflow's honest-gap rules and make the missing protection an owned follow-up.
+
+Use the full workflow for characterization, backfill, contract work, multiple
+affected surfaces, concurrency or nondeterminism, difficult sensitivity proof,
+or any case where the compact path stops being faithful.
+
+Terminology matters:
+
+- A **regression test** protects behavior so the bug cannot return silently.
+- **RED proof** demonstrates that the test fails against the pre-fix mechanism
+  and passes with the fix. It is sensitivity evidence, not a separate test kind.
+- The same test can be a "focused Bun regression test with red-before-green
+  proof."
+
+Keep the test and fix together unless the user explicitly requests separate
+evidence or a repository policy requires a separately reviewable
+characterization step. Do not let RED proof delay an obvious implementation
+without a risk-based reason.
+
 ## Choose the test's job
 
 - **Regression:** encode the confirmed failure signature and the intended corrected behavior so the same mechanism cannot return silently.
@@ -56,9 +101,25 @@ Prefer a real implementation when it is fast, deterministic, safe, and easy to c
 
 For third-party SDKs, keep the owned adapter real and control its transport or owned interface. Do not invent undocumented provider behavior in a mock.
 
-### 5. Prove sensitivity to the pre-fix mechanism
+### 5. Prove sensitivity when risk warrants it
 
-A regression test must fail for the bug-specific reason without the production fix and pass with it. Valid proof patterns include:
+Design every regression test to exercise the pre-fix mechanism. Require observed
+RED proof when its extra confidence is material, including:
+
+- reliability, concurrency, security, idempotency, checkpoint, retry, or
+  circuit-breaker defects;
+- subtle bugs or defects that previously escaped an audit while tests were
+  green;
+- work whose stated objective is to prove the test catches the pre-fix
+  mechanism;
+- a PR or audit claim that a test closes an important regression.
+
+Do not require RED proof merely because an issue exists. It is normally optional
+for a small known-cause bug, simple coverage backfill, characterization before a
+refactor, or clear implementation work without a verified defect.
+
+When RED proof is warranted, the regression test must fail for the bug-specific
+reason without the production fix and pass with it. Valid proof patterns include:
 
 1. run the new test red before implementing the fix, then green after;
 2. apply only the test/test-support diff to an isolated parent revision;
@@ -68,6 +129,11 @@ A regression test must fail for the bug-specific reason without the production f
 Use the same targeted command and comparable environment on both sides. A compile error caused by a missing test helper, discovery failure, unrelated failure, or different behavior does not prove the regression test is sensitive.
 
 If the parent cannot build, the failure is probabilistic, or environment drift prevents a fair comparison, report the limitation and the strongest alternate evidence. Do not write "failed before fix" unless it was observed.
+
+Keep the RED check narrow and time-bounded. Do not create a long RED-only branch
+or phase without implementation, run a broad suite to hunt for an unknown-scope
+failure, force RED on every issue, or use sensitivity proof as a reason to delay
+a clear fix without proportional benefit.
 
 ### 6. Make the test trustworthy
 
@@ -99,6 +165,16 @@ Run the focused test, the relevant surrounding suite, and the repository's propo
 Production behavior and its regression protection should land in the same reviewable change unless an emergency policy applies. Characterization coverage may land first as an independently green change before a refactor. Follow `yo-branch` for commit shape rather than inventing a commit rule here.
 
 ## Output
+
+For one straightforward regression, this short form is sufficient:
+
+```text
+Regression: <test name> — sensitivity <required proof, not required with reason, or limitation>; post-fix <focused command then repo gate>.
+Gap: <none, or the explicit unprotected boundary/follow-up>.
+```
+
+Use the full record when the mode, evidence, or remaining risk needs more
+context:
 
 ```markdown
 Mode: <regression | characterization | backfill | contract>

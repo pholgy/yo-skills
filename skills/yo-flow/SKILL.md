@@ -5,9 +5,10 @@ description: >-
   yo-* workflow without making the user repeat context. Use when explicitly
   invoked, when the user asks which Yo skill or what to do next, says they are
   unsure where to start, or gives a request whose desired outcome is materially
-  ambiguous between fixing, building, reviewing, shipping, or writing. Skip
-  routing questions for clear requests and route directly. Active production
-  impact preempts the router and goes to yo-incident.
+  ambiguous between fixing, building, reviewing, shipping, or writing. Clear,
+  low-risk work bypasses the router and continues through the normal task
+  workflow. Active production impact preempts the router and goes to
+  yo-incident.
 ---
 
 # Yo Flow
@@ -19,7 +20,8 @@ downstream workflow here.
 ## Core contract
 
 - Use only bundled `yo-*` skills. Never require an external skill.
-- Skip menus when the requested outcome is already clear.
+- Bypass this router when the requested outcome is already clear and no
+  specialized Yo workflow is needed.
 - Prefer one primary destination. Add a preceding risk or design gate only when
   the request actually needs it.
 - Use available context and cheap read-only inspection before asking the user,
@@ -35,7 +37,44 @@ Route active production impact directly to `yo-incident`. Do not show a menu.
 Examples include an outage, live login failure, widespread errors, or a harmful
 deploy affecting users now.
 
-### 2. Honor clear intent
+### 2. Bypass routing for clear direct work
+
+Continue through the normal task workflow without a Yo handoff when all of the
+following are true:
+
+- the outcome and target are clear;
+- the change is confined to one file or a few directly related files for the
+  same local outcome;
+- the work is local and readily reversible;
+- a focused read or existing check can establish the premise and prove the
+  result;
+- no material authorization/security boundary, public contract, persisted-data
+  or migration surface, concurrency risk, active incident, destructive action,
+  deployment, or other external state is involved.
+
+The file-scope condition is a containment guard, not permission to classify a
+cross-cutting change as trivial. Do not use changed-line count alone as a proxy
+for risk. An obvious one-file documentation correction qualifies from the rule
+text alone. A localized, deterministic bug with a known cause may also stay
+direct when its regression test and repository gates fully observe the change.
+Still discover applicable
+instructions and verification commands, preserve user work, and run the
+proportionate operating-baseline checks; bypassing the router does not bypass
+engineering discipline.
+
+Exit the direct lane as soon as inspection reveals a disputed premise, unknown
+cause, broader consumer or contract surface, an unexplained failing baseline,
+an unfaithful test seam, or any consequential/irreversible effect. Route the
+newly discovered need rather than forcing the original classification.
+
+Do not route a clear fix into a RED-test campaign. When the next action is
+obvious, use the normal task workflow: inspect, make the scoped fix, add the
+focused regression when a verified bug warrants it, run the narrow focused test,
+then run the repository completion gate. Route to `yo-test-coverage` only when
+the user asks for tests/coverage or choosing a faithful test strategy is
+materially ambiguous.
+
+### 3. Honor clear specialized intent
 
 Read [the routing map](references/routing-map.md), select the primary skill, and
 invoke it without a routing question.
@@ -57,7 +96,7 @@ appropriate Yo workflow and preserve the need for explicit approval. If
 approval is the only unresolved choice, ask for that approval directly instead
 of asking a generic routing question.
 
-### 3. Clarify only material ambiguity
+### 4. Clarify only material ambiguity
 
 Read [the clarification patterns](references/clarification-patterns.md) when two
 or more materially different destinations remain plausible.
@@ -70,7 +109,7 @@ Do not ask for information already supplied or cheaply discoverable. Do not
 repeat a generic top-level wizard after the user's domain or partial intent is
 known.
 
-### 4. Hand off with context
+### 5. Hand off with context
 
 Pass only the fields that exist:
 
@@ -84,7 +123,7 @@ Pass only the fields that exist:
 Then stop routing. Let the destination skill own its workflow and later
 handoffs.
 
-### 5. Recover cleanly
+### 6. Recover cleanly
 
 When the user changes or corrects the goal, discard the earlier route and use
 the revised intent. Never make them defend the correction.
@@ -105,5 +144,8 @@ to state the desired deliverable in their own words.
 - Do not duplicate the destination skill's intake questions or templates.
 - Do not begin implementation, diagnosis, review, or GitHub writing here.
 - Do not add a risk gate to trivial, reversible work.
+- Do not use changed-line count alone as a proxy for risk; enforce the direct
+  lane's bounded, directly related file scope as well as its risk conditions.
+- Do not turn RED proof into a mandatory phase for ordinary clear fixes.
 - Do not treat the menu options as exhaustive.
 - Do not reference or require any non-Yo skill.

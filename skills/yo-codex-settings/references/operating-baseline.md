@@ -8,9 +8,18 @@ attribution or a stale model/version dependency.
 - What observable result did the user request?
 - What facts are confirmed from live code/state, and what is assumed?
 - Which instruction files govern the target path?
+- Which repository verification contract applies to this target or subproject:
+  focused tests, lint, typecheck, build, and their CI equivalents?
 - What user work, public contract, data, process, or external state is protected?
 - What is the smallest complete change?
 - Which focused check will fail before or prove after the change?
+
+Discover the applicable verification contract before the first edit in each
+target scope; do not assume one command covers an entire monorepo. When current
+health or change attribution matters, run the smallest relevant existing check
+before editing and record its result. Do not require a full suite as ritual for
+a documentation-only or otherwise unobserved low-risk change; state what was
+inspected or why no useful pre-edit gate exists.
 
 Ask only when a missing answer materially changes behavior, authority, safety, or
 public outcome. Otherwise make a bounded assumption and state it when useful.

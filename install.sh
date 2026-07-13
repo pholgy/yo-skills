@@ -5,12 +5,16 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source_root="$repo_root/skills"
 install_home="${HOME}"
 requested_targets=()
+install_claude_hook=false
 
 usage() {
   cat <<'EOF'
-Usage: ./install.sh [--target auto|all|codex|claude|agents] [--home PATH]
+Usage: ./install.sh [--target auto|all|codex|claude|agents] [--home PATH] [--install-claude-hook]
 
 Repeat --target to install into more than one explicit host.
+--install-claude-hook installs both canonical optional hook files after backing
+up existing copies. It requires claude to be one of the selected targets and
+does not edit ~/.claude/settings.json.
 Default: --target auto
 EOF
 }
@@ -26,6 +30,10 @@ while [[ $# -gt 0 ]]; do
       [[ $# -ge 2 ]] || { echo "Missing value for --home" >&2; exit 2; }
       install_home="$2"
       shift 2
+      ;;
+    --install-claude-hook)
+      install_claude_hook=true
+      shift
       ;;
     -h|--help)
       usage
@@ -110,6 +118,17 @@ if [[ ${#selected_targets[@]} -eq 0 ]]; then
   exit 1
 fi
 
+if [[ "$install_claude_hook" == true ]]; then
+  claude_selected=false
+  for target in "${selected_targets[@]}"; do
+    [[ "$target" == claude ]] && claude_selected=true
+  done
+  if [[ "$claude_selected" == false ]]; then
+    echo "--install-claude-hook requires claude to be one of the selected targets." >&2
+    exit 2
+  fi
+fi
+
 target_path() {
   case "$1" in
     codex) printf '%s\n' "$install_home/.codex/skills" ;;
@@ -150,6 +169,23 @@ for name in "${skill_names[@]}"; do
   }
 done
 
+hook_names=(yo-claude-baseline.ps1 yo-claude-baseline.sh)
+staged_hook_root="$backup_root/staged-hooks"
+if [[ "$install_claude_hook" == true ]]; then
+  mkdir -p "$staged_hook_root"
+  for name in "${hook_names[@]}"; do
+    [[ -f "$repo_root/hooks/$name" ]] || {
+      echo "Missing hook source: $repo_root/hooks/$name" >&2
+      exit 1
+    }
+    cp -p "$repo_root/hooks/$name" "$staged_hook_root/$name"
+    cmp -s "$repo_root/hooks/$name" "$staged_hook_root/$name" || {
+      echo "Hook staging verification failed for $name." >&2
+      exit 1
+    }
+  done
+fi
+
 rollback_target() {
   local host="$1"
   local target_root="$2"
@@ -158,7 +194,7 @@ rollback_target() {
   local name
 
   mkdir -p "$failed_root"
-  for name in "${skill_names[@]}"; do
+  for name in "${touched_skills[@]}"; do
     if [[ -e "$target_root/$name" ]]; then
       mv "$target_root/$name" "$failed_root/$name"
     fi
@@ -182,11 +218,24 @@ for host in "${selected_targets[@]}"; do
   mkdir -p "$old_root"
   replaced=0
   install_failed=false
+  hook_files=0
+  hooks_replaced=0
+  hook_target_root="$install_home/.claude/hooks"
+  old_hook_root="$backup_root/old-claude-hooks"
+  failed_hook_root="$backup_root/failed-claude-hooks"
+  touched_skills=()
+  touched_hooks=()
 
   for name in "${skill_names[@]}"; do
     if [[ -e "$target_root/$name" ]]; then
-      mv "$target_root/$name" "$old_root/$name"
+      if ! mv "$target_root/$name" "$old_root/$name"; then
+        install_failed=true
+        break
+      fi
+      touched_skills+=("$name")
       replaced=$((replaced + 1))
+    else
+      touched_skills+=("$name")
     fi
     if ! cp -R "$staged_root/$name" "$target_root/$name"; then
       install_failed=true
@@ -203,13 +252,73 @@ for host in "${selected_targets[@]}"; do
     done
   fi
 
+  if [[ "$install_failed" == false && "$install_claude_hook" == true && "$host" == claude ]]; then
+    if ! mkdir -p "$hook_target_root" "$old_hook_root"; then
+      install_failed=true
+    else
+      hook_target_root="$(cd "$hook_target_root" && pwd -P)"
+      case "$hook_target_root/" in
+        "$install_home"/*) ;;
+        *) echo "Refusing to install hooks outside the selected home: $hook_target_root" >&2; install_failed=true ;;
+      esac
+    fi
+
+    if [[ "$install_failed" == false ]]; then
+      for name in "${hook_names[@]}"; do
+        if [[ -e "$hook_target_root/$name" || -L "$hook_target_root/$name" ]]; then
+          # Move the directory entry itself so a user-managed symlink is backed
+          # up without following it or writing through it outside install_home.
+          if ! mv "$hook_target_root/$name" "$old_hook_root/$name"; then
+            install_failed=true
+            break
+          fi
+          hooks_replaced=$((hooks_replaced + 1))
+        fi
+        touched_hooks+=("$name")
+        if ! cp -p "$staged_hook_root/$name" "$hook_target_root/$name"; then
+          install_failed=true
+          break
+        fi
+      done
+    fi
+
+    if [[ "$install_failed" == false ]]; then
+      for name in "${hook_names[@]}"; do
+        if ! cmp -s "$repo_root/hooks/$name" "$hook_target_root/$name"; then
+          install_failed=true
+          break
+        fi
+      done
+    fi
+
+    if [[ "$install_failed" == false ]]; then
+      if ! chmod +x "$hook_target_root/yo-claude-baseline.sh"; then
+        install_failed=true
+      else
+        hook_files=${#hook_names[@]}
+      fi
+    fi
+  fi
+
   if [[ "$install_failed" == true ]]; then
+    if [[ ${#touched_hooks[@]} -gt 0 ]]; then
+      mkdir -p "$failed_hook_root"
+      for name in "${touched_hooks[@]}"; do
+        if [[ -e "$hook_target_root/$name" || -L "$hook_target_root/$name" ]]; then
+          mv "$hook_target_root/$name" "$failed_hook_root/$name"
+        fi
+        if [[ -e "$old_hook_root/$name" || -L "$old_hook_root/$name" ]]; then
+          mv "$old_hook_root/$name" "$hook_target_root/$name"
+        fi
+      done
+    fi
     rollback_target "$host" "$target_root" "$old_root"
-    echo "Installation failed for $host; the previous skills were restored." >&2
+    echo "Installation failed for $host; previous skills and touched hooks were restored." >&2
     exit 1
   fi
 
-  printf '  %-7s  19 installed, %s replaced  %s\n' "$host" "$replaced" "$target_root"
+  printf '  %-7s  19 installed, %s replaced; %s hooks installed, %s replaced  %s\n' \
+    "$host" "$replaced" "$hook_files" "$hooks_replaced" "$target_root"
 done
 
 printf '\nBackup: %s\n' "$backup_root"

@@ -3,7 +3,9 @@ param(
     [ValidateSet('auto', 'all', 'codex', 'claude', 'agents')]
     [string[]]$Target = @('auto'),
 
-    [string]$InstallHome = $env:USERPROFILE
+    [string]$InstallHome = $env:USERPROFILE,
+
+    [switch]$IncludeClaudeHook
 )
 
 Set-StrictMode -Version Latest
@@ -42,6 +44,23 @@ function Test-TreeEqual {
     }
 
     return $true
+}
+
+function Test-FileEqual {
+    param(
+        [Parameter(Mandatory)][string]$Expected,
+        [Parameter(Mandatory)][string]$Actual
+    )
+
+    $actualItem = Get-Item -Force -LiteralPath $Actual -ErrorAction SilentlyContinue
+    if ($null -eq $actualItem -or $actualItem.PSIsContainer -or
+        ($actualItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint)) {
+        return $false
+    }
+
+    $expectedHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $Expected).Hash
+    $actualHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $Actual).Hash
+    return $expectedHash -eq $actualHash
 }
 
 function Add-UniqueTarget {
@@ -102,6 +121,9 @@ else {
 if ($selected.Count -eq 0) {
     throw 'No installed target was detected. Use -Target to select one explicitly.'
 }
+if ($IncludeClaudeHook -and -not $selected.Contains('claude')) {
+    throw '-IncludeClaudeHook requires claude to be one of the selected targets.'
+}
 
 $targetRoots = @{
     codex  = Join-Path $homePath '.codex\skills'
@@ -136,6 +158,34 @@ foreach ($hostName in $selected) {
 }
 
 $rows | Format-Table -AutoSize
+if ($IncludeClaudeHook) {
+    $hookTargetRoot = Join-Path $homePath '.claude\hooks'
+    $hookFiles = @(
+        [PSCustomObject]@{
+            Name = 'yo-claude-baseline.ps1'
+            Source = Join-Path $repoRoot $manifest.optional_assets.claude_session_start_powershell
+        },
+        [PSCustomObject]@{
+            Name = 'yo-claude-baseline.sh'
+            Source = Join-Path $repoRoot $manifest.optional_assets.claude_session_start_bash
+        }
+    )
+    $matchingHooks = 0
+    $hookMismatches = [System.Collections.Generic.List[string]]::new()
+    foreach ($hook in $hookFiles) {
+        if (Test-FileEqual -Expected $hook.Source -Actual (Join-Path $hookTargetRoot $hook.Name)) {
+            $matchingHooks++
+        }
+        else {
+            $hookMismatches.Add($hook.Name)
+            $failed = $true
+        }
+    }
+    Write-Host "Claude hooks: $matchingHooks/$($hookFiles.Count) matching  $hookTargetRoot"
+    if ($hookMismatches.Count -gt 0) {
+        Write-Host "Mismatches: $($hookMismatches -join ', ')"
+    }
+}
 if ($failed) {
     Write-Error 'Yo Skills verification failed.'
     exit 1
