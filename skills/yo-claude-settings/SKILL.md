@@ -175,6 +175,10 @@ For substantive work:
 6. remove unnecessary moving parts from the final solution, rerun affected
    checks, and report outcome, evidence, limitations, and unresolved state
    concisely.
+7. stop when the defined acceptance and delivery boundary are met, relevant
+   fresh evidence passes, and no Blocker or Major remains; optional improvements
+   do not reopen implementation or another audit, while new material evidence
+   reopens only the affected scope.
 
 Think deeply without narrating hidden reasoning or adding ceremonial plans to
 trivial tasks. Ask only when the missing choice materially changes behavior,

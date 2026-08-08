@@ -231,6 +231,12 @@ Call the wave complete only when every source finding has an explicit,
 evidence-backed disposition and every in-scope required cluster is verified,
 refuted, a proven duplicate, or an authorized no-change decision.
 
+Once that condition holds and no Blocker or Major remains, report and stop.
+Suggestions, optional items, nits, and PASS-level Minor or Note findings with an
+explicit accepted-no-change disposition do not create another remediation
+cluster or audit cycle. Reopen only when late intake is explicitly placed in
+scope or new material evidence invalidates a completed disposition.
+
 If time, context, tools, or authority run out, stop at a truthful partial result.
 List what is verified, what remains, why it remains, and the next executable
 step. Deferred work needs a reason and decision owner; blocked work needs the
@@ -265,6 +271,8 @@ Do not create follow-up issues or publish comments without that authorization.
 - Bundling unrelated cleanup into a remediation cluster.
 - Forcing arbitrary line, finding, commit, or retry counts.
 - Hiding blocked or unresolved items in an optimistic wrap-up.
+- Reopening a verified wave for optional or PASS-level feedback that was not
+  placed in scope.
 - Assuming local fixes authorize external delivery.
 
 ## Research basis

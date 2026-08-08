@@ -144,6 +144,12 @@ Use staged or canary evidence only when deployment is in scope and authorized. A
 
 ### 8. Handoff at the authorized boundary
 
+When feature-level acceptance and the requested delivery boundary are met,
+relevant fresh evidence passes, and no Blocker or Major remains, treat the work
+as terminal: report and stop. Do not manufacture another slice for optional
+polish, possible future reuse, unrelated cleanup, or extra confidence. Reopen
+only the smallest slice invalidated by new material evidence.
+
 Report:
 
 ```markdown
@@ -181,6 +187,8 @@ If commit/PR work was requested, use `yo-branch` for readiness and topology, the
 - Do not optimize for raw line count when a slightly larger direct solution is
   clearer or required for correctness.
 - Do not expand scope for adjacent refactors unless needed for the accepted slice.
+- Do not continue after the accepted feature is proven merely because another
+  improvement is possible.
 - Do not continue implementation when discovery invalidates a material design decision; return to `yo-design`.
 
 ## Handoff relationships

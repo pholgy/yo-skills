@@ -32,6 +32,12 @@ share it, add focused regression evidence, and verify relevant surrounding
 behavior. Finish substantive work by deleting any moving part that does not
 protect a requirement, invariant, contract, or testable risk.
 
+Treat a proven definition of done as terminal. Once acceptance and the requested
+delivery boundary are met, relevant fresh evidence passes, and no Blocker or
+Major remains, stop. Keep optional polish, Minor or Note findings, speculative
+reuse, unrelated cleanup, and extra confidence audits outside the implementation
+loop; reopen only the smallest scope invalidated by new material evidence.
+
 The exact complexity budget and its primary Google, Microsoft, Anthropic,
 OpenAI, and Meta sources are recorded in
 `skills/yo-engineering/references/quality-standard.md`.

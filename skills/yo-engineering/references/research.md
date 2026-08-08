@@ -19,6 +19,7 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 | Maximize quality with minimum necessary complexity | Google review and SRE guidance challenge unnecessary complexity; Microsoft emphasizes high-quality incremental outcomes and reducing non-value work; Anthropic starts with the simplest effective pattern; OpenAI describes the smallest tested fix. | Add the Golden Engineering Standard, an evidence-based complexity budget, and a mandatory final simplification pass. |
 | Fix causes and realistic same-cause paths | Meta describes root-cause analysis as the basis for fixing recurring defects; OpenAI describes reproducing, fixing, and validating scoped changes. | Require causal correction, focused regression proof, relevant sibling coverage, and no unrelated cleanup. |
 | Match execution shape to the task graph | Google Research reports gains on parallelizable tasks and degradation on sequential tasks; Anthropic recommends simple composable workflows and centralized orchestration for independent breadth; OpenAI recommends bounded read-heavy subagents and warns about coordination cost. | Default to one coordinator; use a small set of decision-relevant read-only lanes only for independent questions; centralize the invariant, synthesis, writes, and final claim. |
+| Stop when the defined outcome is proven | Google review guidance balances progress with code health; Microsoft prioritizes the definition of done and reducing non-value work; Anthropic warns that extra agentic complexity must justify its cost. | Make completion terminal when acceptance and required evidence pass with no blocking finding; keep optional improvements outside the implementation loop. |
 
 ## Authoritative sources
 
@@ -68,6 +69,8 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 - Make execution shape explicit in the engineering brief: direct by default,
   bounded read-only lanes for independent decision-relevant questions, isolated
   writers only with an integration contract, and central synthesis.
+- Make the verified definition of done terminal; reopen only the smallest scope
+  invalidated by new material evidence.
 
 ### Move
 

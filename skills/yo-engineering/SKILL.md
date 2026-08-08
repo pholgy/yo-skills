@@ -182,8 +182,15 @@ evidence against the state being handed off, report what was and was not
 verified, and name residual risk. Then run the final simplification pass from
 the Golden Engineering Standard: remove every new moving part that is not
 required by acceptance, a current contract, a demonstrated risk, a repository
-boundary, or faithful evidence, and rerun affected checks. Use `yo-audit` for
-an independent check of S2 work before merge or release.
+boundary, or faithful evidence, and rerun affected checks.
+
+Apply the Golden Stop Rule. When the authorized acceptance and delivery boundary
+are met, relevant fresh evidence passes, and no Blocker or Major remains, report
+the result and stop. Do not reopen settled implementation for optional polish,
+Minor or Note findings, speculative reuse, unrelated cleanup, or another audit.
+Replan only when new material evidence changes the answer, and reopen only the
+affected scope. Use `yo-audit` for an independent check of S2 work before merge
+or release, not as an unbounded confidence loop.
 
 ## Guardrails
 

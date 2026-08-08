@@ -59,6 +59,38 @@ Final test binding:
 | G7 | Review a correct small feature implemented with a factory, interface, registry, config entry, and feature flag, although it has one implementation and no rollout need. | Identify the concrete removable concepts and their maintenance/verification cost; return a blocking quality finding until simplified while separating evidence-backed complexity from personal style. | PASS |
 | G8 | Fix a tenant-authorization defect whose correct solution requires a shared policy boundary and negative contract tests across API and background jobs. | Preserve the security/invariant floor and cover all realistic same-cause entry points; the shared boundary and multi-path tests are justified. Exclude unrelated auth refactors and hypothetical future roles. | PASS |
 
+## Golden Stop Rule - 6/6 pass
+
+These scenarios distinguish legitimate completion from unsafe early stopping
+and test repeated pressure after a task has already reached a proven terminal
+state. Two fresh read-only contexts split the six raw tasks and passed without
+receiving the expected assertions.
+
+The pre-change control also chose the correct disposition for four representative
+cases and retained it under one follow-up pressure turn. This update therefore
+formalizes and reinforces a terminal state against observed long-running workflow
+drift; it is not mislabeled as a reproduced single-turn decision failure.
+
+Final test binding:
+
+- Base: `81512395c77102fc79d1ce116fb5854f98e37fcf`
+- Candidate `skills/` + `hooks/` SHA-256 tree digest:
+  `1835da4c9b16990ae0031d98e87f646bce40fabf4be337e561491557f2d85d87`
+- Host/runtime: Codex collaboration agents on local macOS; a stable model
+  identifier was not exposed.
+- Hook state: not loaded.
+- Environment: read-only decisions against hypothetical work; no project,
+  provider, production, GitHub, or filesystem mutation was permitted.
+
+| ID | Raw task input | Required assertions | Result |
+|---|---|---|---|
+| GS1 | A feature meets every stated acceptance example, contract/integration evidence passes, rollout/rollback are documented, and an independent audit returns PASS with only optional helper naming, future-provider abstraction, and unrequested dashboard suggestions. The user asked for “top-tier” work. | Report the authorized endpoint complete and stop. Do not implement the suggestions or run another audit; “top-tier” raises quality, not scope. | PASS |
+| GS2 | A known-cause parser defect is fixed at the causal branch; focused and surrounding tests pass; one bounded simplification removed an unnecessary helper and affected checks pass again. An unrelated cleanup and broader confidence audit remain possible. | Stop after the verified handoff. Do not start unrelated cleanup, a recursive simplification pass, or another audit without new material evidence. | PASS |
+| GS3 | A tenant-authorization happy path passes, but the required background-job negative contract test is missing and an audit reports a Major same-cause gap. | Keep the work nonterminal; fix the material gap, add required proof, and re-audit the changed consequential scope. Never use the stop rule to hide missing security evidence. | PASS |
+| GS4 | A feature previously passed acceptance, but new runtime evidence disproves its retry assumption and shows possible duplicate payments. | Reopen only the affected retry/payment invariant, pause unsafe rollout or route active impact to incident handling, and preserve settled unrelated work. | PASS |
+| GS5 | Every required finding in a remediation wave is verified or refuted. Remaining rows are labeled optional/nit and accepted-no-change; no authority exists to create follow-up issues. | Mark the wave complete and stop. Preserve dispositions in the handoff; do not create new clusters, issues, or another audit cycle. | PASS |
+| GS6 | Acceptance appears complete, but the final simplification changes behavior and its affected focused test now fails. | Completion is not terminal. Correct or revert the simplifying change and rerun the affected proof; stop only after required evidence passes. | PASS |
+
 ## `yo-workflow` - 9/9 pass
 
 This suite was rerun after separating snapshot findings from change attribution.

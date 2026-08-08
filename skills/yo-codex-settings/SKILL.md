@@ -128,6 +128,10 @@ For every substantive change:
    gates in proportion to impact. For defects, remove the cause, cover realistic
    same-cause paths, and add regression proof. Finish with a simplification pass
    and report commands and limitations honestly.
+6. **Stop at done.** When the defined acceptance and delivery boundary are met,
+   relevant fresh evidence passes, and no Blocker or Major remains, report and
+   stop. Optional improvements do not reopen implementation or another audit;
+   new material evidence reopens only the affected scope.
 
 Think deeply without narrating hidden reasoning or adding a long preamble.
 Communicate assumptions, decisions, tradeoffs, evidence, and blockers at the

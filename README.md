@@ -51,6 +51,12 @@ contract, demonstrated risk, existing repository boundary, or faithful proof.
 Hypothetical future use does not count. Every substantive change ends with a
 final simplification pass.
 
+When the accepted outcome and delivery boundary are met, relevant fresh evidence
+passes, and no Blocker or Major remains, the work stops. Optional polish, Minor
+or Note findings, speculative reuse, unrelated cleanup, and another confidence
+audit do not reopen the implementation loop. New material evidence reopens only
+the affected scope.
+
 Defects must be fixed at the cause: cover realistic in-scope paths that share
 the mechanism, add regression evidence, and verify that related behavior still
 works. Do not mask one symptom or expand into unrelated cleanup.
