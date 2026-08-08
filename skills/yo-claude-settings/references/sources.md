@@ -82,3 +82,15 @@ only when explicitly authorized and isolate writers.
 The verified Claude Code 2.1.204 settings/environment snapshot is recorded in
 `current-baseline.md`. Recheck it after upgrades, provider/account changes, or a
 reported drift rather than treating it as permanent policy.
+
+## Golden engineering behavior
+
+Anthropic recommends starting with simple composable patterns and adding
+complexity only when it demonstrably improves outcomes. Google, Microsoft, and
+OpenAI supply complementary review, reliability, and smallest-tested-fix
+evidence. The primary source-to-rule map is in
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: the durable Claude baseline optimizes for maximum correctness
+with the fewest necessary concepts, requires root-cause regression closure for
+defects, and ends substantive work with a simplification pass.

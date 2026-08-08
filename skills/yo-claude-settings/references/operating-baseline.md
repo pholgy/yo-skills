@@ -9,6 +9,8 @@
   focused tests, lint, typecheck, build, and their CI equivalents?
 - What user work, contract, data, process, or external state is protected?
 - What is the smallest complete change?
+- Which new concept or moving part is required by current acceptance, a
+  contract, demonstrated risk, repository boundary, or faithful test?
 - Which focused behavior will prove it?
 
 Discover the applicable verification contract before the first edit in each
@@ -24,6 +26,9 @@ outcome. Otherwise make a bounded assumption and surface it when useful.
 ## During a change
 
 - Match local patterns before inventing an abstraction.
+- Optimize for the fewest necessary concepts, not blindly the fewest lines.
+- Do not add layers, dependencies, configuration, compatibility machinery, or
+  future-proofing without a current need.
 - Touch required files and only cleanup caused by the change.
 - Preserve unrelated user state.
 - Keep contracts stable unless change is intentional.
@@ -37,7 +42,9 @@ outcome. Otherwise make a bounded assumption and surface it when useful.
 3. Cover risk-implied negative and boundary cases.
 4. Run broader lint, type, build, test, or runtime gates proportionally.
 5. Inspect the actual resulting diff/state and protected user work.
-6. Verify external truth when the task changes it.
+6. Remove new moving parts that do not protect acceptance, an invariant,
+   contract, demonstrated risk, or faithful evidence; rerun affected checks.
+7. Verify external truth when the task changes it.
 
 ## Context decision
 

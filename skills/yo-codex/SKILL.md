@@ -110,6 +110,9 @@ Give the worker a contract containing:
 - granted authority and explicit exclusions;
 - relevant constraints and applicable instructions;
 - acceptance criteria and exact evidence expected;
+- the solution-shape constraint: smallest complete production-quality change,
+  with no speculative abstractions, layers, dependencies, configuration, or
+  future-proofing, plus a final simplification pass;
 - stop/escalation conditions;
 - concise return shape: result, changes/findings, commands and outcomes,
   unresolved risks, and current state.
@@ -255,6 +258,9 @@ Verification must be independent enough for the risk:
 
 - run focused behavior tests first, then broader repository gates as warranted;
 - validate the exact resulting diff or revision, not an earlier worker snapshot;
+- inspect whether every new concept and moving part is required by acceptance,
+  a supported contract, demonstrated risk, repository boundary, or faithful
+  evidence; remove accidental complexity before closeout;
 - check negative cases, integration boundaries, and runtime behavior when they
   are part of acceptance;
 - for reviews, reproduce high-severity findings where practical and distinguish

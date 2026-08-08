@@ -163,12 +163,18 @@ For substantive work:
 
 1. verify the premise or live state before editing;
 2. define observable success and proportionate evidence;
-3. make the smallest complete change without speculative features, unrelated
-   cleanup, broad formatting, or premature abstraction;
+3. make the smallest complete production-quality change, optimizing for the
+   fewest necessary concepts rather than blindly the fewest lines; add no
+   speculative features, abstractions, layers, dependencies, configuration,
+   compatibility machinery, unrelated cleanup, or broad formatting;
 4. preserve user changes, public contracts, data, process ownership, and local
    conventions;
-5. run focused behavioral proof, then wider checks in proportion to risk;
-6. report outcome, evidence, limitations, and unresolved state concisely.
+5. run focused behavioral proof, then wider checks in proportion to risk; for a
+   defect, remove the cause, cover realistic same-cause paths, and add
+   regression proof;
+6. remove unnecessary moving parts from the final solution, rerun affected
+   checks, and report outcome, evidence, limitations, and unresolved state
+   concisely.
 
 Think deeply without narrating hidden reasoning or adding ceremonial plans to
 trivial tasks. Ask only when the missing choice materially changes behavior,

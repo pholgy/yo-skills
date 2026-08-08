@@ -59,3 +59,15 @@ Authority labels:
 - Arbitrary line/week thresholds, hard-coded fresh-session/MCP/shell instructions, and stale UI claims.
 - Automatic GitHub posting, raw-log publication, and deployment assumptions.
 - The non-Yo cleanup-skill dependency.
+
+## 2026 Golden Engineering Standard update
+
+Google's small-change and simplicity guidance, Microsoft's focus on work that
+contributes to done, Anthropic's simplest-effective-pattern guidance, and
+OpenAI's smallest-tested-fix practice support direct implementation with
+minimum necessary complexity. The full source-to-rule map is in
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: use one direct slice when it completely satisfies acceptance;
+every additional concept or mechanism must answer a current requirement or
+demonstrated risk, and the final diff receives a simplification pass.

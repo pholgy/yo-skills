@@ -4,7 +4,9 @@ description: >-
   Drive multiple bugs, review comments, audit findings, or action items from
   intake through evidence-backed disposition. Use when the user asks to fix,
   clear, address, triage, or close a wave of findings, including PR feedback,
-  bug-bash output, audit results, and remediation backlogs.
+  bug-bash output, audit results, and remediation backlogs. Remove root causes
+  with the smallest complete corrections, cover realistic same-cause paths,
+  and carry regression proof to every affected item.
 ---
 
 # Yo Fix Loop
@@ -12,8 +14,10 @@ description: >-
 ## Outcome
 
 Reconcile every source finding exactly once. Confirm what is real, preserve the
-source's intent, cluster findings that share a cause, fix the smallest coherent
-units, and carry verification evidence back to every affected item.
+source's intent, cluster findings that share a cause, and remove each causal
+mechanism with the smallest complete correction. Cover realistic in-scope paths
+that share the cause, prove the regression, and carry verification evidence
+back to every affected item without broadening into unrelated cleanup.
 
 The default endpoint is a verified local working tree plus an honest status
 summary. A request to fix code does not authorize branches, commits, pushes,
@@ -157,6 +161,17 @@ cleanup, but include every layer required to make the invariant true. Apply
 or otherwise high-risk clusters; use `yo-deps` if remediation changes a
 dependency.
 
+Fix at the narrowest seam that removes the cause for all realistic in-scope
+paths. Do not patch one symptom while leaving a known sibling path exposed. Do
+not turn "complete" into every imaginable edge case: include a sibling only
+when it shares the mechanism and supported invariant. Record unrelated defects
+separately rather than hiding them in the patch.
+
+Use the minimum necessary complexity. New abstractions, compatibility layers,
+flags, dependencies, configuration, retries, or generalized infrastructure need
+a current requirement or demonstrated risk; the possibility of future reuse is
+not sufficient.
+
 ### Implement with proof
 
 Add or update the strongest practical regression proof alongside the correction.
@@ -175,7 +190,10 @@ Verification must cover the cluster's actual claims, not just compilation:
 - exercise relevant boundary, negative, authorization, and failure cases;
 - inspect sibling paths and public contracts identified by impact analysis;
 - run the affected lint, type, build, integration, or runtime checks;
-- review the final diff for unrelated edits and test validity.
+- review the final diff for unrelated edits and test validity;
+- remove any new moving part that is not necessary to restore the invariant,
+  preserve a current contract, or prove the correction, then rerun affected
+  checks.
 
 For broad or high-risk changes, use a fresh read-only `yo-audit` pass. A cold
 self-review is useful but is not independent verification.
@@ -240,6 +258,10 @@ Do not create follow-up issues or publish comments without that authorization.
 - Marking fixed-but-unverified work complete.
 - Calling self-review independent.
 - Retrying patches without revising a failed diagnosis.
+- Masking the observed symptom while leaving the causal mechanism intact.
+- Fixing one known path while leaving a realistic same-cause sibling broken.
+- Adding a framework, compatibility layer, or future-proofing that the defect
+  does not require.
 - Bundling unrelated cleanup into a remediation cluster.
 - Forcing arbitrary line, finding, commit, or retry counts.
 - Hiding blocked or unresolved items in an optimistic wrap-up.

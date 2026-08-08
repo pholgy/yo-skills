@@ -59,3 +59,14 @@ This reference records the evidence behind the workflow and the local decisions 
 - Unsupported supplementary-fix percentages.
 - The claim that the compiler sees a fixed fraction of usages.
 - Automatic escalation or implementation beyond the user's authorized scope.
+
+## 2026 Golden Engineering Standard update
+
+Google SRE's simplicity guidance treats extra code and state as operational
+liability, while Google's compatibility guidance requires analysis of real
+source, wire, semantic, and data contracts. See the complete primary-source map
+in [the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: impact analysis must identify the minimum real affected surface;
+an explicit unknown remains a risk but does not by itself justify speculative
+versioning, dual writes, adapters, or permanent compatibility machinery.

@@ -5,7 +5,10 @@ description: Map consumers, contracts, persisted data, sibling paths, and observ
 
 # Yo Impact
 
-Map what can observe a proposed change before editing. The output is a compact impact brief and a one-sentence blast-radius summary, not permission to implement or a ritual search quota.
+Map what can observe a proposed change before editing so implementation covers
+the real surface and no more. The output is a compact impact brief and a
+one-sentence blast-radius summary, not permission to implement, speculative
+compatibility work, or a ritual search quota.
 
 ## Calibrate the depth
 
@@ -75,6 +78,12 @@ Finding a sibling does not authorize editing it. Unstated siblings are the failu
 
 For persisted or transmitted shapes, account for old writers, new writers, old readers, new readers, rollback, and partial deployment. Decide whether the change needs compatibility reads, dual write/read, versioning, backfill, feature gating, or coordinated rollout.
 
+Require evidence before selecting those mechanisms. An unknown external
+consumer must remain an explicit risk, but it does not automatically justify
+dual writes, versioning, adapters, or permanent compatibility code. Add only
+the machinery required by a supported contract, real mixed-version operation,
+persisted data, authorized rollout, or demonstrated failure mode.
+
 For destructive or externally observable operations, include authorization, idempotency, retries, cascades, auditability, and recovery. A new endpoint can have a large impact surface before any caller exists.
 
 ### 7. Establish only the baseline evidence you need
@@ -96,6 +105,7 @@ Siblings: <included, excluded with reason, or follow-up>
 Evidence: <searches, tests, history when useful>
 Unknowns: <external or unverified surfaces>
 Decision: <safe as scoped, needs compatibility/design, or blocked on evidence>
+Minimum affected surface: <paths that must change and mechanisms not justified>
 ```
 
 Then summarize:
@@ -111,6 +121,8 @@ The sentence is a durable handoff, not a substitute for the evidence above. If i
 - Do not claim there are no external consumers unless the contract and search boundary make that knowable.
 - Do not require blame, a fixed number of searches, a fixed duration, or a test run when it cannot affect the decision.
 - Do not widen implementation scope merely because similar code exists.
+- Do not turn an explicit unknown into speculative compatibility machinery
+  without a supported contract or real transition requirement.
 - Do not turn impact analysis into root-cause analysis. If the mechanism is unknown, return to `yo-debug`.
 - During active production impact, `yo-incident` preempts this workflow.
 

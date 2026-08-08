@@ -62,6 +62,11 @@ instructions and verification commands, preserve user work, and run the
 proportionate operating-baseline checks; bypassing the router does not bypass
 engineering discipline.
 
+Top-tier quality does not itself justify a heavier route or more architecture.
+In the direct lane, apply the same Golden Engineering Standard through a direct
+implementation: smallest complete production-quality change, focused evidence,
+and a final removal of unnecessary moving parts.
+
 Exit the direct lane as soon as inspection reveals a disputed premise, unknown
 cause, broader consumer or contract surface, an unexplained failing baseline,
 an unfaithful test seam, or any consequential/irreversible effect. Route the

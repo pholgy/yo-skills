@@ -46,7 +46,14 @@ If a material requirement is missing, do not invent it. Verify what is knowable 
 
 Review every human-authored changed line in scope, then read enough surrounding code, callers, tests, configuration, and history to understand its effect. Classify generated, vendored, lockfile, migration, and documentation changes rather than scanning them as equivalent source.
 
-Check that the diff is cohesive and necessary for the stated intent. Name unrelated edits, accidental generated output, missing companion changes, and rollback-hostile coupling. Do not fail a change solely for a reasonable preference or an out-of-scope pre-existing issue.
+Check that the diff is cohesive and necessary for the stated intent. Name
+unrelated edits, accidental generated output, missing companion changes, and
+rollback-hostile coupling. Inspect every new abstraction, dependency, layer,
+configuration value, state, compatibility mechanism, flag, and helper: it must
+serve current acceptance, a supported contract, a demonstrated risk, an
+existing repository boundary, or faithful verification. Do not fail a change
+solely for a reasonable preference, raw line count, or an out-of-scope
+pre-existing issue.
 
 ### 4. Trace behavior against acceptance
 
@@ -91,10 +98,24 @@ A blocking finding needs all of:
 - the observable consequence;
 - evidence that the change introduces or fails to resolve it.
 
+Avoidable complexity is a finding only when a concrete simpler path satisfies
+the same acceptance and the extra moving parts create a realistic correctness,
+maintenance, operability, or verification cost. Identify the removable concept
+and the consequence; do not disguise taste as engineering evidence.
+
+Calibrate the consequence. One bounded unnecessary helper may be Minor. A
+material stack of unjustified abstractions, configuration, flags, states, or
+layers is Major when it violates the stated Golden Engineering Standard and
+meaningfully increases change cost, defect surface, or verification burden.
+Name the simpler complete shape; do not block on "too complex" without it.
+
 Classify findings:
 
 - **Blocker:** credible security, privacy, data-loss, outage, irreversible rollout, or fundamental acceptance failure; must resolve before ship.
-- **Major:** realistic correctness or compatibility failure within scope; must resolve before approval.
+- **Major:** realistic correctness or compatibility failure within scope, or a
+  material evidence-backed quality failure that leaves the solution
+  unnecessarily difficult or risky to change and verify; must resolve before
+  approval.
 - **Minor:** bounded robustness, maintainability, test, or operability issue that does not invalidate the primary behavior.
 - **Note:** optional improvement, question, or pre-existing/out-of-scope observation.
 
@@ -143,6 +164,8 @@ If the user explicitly asks for a GitHub artifact, use `yo-gh-write` to format i
 - Do not report speculative edge cases as defects without a reachable scenario and consequence.
 - Do not let green CI replace code/behavior review, or let static review replace needed execution evidence.
 - Do not fail a change for style preference, unrelated debt, or a requirement invented during review.
+- Do not approve speculative architecture merely because it is cleanly coded;
+  require a current need for every added moving part.
 - Do not reuse a verdict after the audited object changes.
 - Do not claim merge or production safety beyond the declared scope, environment, and evidence.
 

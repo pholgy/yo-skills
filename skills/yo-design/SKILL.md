@@ -5,7 +5,10 @@ description: Analyze, draft, review, or record software designs and architectura
 
 # Yo Design
 
-Make consequential choices reviewable while they are still cheap to change, then preserve the rationale at the right level. Do not create repository artifacts or post them externally unless the user authorized that action.
+Make consequential choices reviewable while they are still cheap to change,
+and prefer the simplest viable design that completely satisfies current
+requirements and demonstrated risk. Do not create repository artifacts or post
+them externally unless the user authorized that action.
 
 ## Choose the mode
 
@@ -57,13 +60,17 @@ State:
 - goals and explicit non-goals;
 - invariants and constraints;
 - prioritized quality scenarios, such as load, failure, attack, rollback, or evolution;
+- a complexity budget: which new concepts or mechanisms are necessary now and
+  what current requirement or risk justifies each one;
 - decision criteria and how evidence will be obtained.
 
 Use concrete scenarios rather than adjectives. "At 10x request load, p99 remains below the agreed target" is reviewable; "must be scalable" is not.
 
 ### 3. Develop viable alternatives
 
-Include the current/status-quo approach only when it is viable. For each real option, compare the same decision drivers:
+Include a direct change and the current/status-quo approach whenever either is
+viable. More architecture must earn its cost against the simplest complete
+option. For each real option, compare the same decision drivers:
 
 - correctness and invariant fit;
 - compatibility and migration;
@@ -74,6 +81,11 @@ Include the current/status-quo approach only when it is viable. For each real op
 - ecosystem maturity, team capability, and dependency risk.
 
 Do not manufacture strawmen or use an unexplained weighted score to hide judgment. When uncertainty could change the decision, propose the smallest time-bounded spike, benchmark, threat model, or compatibility test that would discriminate among options.
+
+Do not choose an interface, service, event, generic framework, configuration
+surface, migration mechanism, or operational component for hypothetical reuse
+or scale. Choose it only when a current scenario, supported contract,
+demonstrated failure, repository boundary, or measured constraint requires it.
 
 ### 4. Describe the proposed design
 
@@ -164,6 +176,9 @@ A design is ready when:
 - high-priority quality scenarios trace through the proposal;
 - compatibility, failure, operations, and rollback are proportionate to risk;
 - unknowns are visible and have closure evidence;
+- the selected option introduces no concept or moving part without a current
+  driver, and is simpler than the viable alternatives after total lifecycle
+  cost is considered;
 - the decision and consequences are distinguishable from implementation tasks.
 
 ## Guardrails
@@ -175,6 +190,9 @@ A design is ready when:
 - Do not treat an ADR as a task tracker, changelog, or broad architecture encyclopedia.
 - Do not silently rewrite accepted rationale or fabricate retroactive intent.
 - Do not let design continue indefinitely when a small experiment can settle the uncertainty.
+- Do not mistake optionality, generality, or architectural novelty for quality.
+- Do not design for imagined consumers, scale, or migration states without
+  evidence that they belong to the supported problem.
 
 ## Handoff
 

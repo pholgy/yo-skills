@@ -7,8 +7,34 @@ changes, explicit risk, and honest handoffs over ceremony or assumed success.
 The bundle was rebuilt from primary engineering and platform sources on
 2026-07-10, then refined on 2026-07-14 with a risk-based direct lane, a compact
 single-bug regression path, target-scoped pre-edit gates, and an opt-in verified
-hook lifecycle. The previous version of every skill is preserved under
+hook lifecycle. On 2026-08-08 it gained a bundle-wide Golden Engineering
+Standard: maximum correctness and clarity with minimum necessary complexity,
+root-cause defect closure, focused regression proof, and a final simplification
+pass. The previous version of every skill is preserved under
 `archive/yo-<name>-2026-07-10/`.
+
+## Golden Engineering Standard
+
+Every implementation, fix, design, test, delegation, and audit follows one
+quality contract:
+
+> Produce the smallest complete, production-quality solution.
+
+Prefer direct local patterns and the fewest new concepts that meet current
+acceptance and demonstrated risk. Do not add speculative abstractions,
+dependencies, layers, configuration, compatibility machinery, or operational
+systems. Do add the structure genuinely required for correctness, security,
+data integrity, supported compatibility, reliability, repository boundaries,
+and faithful proof.
+
+For defects, remove the causal mechanism, cover realistic in-scope paths that
+share it, add focused regression evidence, and verify relevant surrounding
+behavior. Finish substantive work by deleting any moving part that does not
+protect a requirement, invariant, contract, or testable risk.
+
+The exact complexity budget and its primary Google, Microsoft, Anthropic,
+OpenAI, and Meta sources are recorded in
+`skills/yo-engineering/references/quality-standard.md`.
 
 ## Start here
 
@@ -104,5 +130,7 @@ cross-partition completeness pass.
   processes.
 - Destructive, external, and difficult-to-reverse actions preserve their own
   approval boundary.
+- Code quality is judged by complete outcomes, explainability, and the fewest
+  justified moving parts—not architectural volume or raw line count.
 
 See `INSTALL.md` for safe, backup-first installation.

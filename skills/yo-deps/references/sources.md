@@ -128,3 +128,15 @@ that its package metadata is not legal advice and may be incomplete.
 Derived rule: compare exact-version and transitive license information with the
 repository's policy, verify unknowns, and escalate legal conclusions rather than
 inventing them.
+
+## Minimum necessary dependency surface
+
+Google SRE's simplicity guidance treats every additional component and line as
+an operational liability, while Anthropic recommends simple composable patterns
+and adding complexity only when it improves the outcome. See
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md)
+for the primary links and policy boundary.
+
+Derived rule: a package, adapter, wrapper, or configuration surface must solve a
+current capability or demonstrated risk and reduce total lifetime complexity;
+possible future replacement is not sufficient justification.

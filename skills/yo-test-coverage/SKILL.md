@@ -5,7 +5,10 @@ description: Design, add, or assess automated tests that protect meaningful beha
 
 # Yo Test Coverage
 
-Protect a precise behavioral proposition with a test that can fail for the right reason. Line coverage is a search aid, not the objective.
+Protect a precise behavioral proposition with the smallest faithful test that
+can fail for the right reason. Tests are maintained production assets: keep
+them direct, readable, deterministic, and no more abstract than the behavior
+requires. Line coverage is a search aid, not the objective.
 
 Respect the requested mode: review or planning stays read-only; implementation may add tests and, when authorized, the paired production change.
 
@@ -20,10 +23,11 @@ when this compact path is sufficient:
    before attributing it to the change.
 2. State one given/when/then proposition and choose the narrowest faithful layer
    with an observable behavior, invariant, or owned-boundary oracle.
-3. Add the smallest focused regression test and implement the scoped fix in the
-   same reviewable change. For a known bug in a Bun repository, prefer the
-   narrow focused Bun regression command; otherwise use the repository's native
-   focused runner.
+3. Add focused regression protection at the narrowest faithful layer, covering
+   realistic in-scope paths that share the diagnosed mechanism, and implement
+   the scoped fix in the same reviewable change. For a known bug in a Bun
+   repository, prefer the narrow focused Bun regression command; otherwise use
+   the repository's native focused runner.
 4. Use red-before-green proof only when the risk justifies proving sensitivity,
    using a valid pattern in step 5 below. An ordinary clear, low-risk bug does
    not need a separate RED phase merely to satisfy ceremony.
@@ -78,6 +82,11 @@ Name the test after the behavior and condition, using the repository's conventio
 ### 2. Read the local test system
 
 Inspect adjacent tests, shared fixtures, builders, fakes, test commands, CI grouping, and repository guidance. Reuse the established idiom unless it cannot express the required behavior. Identify what the existing suite already proves to avoid redundant tests.
+
+Do not create a new fixture framework, builder hierarchy, custom runner, or
+generic helper for one case unless it makes the test materially clearer and
+reduces total test complexity now. A small local setup is often the better
+design.
 
 ### 3. Select the narrowest faithful layer
 
@@ -162,6 +171,10 @@ Emergency fixes may ship before complete coverage when incident policy requires 
 
 Run the focused test, the relevant surrounding suite, and the repository's proportionate verification gate. Confirm the test is discovered in the normal CI path.
 
+Review the test diff for accidental complexity. Remove helpers, branches,
+fixtures, snapshots, or duplicated cases that do not protect a distinct
+behavior or make the oracle clearer, then rerun affected tests.
+
 Production behavior and its regression protection should land in the same reviewable change unless an emergency policy applies. Characterization coverage may land first as an independently green change before a refactor. Follow `yo-branch` for commit shape rather than inventing a commit rule here.
 
 ## Output
@@ -197,6 +210,7 @@ Do not require a commit SHA when no commit was requested or created.
 - Do not make real customer or production data a hidden fixture dependency.
 - Do not silently disable a test or count a quarantined test as protection.
 - Do not add overlapping tests that increase maintenance without closing a distinct risk.
+- Do not build generalized test infrastructure for hypothetical future cases.
 
 ## Handoff
 

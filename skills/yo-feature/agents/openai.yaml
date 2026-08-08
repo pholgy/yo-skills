@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Feature"
   short_description: "Deliver new capabilities in verified thin slices"
-  default_prompt: "Use $yo-feature to turn this intent into a scoped, risk-aware, thin-slice implementation with faithful verification and stop at the delivery boundary I authorized."
+  default_prompt: "Use $yo-feature to build the smallest complete production-quality capability, add no speculative machinery, verify it faithfully, simplify the final diff, and stop at the delivery boundary I authorized."

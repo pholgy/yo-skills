@@ -57,3 +57,17 @@ Authority labels:
 - Single-commit-only audit assumptions.
 - Automatic PR/issue posting and PASS-as-universal-safety language.
 - Non-bundle specialist-skill routing.
+
+## 2026 Golden Engineering Standard update
+
+Google's review guidance explicitly asks whether code is more complex than
+necessary, while its review standard separates technical quality from personal
+preference. Google SRE describes accidental complexity as a reliability and
+maintenance cost. See [the bundle quality standard](../../yo-engineering/references/quality-standard.md)
+for primary links and the exact complexity budget.
+
+Derived rule: flag avoidable complexity only when a concrete simpler solution
+meets the same acceptance and the extra moving parts create a realistic cost;
+never turn taste or line count into a defect. A bounded unnecessary helper may
+remain Minor, while a material cluster that violates the explicit quality
+standard and substantially raises change or verification cost can be Major.

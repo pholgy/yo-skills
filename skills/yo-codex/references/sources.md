@@ -109,3 +109,15 @@ test evidence and recommends human review before integration or production use.
 
 Derived rule: the controller remains accountable for inspecting state,
 independent verification, integration, and the final completion claim.
+
+## Delegated solution quality
+
+OpenAI describes scoped tasks, existing module patterns, focused validation, and
+preparing the smallest tested fix. Google, Microsoft, and Anthropic provide the
+broader simplicity and non-value-work basis. The source-to-rule map is in
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: delegation contracts must constrain solution shape as well as
+scope and authority: smallest complete production-quality change, no
+speculative moving parts, and a final simplification pass verified by the
+controller.

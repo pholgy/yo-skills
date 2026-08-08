@@ -31,12 +31,18 @@ Remove empty fields rather than sending placeholders.
 - Applicable instructions: <AGENTS.md or project rules already discoverable>
 - Technical/product constraints: <only material constraints>
 - Preserve: <compatibility, API, data, user behavior>
+- Solution shape: implement the smallest complete production-quality solution.
+  Prefer direct local patterns. Add no abstraction, layer, dependency,
+  configuration, state, compatibility machinery, or future-proofing unless a
+  current acceptance criterion, supported contract, demonstrated risk,
+  repository boundary, or faithful test requires it.
 
 ## Acceptance and evidence
 - <behavior or finding criterion>
 - Run: <focused checks>
 - Return: changed files/findings, commands with outcomes, unresolved risk, and
-  current state. Do not claim checks you did not run.
+  current state. Before returning, remove unnecessary moving parts from the
+  final diff and rerun affected checks. Do not claim checks you did not run.
 
 ## Stop and escalate
 - Stop before: <scope expansion or irreversible boundary>
