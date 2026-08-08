@@ -129,6 +129,12 @@ Explain why. Keep suggestions separate from requirements and avoid comments abou
 
 Minor findings and notes can accompany PASS. State residual risk and scope limits. PASS means no blocking defect was found in this exact audit, not proof that the system contains no bugs.
 
+A PASS with only Minor or Note findings is terminal for this audit and does not
+require implementation or another audit cycle. Report optional improvements
+without promoting them into required work. Reopen verification only when the
+audited object changes materially, required evidence fails, or new evidence can
+change the verdict; do not run another audit merely for more confidence.
+
 ## Report
 
 ```markdown
@@ -166,6 +172,8 @@ If the user explicitly asks for a GitHub artifact, use `yo-gh-write` to format i
 - Do not fail a change for style preference, unrelated debt, or a requirement invented during review.
 - Do not approve speculative architecture merely because it is cleanly coded;
   require a current need for every added moving part.
+- Do not turn a PASS with only Minor or Note findings into an implementation and
+  re-audit loop.
 - Do not reuse a verdict after the audited object changes.
 - Do not claim merge or production safety beyond the declared scope, environment, and evidence.
 

@@ -120,7 +120,8 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
   and safety quality was 10/10 in every case.
 - A separate 4/4 regression confirmed that local UI and known-cause defect work
   stayed direct and tightly coupled payment/API work kept one coordinator.
-  The current candidate is bound to `yo-engineering/SKILL.md` SHA-256
+  The lightweight-orchestration candidate is bound to
+  `yo-engineering/SKILL.md` SHA-256
   `f73e269d77cb1c46b2ea43f6de9a9c4d149703dd18b8d5aa8e39f55326711d16`
   and live `skills/` + `hooks/` digest
   `37c726018598d3c924e9423f0da4cfa0af496a6f200ff8f749840037964f7704`.
@@ -130,6 +131,20 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
   judgment, not the speed of the inherited maximum-reasoning runtime. Full
   timings, token counts, case descriptions, score formula, grader separation,
   and limits are in `validation/daily-work-benchmark.md`.
+- Golden Stop Rule: 6/6 fresh-context scenarios passed, covering terminal
+  feature/defect completion, PASS-level optional findings, unsafe early stopping
+  on a Major authorization gap or failed post-simplification test, bounded
+  reopening after invalidated payment evidence, and no unauthorized follow-up
+  creation. The pre-change control also chose correctly on four representative
+  cases and retained the choice under follow-up pressure, so the update is
+  recorded as explicit reinforcement against observed multi-day workflow drift,
+  not a reproduced single-turn regression.
+- The Golden Stop candidate is bound to base
+  `81512395c77102fc79d1ce116fb5854f98e37fcf`,
+  `yo-engineering/SKILL.md` SHA-256
+  `8f1a0e22d31c454639fa988f8e8420e21509e682d23cccb3322fb9c6981f4a21`,
+  and live `skills/` + `hooks/` digest
+  `1835da4c9b16990ae0031d98e87f646bce40fabf4be337e561491557f2d85d87`.
 
 ## Optional hook gate
 

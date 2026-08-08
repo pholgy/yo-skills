@@ -82,6 +82,30 @@ Simplify when the answer exposes accidental complexity, then rerun affected
 evidence. Do not perform aesthetic churn after the solution is already the
 simplest complete fit.
 
+## Golden Stop Rule
+
+End the current implementation loop when all are true:
+
+1. the authorized acceptance criteria and requested delivery boundary are met;
+2. the relevant fresh behavioral and repository evidence passes; and
+3. no Blocker, Major, failed required check, material unresolved risk, or
+   user-owned decision prevents completion.
+
+At that terminal state, report the result and stop. Do not reopen implementation
+for Minor or Note findings, optional polish, possible future reuse, unrelated
+cleanup, broader investigation, or another confidence audit. "Best" and
+"top-tier" raise the quality floor; they do not create unbounded scope.
+
+Run the final simplification pass once over the current change. If it removes a
+moving part, rerun only the affected evidence. Repeat work only when that
+evidence fails or new material evidence invalidates an assumption; reopen the
+smallest affected scope rather than restarting settled work.
+
+Mention an optional improvement only when it is useful to the handoff. Do not
+implement it, create a follow-up artifact, or publish it without authority.
+Never use this rule to call missing evidence, a required failure, a Blocker or
+Major finding, an unresolved product choice, or an unsafe state complete.
+
 ## Primary-source basis
 
 This bundle derives the standard from these engineering practices:
