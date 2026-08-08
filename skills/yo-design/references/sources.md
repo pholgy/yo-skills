@@ -61,3 +61,15 @@ Authority labels:
 - A new superseding ADR for mere typos or repaired source links.
 - Automatic file creation or GitHub posting.
 - Weak sunk-cost and cost-of-change claims that were not necessary for the workflow.
+
+## 2026 Golden Engineering Standard update
+
+Google SRE treats accidental complexity as a reliability cost, and Anthropic
+recommends starting with the simplest effective pattern and adding complexity
+only when outcomes require it. Microsoft's engineering playbook emphasizes
+precise, incremental value. The primary links and exact Yo policy are in
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: compare every proposal with the simplest viable direct option and
+require a current scenario, contract, boundary, or demonstrated risk for every
+new architectural mechanism.

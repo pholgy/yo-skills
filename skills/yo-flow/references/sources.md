@@ -71,3 +71,13 @@ archived version.
   runtime, not documented as a permanent fact.
 - Individual Yo skill triggers and handoffs are bundle contracts and should be
   verified against their live `SKILL.md` files when the bundle changes.
+
+## Golden-quality routing note
+
+Top-tier quality does not automatically require a larger workflow. Google,
+Microsoft, Anthropic, and OpenAI engineering guidance supports small scoped
+changes, simple effective patterns, and focused verification. See
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: keep clear low-risk work in the direct lane while applying the
+same correctness floor, focused proof, and final simplification pass.

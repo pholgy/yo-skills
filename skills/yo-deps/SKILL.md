@@ -20,6 +20,11 @@ code. Reuse can avoid reimplementing complex standards and security-sensitive
 behavior; every external component also creates an ongoing compatibility and
 supply-chain relationship. Decide from the actual capability and graph.
 
+Do not add a package, wrapper, adapter, provider interface, or configuration
+surface for hypothetical reuse or a possible future replacement. It must solve
+a current capability, preserve an existing repository boundary, reduce total
+complexity now, or contain a demonstrated compatibility/security risk.
+
 The default endpoint is a verified local working tree. Adding or upgrading a
 package does not imply permission to commit, push, open a PR, enable automerge,
 deploy, or publish anything.
@@ -212,6 +217,11 @@ Verification is layered and proportional:
    startup, runtime performance, native portability, generated output, and
    deployment packaging.
 7. **Final diff** - confirm that only authorized code and graph changes remain.
+
+Then remove any newly added wrapper, helper, configuration, override, or direct
+dependency that is not required by the current capability or evidence, and
+rerun affected checks. A clean abstraction is still unnecessary when direct use
+at the existing seam is clearer and equally safe.
 
 For a broad or high-risk upgrade, use a fresh `yo-audit` pass. Test the resolved
 set together: compatibility is a property of the graph, not isolated packages.

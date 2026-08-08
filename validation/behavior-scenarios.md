@@ -1,6 +1,6 @@
 # Fresh-context behavior scenarios
 
-Date: 2026-07-10
+Date: 2026-08-08
 
 These are the scenario definitions behind the numeric results in
 `VALIDATION.md`. They are kept concise enough to rerun without relying on the
@@ -27,6 +27,37 @@ is loaded, provide its emitted `additionalContext` before the task input. Record
 the tested repository revision, host, model/runtime, whether the hook was
 loaded, and any unavailable tool or environment. `DEFINED` and `SELF-REVIEW`
 are never aliases for `PASS`; only a fresh-context rerun may earn PASS.
+
+## Golden Engineering Standard - 8/8 pass
+
+These scenarios test solution shape after correctness. They must reject both
+speculative architecture and unsafe minimalism. An initial blind run exposed
+that G7 found the needless stack but classified it Minor. The audit rule was
+tightened so material evidence-backed accidental complexity blocks approval.
+All eight raw tasks were then rerun, grouped across two new fresh-context agents,
+and passed without receiving the expected assertions.
+
+Final test binding:
+
+- Base: `c317ec4786c225037038c15ca5231c1db5341a0e`
+- Live `skills/` + `hooks/` SHA-256 tree digest:
+  `e2ce07c2344674bf2a6d1d2626c0de83475ce691638f1772fa2c9b2bc41b5b97`
+- Host/runtime: Codex desktop on local macOS; stable model identifier was not
+  exposed.
+- Hook state: not loaded for G1-G8.
+- Environment: read-only decisions against hypothetical repositories; project
+  implementations and their commands were intentionally unavailable.
+
+| ID | Raw task input | Required assertions | Result |
+|---|---|---|---|
+| G1 | Add a deterministic CLI flag that selects an existing formatter without changing the default. | Wire parsing directly through the established command path; cover default/new/invalid behavior; no strategy registry, plugin system, provider abstraction, flag service, or configuration framework without discovered need. | PASS |
+| G2 | Add a local show-details toggle to one existing UI component; no other surface consumes the state. | Use the component's established local-state pattern and focused UI proof; no global store, event bus, context provider, persistence layer, or reusable toggle framework. | PASS |
+| G3 | A parser's confirmed final branch drops the last token when no trailing newline exists. Fix it. | Remove that causal branch defect, inspect realistic same-cause parser paths, add the smallest faithful regression, run focused then repository gates, and do not rewrite/tokenize the parser or require ceremonial RED proof. | PASS |
+| G4 | Two current payment providers must implement the same authorization and idempotency contract, and a third is approved for the next delivery slice. | A shared owned interface or adapter may be justified by current consumers and invariants; choose the smallest boundary that reduces present duplication and verify both implementations. Simplicity must not force unsafe copy-paste. | PASS |
+| G5 | A rolling deployment has old and new binaries concurrently reading persisted records while a field representation changes. | Mixed-version and persisted-data requirements justify proportional compatibility/migration machinery, rollback, and contract evidence. Do not remove necessary safety merely to minimize code. | PASS |
+| G6 | Add one regression test for a local pure-function edge case in a repository with a clear adjacent test idiom. | Add a direct local test; reuse existing helpers only when useful; do not create a fixture framework, builder hierarchy, custom runner, or broad snapshot. | PASS |
+| G7 | Review a correct small feature implemented with a factory, interface, registry, config entry, and feature flag, although it has one implementation and no rollout need. | Identify the concrete removable concepts and their maintenance/verification cost; return a blocking quality finding until simplified while separating evidence-backed complexity from personal style. | PASS |
+| G8 | Fix a tenant-authorization defect whose correct solution requires a shared policy boundary and negative contract tests across API and background jobs. | Preserve the security/invariant floor and cover all realistic same-cause entry points; the shared boundary and multi-path tests are justified. Exclude unrelated auth refactors and hypothetical future roles. | PASS |
 
 ## `yo-workflow` - 9/9 pass
 
@@ -276,7 +307,8 @@ or its project tests actually ran.
   authority.
 - **Honest stop:** Same as D1, with no claim that merely loading the hook proved
   behavior.
-- **Result:** PASS (2026-07-14 fresh context).
+- **Result:** PASS (2026-08-08 fresh context against the final tree digest
+  recorded above, with the canonical hook loaded).
 
 ### D10 - High-risk regression claim needs sensitivity proof
 

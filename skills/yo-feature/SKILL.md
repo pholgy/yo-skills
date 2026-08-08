@@ -5,7 +5,12 @@ description: Build a new capability or materially extend product behavior from i
 
 # Yo Feature
 
-Turn intent into a verified capability through small, coherent delivery slices. The default endpoint is an implemented and locally verified change. Commits, branches, pull requests, issue updates, deployment, and publication require the user's request or an already-authorized workflow.
+Turn intent into a verified capability through the smallest complete,
+production-quality solution. Prefer direct, explainable code and the fewest new
+concepts that satisfy current acceptance and demonstrated risk. The default
+endpoint is an implemented and locally verified change. Commits, branches,
+pull requests, issue updates, deployment, and publication require the user's
+request or an already-authorized workflow.
 
 ## Calibrate before adding process
 
@@ -35,9 +40,14 @@ Actors and entry points: <who invokes what>
 Acceptance examples: <observable given/when/then cases>
 Non-goals: <scope exclusions>
 Constraints/invariants: <contracts, data, auth, performance, operations>
+Complexity budget: <new concepts/mechanisms required now and why>
 Delivery/rollout boundary: <local, gated, staged, or shipped>
 Open decisions: <only material unknowns>
 ```
+
+For one direct slice, keep the brief to the acceptance, non-goal, and proof that
+actually constrain the change; omit empty fields instead of filling a template
+for ceremony.
 
 Ask one focused question only when an answer would materially change behavior, safety, cost, or public contract. Otherwise state bounded assumptions and proceed.
 
@@ -53,6 +63,10 @@ Do not run every gate mechanically. Do not skip a gate merely because the featur
 ### 4. Slice for value, learning, and safe integration
 
 Create the smallest ordered slices that each produce one coherent, verifiable outcome. Prefer vertical slices through the necessary layers over horizontal piles of database/backend/frontend scaffolding.
+
+If one direct change can completely satisfy acceptance and remain easy to
+review and verify, use one slice. Do not manufacture scaffolding, phases, or
+tracking ceremony merely because this workflow supports larger features.
 
 A useful first slice may be a walking skeleton that proves a risky end-to-end integration with minimal behavior. Later slices add meaningful cases, policies, scale, or polish. A technical-enabling slice is acceptable when it leaves the repository working, is needed by a near-term value slice, and has a clear consumer.
 
@@ -73,7 +87,17 @@ See [references/slicing.md](references/slicing.md) for split patterns.
 
 ### 5. Implement one slice
 
-Re-read the exact touched code and local patterns. Implement the smallest change that satisfies the slice acceptance criteria without speculative future infrastructure or unrelated cleanup.
+Re-read the exact touched code and local patterns. Implement the smallest
+complete change that satisfies the slice acceptance criteria without
+speculative future infrastructure or unrelated cleanup. Reuse an existing
+local pattern directly when it fits.
+
+Every new abstraction, interface, factory, dependency, configuration value,
+state, compatibility bridge, flag, queue, cache, retry, or layer needs a current
+acceptance, contract, demonstrated risk, repository-boundary, or verification
+reason. A hypothetical second implementation, future provider, future scale,
+or possible requirement is not enough. Add the mechanism when evidence earns
+it; otherwise keep the logic concrete and local.
 
 Design the proof at the faithful layer before or alongside production code:
 
@@ -97,6 +121,11 @@ Run evidence proportionate to its risk:
 5. `yo-audit` for a material completed change when independent verification is required.
 
 Verify negative and failure paths, not only the happy path. Bind evidence to the current revision/environment and distinguish unavailable proof from a pass.
+
+Before marking the slice complete, run a simplification pass over the final
+diff. Remove any new file, type, helper, branch, configuration, dependency, or
+indirection that does not protect acceptance, an invariant, a supported
+contract, or faithful evidence. Rerun affected checks after simplifying.
 
 Mark a slice complete only when its acceptance is observed and the repository remains in its declared integration state. Update project trackers only when authorized and only in the repository's established system.
 
@@ -147,6 +176,10 @@ If commit/PR work was requested, use `yo-branch` for readiness and topology, the
 - Do not mark acceptance complete from implementation inspection alone.
 - Do not let a passing test with the wrong oracle stand in for the user outcome.
 - Do not leave compatibility bridges or feature flags without retirement ownership.
+- Do not add an extension point, generic framework, configuration surface, or
+  operational mechanism for an unrequested future.
+- Do not optimize for raw line count when a slightly larger direct solution is
+  clearer or required for correctness.
 - Do not expand scope for adjacent refactors unless needed for the accepted slice.
 - Do not continue implementation when discovery invalidates a material design decision; return to `yo-design`.
 

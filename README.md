@@ -3,8 +3,9 @@
 My personal software-engineering playbook for coding agents.
 
 Yo Skills helps Codex and Claude work the way I want: verify the real system
-before acting, understand impact before editing, use the smallest workflow that
-fits the risk, prove the result, and leave a clean technical handoff.
+before acting, understand impact before editing, produce the smallest complete
+production-quality solution, prove the result, and leave a clean technical
+handoff.
 
 It is not a prompt collection that forces ceremony onto every task. Clear work
 stays direct. Broad or risky work gets deeper evidence and review.
@@ -16,6 +17,10 @@ I want an agent to behave like a careful engineering teammate:
 - check the current code, revision, runtime, and discussion instead of trusting
   an old assumption;
 - separate a symptom, its cause, its blast radius, and the fix;
+- write direct, explainable code and make every abstraction or moving part earn
+  its place from a current requirement or demonstrated risk;
+- eliminate a defect's root cause, protect realistic same-cause paths, and add
+  focused regression proof without turning the fix into a rewrite;
 - preserve user changes, running processes, and approval boundaries;
 - use parallel work only when the task actually decomposes;
 - keep uncertainty visible instead of turning missing evidence into confidence;
@@ -25,6 +30,34 @@ I want an agent to behave like a careful engineering teammate:
 
 The bundle is self-contained. No Yo workflow requires Superpowers or another
 non-Yo skill.
+
+## Golden Engineering Standard
+
+The bundle's quality rule is simple:
+
+> Build the smallest complete, production-quality solution.
+
+Code should be correct, clear, direct, explainable, testable, and maintainable.
+"Smallest" means the fewest necessary concepts and moving parts—not blindly the
+fewest lines and never a shortcut around correctness, security, data integrity,
+supported compatibility, reliability, or faithful tests.
+
+The aim is engineering leverage: spend effort on truth, the right decision,
+clear implementation, and exact proof—not on architectural or process volume.
+
+An abstraction, dependency, layer, configuration value, state, compatibility
+mechanism, or operational component must serve a current requirement, supported
+contract, demonstrated risk, existing repository boundary, or faithful proof.
+Hypothetical future use does not count. Every substantive change ends with a
+final simplification pass.
+
+Defects must be fixed at the cause: cover realistic in-scope paths that share
+the mechanism, add regression evidence, and verify that related behavior still
+works. Do not mask one symptom or expand into unrelated cleanup.
+
+The detailed rules and primary engineering references from Google, Microsoft,
+Anthropic, OpenAI, and Meta are in the
+[Golden Engineering Standard](skills/yo-engineering/references/quality-standard.md).
 
 ## Quick install
 
@@ -159,6 +192,11 @@ handoff chains.
   environment.
 - **Risk without ritual.** Tiny reversible work stays tiny; consequential work
   gets explicit invariants, rollback, and independent verification.
+- **Maximum quality, minimum necessary complexity.** Current requirements and
+  demonstrated risks determine solution shape; speculative architecture is not
+  treated as quality.
+- **Root-cause closure.** Bug fixes remove the mechanism, cover realistic
+  same-cause paths, and carry focused regression proof.
 - **Honest deep review.** `yo-workflow` maps coverage, challenges candidates with
   independent evidence, and keeps unresolved risks separate from confirmed
   findings.
@@ -189,7 +227,7 @@ create yourself.
 ```text
 skills/       Current Yo skills
 archive/      Pre-rewrite snapshots
-validation/   Rerunnable behavior scenarios
+validation/   Rerunnable scenarios and daily-work benchmark
 hooks/        Optional Claude SessionStart reminder
 install.*     Backup-first installers
 verify.*      Installed-tree verification

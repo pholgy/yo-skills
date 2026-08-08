@@ -95,3 +95,15 @@ managerial, and financial independence from the development organization.
 
 Derived rule: a cold self-review is useful but must not be called independent;
 route broad or high-risk changes to a genuinely fresh read-only audit.
+
+## Root-cause completeness without speculative scope
+
+Meta's root-cause-analysis practice distinguishes removing a cause from
+repeatedly treating symptoms, while OpenAI describes preparing and validating
+the smallest tested fix. Google review guidance adds small, self-contained
+changes and useful regression tests. The primary links and policy boundary are
+mapped in [the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: remove the diagnosed mechanism at the narrowest correct seam,
+cover realistic in-scope paths sharing it, add regression proof, and exclude
+unrelated cleanup or hypothetical future machinery.

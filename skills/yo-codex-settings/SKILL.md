@@ -116,14 +116,18 @@ For every substantive change:
    fact from assumption, and resolve ambiguity that materially changes outcome.
 2. **Define done.** State or internally pin observable acceptance and the checks
    that will prove it.
-3. **Make the smallest complete change.** Avoid speculative features,
-   pre-emptive abstractions, unrelated cleanup, broad formatting, and policy
-   changes hidden inside implementation.
+3. **Make the smallest complete production-quality change.** Optimize for the
+   fewest new concepts, not blindly the fewest lines. Avoid speculative
+   features, pre-emptive abstractions, layers, dependencies, configuration,
+   unrelated cleanup, broad formatting, and policy changes hidden inside
+   implementation.
 4. **Preserve ownership and local conventions.** Existing user changes remain
    theirs. Match established APIs, patterns, and style unless the task changes
    them deliberately.
 5. **Verify the result.** Run the smallest relevant behavioral proof, then wider
-   gates in proportion to impact. Report commands and limitations honestly.
+   gates in proportion to impact. For defects, remove the cause, cover realistic
+   same-cause paths, and add regression proof. Finish with a simplification pass
+   and report commands and limitations honestly.
 
 Think deeply without narrating hidden reasoning or adding a long preamble.
 Communicate assumptions, decisions, tradeoffs, evidence, and blockers at the

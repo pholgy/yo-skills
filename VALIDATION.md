@@ -1,6 +1,6 @@
 # Validation record
 
-Date: 2026-07-14
+Date: 2026-08-09
 
 Scope: the 19 live `skills/yo-*` trees, their dated pre-rewrite archives, root
 bundle metadata and documentation, and the optional Claude SessionStart hooks.
@@ -8,8 +8,8 @@ bundle metadata and documentation, and the optional Claude SessionStart hooks.
 ## Research gate
 
 - Every skill has a research or sources reference inside its own tree.
-- The live trees contain 217 per-skill unique source-link entries, representing
-  172 unique URLs across the bundle.
+- The live trees contain 229 per-skill unique source-link entries, representing
+  179 unique URLs across the bundle.
 - Sources favor platform contracts, standards, official engineering guidance,
   and peer-reviewed or controlled research. Each skill's reference file records
   how those sources changed the operating rules rather than serving as a generic
@@ -18,6 +18,10 @@ bundle metadata and documentation, and the optional Claude SessionStart hooks.
   immutable review snapshots, system and coverage maps, independent evidence-
   grounded challenge, explicit unresolved states, centralized synthesis, and a
   completeness pass.
+- The 2026-08-08 Golden Engineering Standard is mapped to primary Google,
+  Microsoft, Anthropic, OpenAI, and Meta engineering sources. It distinguishes
+  minimum necessary complexity from raw line minimization and preserves the
+  correctness, security, data, compatibility, reliability, and evidence floor.
 
 ## Artifact and structure gate
 
@@ -41,6 +45,23 @@ bundle metadata and documentation, and the optional Claude SessionStart hooks.
 Fresh-context agents tested each rewrite against concrete scenarios rather than
 merely restating the skill. The rerunnable inputs and expected assertions are in
 `validation/behavior-scenarios.md`. The most risk-sensitive matrices included:
+
+- Golden Engineering Standard: 8/8 raw solution-shape scenarios passed with
+  expected assertions withheld. The initial blind run exposed one audit-severity
+  weakness: material needless architecture was identified but not approval-
+  blocking. After tightening that evidence-based boundary, two new fresh
+  contexts reran all eight cases; G7 correctly returned `FAIL — Major`. Agents
+  otherwise chose direct CLI, local-state UI, focused parser, and local-test
+  solutions without speculative frameworks while retaining justified provider
+  contracts, mixed-version migration safety, and shared tenant-authorization
+  policy boundaries.
+- Golden-standard behavioral snapshot before the orchestration follow-up: base
+  `c317ec4786c225037038c15ca5231c1db5341a0e`, with live `skills/` + `hooks/`
+  SHA-256 tree digest
+  `e2ce07c2344674bf2a6d1d2626c0de83475ce691638f1772fa2c9b2bc41b5b97`.
+  Tests ran in fresh Codex desktop contexts on local macOS with no hook for
+  G1-G8; the runtime did not expose a stable model identifier. Hypothetical
+  project implementations and commands remained intentionally unavailable.
 
 - `yo-workflow`: 9/9 deep-review scenarios passed, including sequential versus
   parallel selection, challenger independence, unresolved evidence, coverage,
@@ -69,20 +90,64 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
 - After the cold audit tightened the bounded-file fast-lane criterion, D1, D2,
   and D5 were rerun in separate fresh contexts against the revised skill text;
   all three retained the intended direct-doc, compact-bug, and feature routes.
+- Daily-work engineering benchmark: 31/31 backend, frontend, difficult
+  full-stack, GCP/AWS network/DevOps, and multi-provider platform cases were
+  executed and independently scored on seven weighted metrics. The overall
+  score is **9.5/10**: backend 9.7, frontend 9.9, difficult full-stack 9.4,
+  cloud/DevOps 9.1, and platform engineering 9.5. Correctness, simplicity,
+  causal completeness, verification, risk handling, and scope averaged
+  9.6-9.9; subagent/decomposition judgment averaged 6.8.
+- The daily-work benchmark found one material operating gap: all difficult
+  full-stack, cloud, and platform executors selected no subagents even when
+  bounded read-only provider, runtime, workspace, or diagnostic lanes would
+  have added leverage under one coordinator. It did not reward agent count or
+  parallel writers. The complete runner contract, raw cases, withheld
+  assertions, scores, recommended agent shapes, independence corrections, and
+  limits are in `validation/daily-work-benchmark.md`.
+- The benchmark is bound to base
+  `c317ec4786c225037038c15ca5231c1db5341a0e` and the same pre-follow-up
+  `skills/` + `hooks/` digest recorded above. Twenty-five execution cases used
+  fresh contexts; six used context-separated follow-up turns because the live
+  agent-thread limit prevented new contexts. Technical graders did not execute
+  the domain they scored, and decomposition received a separate normalized
+  grading pass.
+- Lightweight-orchestration follow-up: six difficult cases were rerun in fresh
+  read-only pre-change and candidate CLI contexts with identical prompts, then
+  cross-over graded on task-graph fit, lane contracts, ownership, technical
+  quality, and efficiency. Candidate mean was **9.5/10**; the pre-change mean
+  was 6.2 with two timeout/incomplete cases, or 8.8 over its four completed
+  X/Z controls versus candidate 9.6 on those same cases. Candidate technical
+  and safety quality was 10/10 in every case.
+- A separate 4/4 regression confirmed that local UI and known-cause defect work
+  stayed direct and tightly coupled payment/API work kept one coordinator.
+  The current candidate is bound to `yo-engineering/SKILL.md` SHA-256
+  `f73e269d77cb1c46b2ea43f6de9a9c4d149703dd18b8d5aa8e39f55326711d16`
+  and live `skills/` + `hooks/` digest
+  `37c726018598d3c924e9423f0da4cfa0af496a6f200ff8f749840037964f7704`.
+- Runtime efficiency did not improve reliably: one hard pair completed before
+  its control cutoff, one was effectively unchanged, and one was 15.8% slower;
+  token use rose in both comparable pairs. The update improves execution-shape
+  judgment, not the speed of the inherited maximum-reasoning runtime. Full
+  timings, token counts, case descriptions, score formula, grader separation,
+  and limits are in `validation/daily-work-benchmark.md`.
 
 ## Optional hook gate
 
 - The Bash hook passes `bash -n` and emits parseable SessionStart JSON.
-- The PowerShell hook passes parser validation and emits the same parseable
-  SessionStart JSON.
+- The PowerShell hook passed parser validation in the 2026-07-14 lifecycle run.
+  PowerShell was unavailable after the 2026-08-08 payload edit; the current
+  PowerShell string was extracted and confirmed identical to the parseable Bash
+  payload, but this is not mislabeled as a new PowerShell parser pass.
 - The payload contains no fixed model, effort, context-window, tool, or
   instruction-discovery assumption. It points to the live skill bodies as the
   authority.
-- The canonical payload names the risk-based direct lane and proportionate
-  inline premise check; it contains no blanket rule routing every fix through
-  `yo-verify-premise`.
-- A fresh hook-loaded daily scenario still bypassed routing for a clear low-risk
-  typo.
+- The canonical payload names the Golden Engineering Standard and says clear
+  low-risk work bypasses `yo-flow`; it contains no blanket rule routing every
+  fix through `yo-verify-premise` or another full workflow.
+- A fresh 2026-08-08 hook-loaded daily scenario still bypassed routing for a
+  clear low-risk typo after the Golden Engineering Standard was added to the
+  payload. It ran against the pre-follow-up `skills/` + `hooks/` digest recorded
+  in the behavioral gate.
 
 ## Repository installer gate
 
@@ -118,12 +183,40 @@ Date: 2026-07-11
   entries into backup without changing the external files, installed regular
   verified hook files, and the verifier later rejected a same-content symlink.
 
+### 2026-08-08 Golden Engineering Standard rerun
+
+- The unchanged Bash installer copied the upgraded 19-skill bundle and both
+  optional hooks into a fresh isolated home for Codex, Claude, and shared-agent
+  targets; the independent verifier reported 19/19 skills per target and 2/2
+  hooks.
+- The real user-global skill directories were not used as the test target.
+- `install.sh`, `verify.sh`, and the Bash hook pass `bash -n`; the Bash hook
+  emits parseable SessionStart JSON. PowerShell was unavailable for a new parser
+  run, so the Bash and PowerShell payload strings were extracted and confirmed
+  identical while the earlier full PowerShell lifecycle evidence remains
+  recorded above.
+
+## 2026-08-09 upgrade checks
+
+- Official skill-creator `quick_validate.py`: 19/19 pass, run unchanged in an
+  ephemeral `uv` environment because the system Python lacked PyYAML.
+- `agents/openai.yaml`: 19/19 parse, description-length, and `$skill-name`
+  default-prompt checks pass.
+- Manifest parses and exactly matches the 19 live skill directories.
+- 53 local Markdown links were resolved with zero broken targets.
+- Backtick-referenced support files exist; all live `SKILL.md` files remain
+  under 500 lines (maximum 295); `git diff --check` passes.
+
 ## Limits
 
 - Structural validation proves package shape, not behavioral correctness; the
   scenario tests and source-backed decision records cover that separate risk.
 - Fresh scenario agents made read-only decisions; they did not edit hypothetical
   repositories or execute those hypothetical project test commands.
+- Daily-work benchmark scores measure design and routing judgment. They do not
+  prove implementation fidelity, provider behavior, runtime performance, or
+  live cloud state; six executor cases also carry the explicitly recorded
+  follow-up-context limitation.
 - External documentation and platform capabilities can change after this date.
   Platform skills therefore require live capability and configuration checks.
 - Hook installation and verification are opt-in because an existing hook is

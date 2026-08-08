@@ -12,6 +12,8 @@ attribution or a stale model/version dependency.
   focused tests, lint, typecheck, build, and their CI equivalents?
 - What user work, public contract, data, process, or external state is protected?
 - What is the smallest complete change?
+- Which new concept or moving part is required by a current acceptance,
+  contract, demonstrated risk, repository boundary, or faithful test?
 - Which focused check will fail before or prove after the change?
 
 Discover the applicable verification contract before the first edit in each
@@ -27,6 +29,9 @@ public outcome. Otherwise make a bounded assumption and state it when useful.
 ## During a change
 
 - Match local patterns before inventing an abstraction.
+- Optimize for the fewest necessary concepts, not blindly the fewest lines.
+- Do not add layers, dependencies, configuration, compatibility machinery, or
+  future-proofing without a current need.
 - Touch only required files and directly caused cleanup.
 - Preserve unrelated user changes and generated/source boundaries.
 - Keep behavior and public contracts stable unless change is intentional.
@@ -40,7 +45,9 @@ public outcome. Otherwise make a bounded assumption and state it when useful.
 3. Test negative and boundary cases implied by the risk.
 4. Run broader lint, type, build, or test gates in proportion to impact.
 5. Inspect the actual resulting diff/state and protected user work.
-6. Verify external/runtime truth when the task changes it.
+6. Remove new moving parts that do not protect acceptance, an invariant,
+   contract, demonstrated risk, or faithful evidence; rerun affected checks.
+7. Verify external/runtime truth when the task changes it.
 
 Do not claim a check passed if it was skipped, stale, run against another
 revision, or failed for an unresolved reason.

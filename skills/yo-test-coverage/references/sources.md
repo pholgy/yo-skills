@@ -67,3 +67,14 @@ Authority labels:
 - Fixed flake percentages, framework-specific skip syntax, and permanent skip-as-solution advice.
 - Commit-SHA reporting when no commit exists.
 - An unrelated cleanup-skill dependency outside this bundle.
+
+## 2026 Golden Engineering Standard update
+
+Google's review guidance treats tests as maintained code and asks whether they
+are simple and useful; Google SRE treats unnecessary code as ongoing liability.
+The primary links and full policy are in
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: choose the smallest faithful test and do not build a fixture
+framework, helper hierarchy, or overlapping cases unless they close a distinct
+risk or reduce total test complexity now.

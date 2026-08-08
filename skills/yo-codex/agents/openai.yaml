@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Codex"
   short_description: "Delegate to Codex with safe ownership and proof"
-  default_prompt: "Use $yo-codex to route, supervise, and verify this delegated task."
+  default_prompt: "Use $yo-codex to route, contract, supervise, and independently verify this delegated task, requiring the smallest complete solution and no speculative moving parts."

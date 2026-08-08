@@ -16,6 +16,9 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 | Stage and observe production changes | Google SRE recommends progressive, supervised rollouts, user-centered signals, and rollback before diagnosis when unexpected behavior appears. | Require rollout, observation, pause, and rollback for operational risk. |
 | Balance delivery speed with stability | DORA measures both throughput and instability and warns against single-metric targets. | Keep speed plus stability as the outcome; do not optimize one metric in isolation. |
 | Preserve meaningful human control | OpenAI's Codex safety practice makes high-risk actions explicit while allowing routine work to proceed. | Keep S3 authorization, but recognize specific authorization already present in the request. |
+| Maximize quality with minimum necessary complexity | Google review and SRE guidance challenge unnecessary complexity; Microsoft emphasizes high-quality incremental outcomes and reducing non-value work; Anthropic starts with the simplest effective pattern; OpenAI describes the smallest tested fix. | Add the Golden Engineering Standard, an evidence-based complexity budget, and a mandatory final simplification pass. |
+| Fix causes and realistic same-cause paths | Meta describes root-cause analysis as the basis for fixing recurring defects; OpenAI describes reproducing, fixing, and validating scoped changes. | Require causal correction, focused regression proof, relevant sibling coverage, and no unrelated cleanup. |
+| Match execution shape to the task graph | Google Research reports gains on parallelizable tasks and degradation on sequential tasks; Anthropic recommends simple composable workflows and centralized orchestration for independent breadth; OpenAI recommends bounded read-heavy subagents and warns about coordination cost. | Default to one coordinator; use a small set of decision-relevant read-only lanes only for independent questions; centralize the invariant, synthesis, writes, and final claim. |
 
 ## Authoritative sources
 
@@ -28,6 +31,18 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 - Software Engineering at Google, [Testing Overview](https://abseil.io/resources/swe-book/html/ch11.html)
 - Google SRE, [Production Services Best Practices](https://sre.google/sre-book/service-best-practices/)
 - OpenAI, [Running Codex safely at OpenAI](https://openai.com/index/running-codex-safely/)
+- Google SRE, [Simplicity](https://sre.google/sre-book/simplicity/)
+- Google SRE Workbook, [Simplicity](https://sre.google/workbook/simplicity/)
+- Microsoft, [Code With Engineering Playbook](https://microsoft.github.io/code-with-engineering-playbook/)
+- Microsoft, [Developer Experience](https://microsoft.github.io/code-with-engineering-playbook/developer-experience/)
+- Anthropic, [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+- OpenAI, [Engineering solutions](https://openai.com/business/solutions/engineering/)
+- OpenAI, [How OpenAI uses Codex](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf)
+- Meta Engineering, [Minesweeper root cause analysis](https://engineering.fb.com/2021/02/09/developer-tools/minesweeper/)
+- Google Research, [Towards a science of scaling agent systems](https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/)
+- Anthropic, [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+- OpenAI, [A practical guide to building agents](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)
+- OpenAI, [Codex subagents](https://developers.openai.com/codex/subagents)
 - Martin Fowler, [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html) — delivery-pattern details, not the risk taxonomy.
 
 ## Keep / improve / move / remove
@@ -40,6 +55,7 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 - Small reversible delivery, meaningful tests, fresh verification, and measured
   performance work.
 - Immediate incident preemption and downstream Yo handoffs.
+- One accountable coordinator and no agent fan-out for tightly coupled work.
 
 ### Improve
 
@@ -49,6 +65,9 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 - Treat graceful degradation and small adjacent cleanup with context rather than
   absolute prohibitions.
 - Define compatibility as source, wire, semantic, and persisted-data behavior.
+- Make execution shape explicit in the engineering brief: direct by default,
+  bounded read-only lanes for independent decision-relevant questions, isolated
+  writers only with an integration contract, and central synthesis.
 
 ### Move
 
@@ -56,6 +75,8 @@ rules to authoritative evidence and distinguishes evidence from bundle policy.
 - Move flags, abstractions, migrations, canaries, and other staging options to
   `delivery-patterns.md`.
 - Leave downstream implementation mechanics in their owning Yo skills.
+- Leave Codex session mechanics in `yo-codex`, deep-review orchestration in
+  `yo-workflow`, and incident roles/mutations in `yo-incident`.
 
 ### Remove
 

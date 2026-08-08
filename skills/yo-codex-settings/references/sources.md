@@ -92,3 +92,14 @@ agent determines when prior context should be consulted.
 Derived rule: consult memory when relevant; do not load all memory as a universal
 session ritual. Preserve a durable handoff before changing sessions when causal
 state still matters.
+
+## Golden engineering behavior
+
+OpenAI's engineering material describes the smallest tested fix and scoped,
+validated tasks. Google, Microsoft, and Anthropic provide the broader simplicity
+and value basis. The source-to-rule map is in
+[the bundle quality standard](../../yo-engineering/references/quality-standard.md).
+
+Derived rule: the durable Codex baseline optimizes for maximum correctness with
+the fewest necessary concepts, requires root-cause regression closure for
+defects, and ends substantive work with a simplification pass.
