@@ -6,6 +6,9 @@ These sources define the rationale behind the bundled writing standards and temp
 
 - [Pull requests and change descriptions](#pull-requests-and-change-descriptions)
 - [Issues and bug reports](#issues-and-bug-reports)
+- [Product outcomes and requirement quality](#product-outcomes-and-requirement-quality)
+- [Work readiness and proportionality](#work-readiness-and-proportionality)
+- [GitHub planning relationships and metadata](#github-planning-relationships-and-metadata)
 - [Reviews and replies](#reviews-and-replies)
 - [Technical writing and Markdown](#technical-writing-and-markdown)
 - [Releases, incidents, and security](#releases-incidents-and-security)
@@ -42,6 +45,71 @@ These sources define the rationale behind the bundled writing standards and temp
 - **GitHub Docs — About issues**
   Covers issues as bugs, features, ideas, tasks, sub-issues, dependencies, and planning artifacts.
   https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues
+
+## Product outcomes and requirement quality
+
+- **GOV.UK Service Manual — Writing user stories**
+  Separates actor, need, and goal, and defines acceptance criteria as outcomes
+  that demonstrate the service met the user need.
+  https://www.gov.uk/service-manual/agile-delivery/writing-user-stories
+
+- **Intercom — Deliver outcomes**
+  Distinguishes shipped output, measurable customer behavior, and business
+  results while warning against forcing every feature into a commercial metric.
+  https://www.intercom.com/blog/product-principles-deliver-outcomes/
+
+- **NASA Software Engineering Handbook — Software requirements**
+  Requires complete, consistent, unambiguous, bounded, measurable, testable,
+  feasible requirements; one requirement per statement; and requirements that
+  state needed behavior rather than an unnecessary implementation method.
+  https://swehb.nasa.gov/pages/viewpage.action?pageId=146540037
+
+- **Cucumber — Example Mapping**
+  Uses rules, concrete examples, questions, and newly discovered slices to
+  clarify acceptance without requiring a heavyweight specification for every
+  story.
+  https://cucumber.io/docs/bdd/example-mapping/
+
+## Work readiness and proportionality
+
+- **Microsoft Engineering Fundamentals Playbook — Definition of Ready**
+  Checks business need, measurable acceptance, size, dependencies, and blockers
+  before development, while warning that rare story-specific checks create
+  process overhead.
+  https://microsoft.github.io/code-with-engineering-playbook/agile-development/team-agreements/definition-of-ready/
+
+- **GitLab Handbook — Product Development Flow**
+  Treats the issue description as the maintained source of truth and allows
+  validation or design phases to be shortened or skipped when confidence makes
+  them unnecessary.
+  https://handbook.gitlab.com/handbook/product-development/how-we-work/product-development-flow/
+
+- **Shape Up — Risks and Rabbit Holes**
+  Supports resolving material unknowns and interdependencies before handing work
+  to a delivery team, while declaring specific tempting cases out of bounds.
+  https://basecamp.com/shapeup/1.4-chapter-05
+
+- **AWS Well-Architected — Evaluate trade-offs**
+  Warns that burdensome governance on every decision slows delivery and scales
+  decision control according to benefit, risk, and reversibility.
+  https://docs.aws.amazon.com/wellarchitected/latest/framework/ops_priorities_eval_tradeoffs.html
+
+## GitHub planning relationships and metadata
+
+- **GitHub Docs — Adding sub-issues**
+  Defines native parent-child relationships and progress tracking for breaking
+  larger work into separately tracked issues.
+  https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/adding-sub-issues
+
+- **GitHub Docs — About issues**
+  Defines issue dependencies, issue metadata, Projects integration, cross-
+  references, and issue-to-PR closing behavior.
+  https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues
+
+- **GitHub Docs — About issue fields in Projects**
+  Defines organization-level typed metadata such as priority, effort, and dates
+  that can be filtered, grouped, and synchronized without repeating it in prose.
+  https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-issue-fields
 
 ## Reviews and replies
 
