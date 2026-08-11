@@ -5,10 +5,24 @@ Apply this standard to every GitHub artifact after selecting its artifact-specif
 ## Content order
 
 1. Lead with the purpose, verdict, user-visible problem, or decision.
-2. State the verified facts and their impact.
+2. State the verified facts and their supported impact.
 3. Explain why when the reason is not visible from the code or diff.
 4. Give the next action, decision, or closure state.
 5. Attach only the evidence needed to support the claim.
+
+## Meaning pass
+
+- Preserve the causal chain: current fact or problem -> user or operator effect
+  -> supported business consequence. Stop before an unsupported link.
+- Distinguish an expected effect from a result already measured in production.
+- Keep each requirement or review request atomic, bounded, and observable.
+- Do not repeat the same contract under multiple headings or convert a material
+  unknown into confident scope.
+- Do not turn technical capability into product intent or operational authority.
+- Make every optional section earn its scan cost; remove it when it only repeats
+  another section or prohibits implausible extra work.
+- For issue readiness, technical scope, decision tables, and GitHub-native work
+  structure, apply `issues.md`.
 
 ## Titles
 
@@ -55,7 +69,9 @@ Never say `all tests pass` when only a focused subset ran. Name the exact gate a
 
 - Use inline code for identifiers, paths, flags, commands, and SHAs.
 - Use fenced blocks with a language tag for code or console excerpts.
-- Use task lists only for actionable acceptance or verification items.
+- Use task lists only for actionable acceptance or verification items. Use
+  GitHub sub-issues for independently tracked work when the repository supports
+  them.
 - Use tables for repeated fields with at least three meaningful rows.
 - Use `<details>` for long supporting logs, not for the main verdict.
 - Keep headings proportional to length; do not give a four-sentence comment three sections.
@@ -68,6 +84,8 @@ Before showing or posting the draft, confirm:
 - the artifact has one clear job;
 - the first paragraph carries the important information;
 - every factual claim has a source;
+- expected outcomes are not presented as measured results;
+- requirements are consistent and not duplicated across sections;
 - required sections are present and irrelevant sections are absent;
 - the prose is concise, natural, and technically precise;
 - the Markdown will render without placeholders or broken fences;

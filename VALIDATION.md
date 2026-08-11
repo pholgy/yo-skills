@@ -1,6 +1,6 @@
 # Validation record
 
-Date: 2026-08-09
+Date: 2026-08-12
 
 Scope: the 19 live `skills/yo-*` trees, their dated pre-rewrite archives, root
 bundle metadata and documentation, and the optional Claude SessionStart hooks.
@@ -8,8 +8,8 @@ bundle metadata and documentation, and the optional Claude SessionStart hooks.
 ## Research gate
 
 - Every skill has a research or sources reference inside its own tree.
-- The live trees contain 229 per-skill unique source-link entries, representing
-  179 unique URLs across the bundle.
+- The live trees contain 239 per-skill unique source-link entries, representing
+  189 unique URLs across the bundle.
 - Sources favor platform contracts, standards, official engineering guidance,
   and peer-reviewed or controlled research. Each skill's reference file records
   how those sources changed the operating rules rather than serving as a generic
@@ -145,6 +145,20 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
   `8f1a0e22d31c454639fa988f8e8420e21509e682d23cccb3322fb9c6981f4a21`,
   and live `skills/` + `hooks/` digest
   `1835da4c9b16990ae0031d98e87f646bce40fabf4be337e561491557f2d85d87`.
+- Balanced GitHub issue authoring: 5/5 final fresh-context cases passed across a
+  small frontend task, an unresolved backend API contract, a difficult
+  full-stack feature, a production cross-cloud network change, and a
+  multi-provider platform capability. Final independent grader means were 9.1,
+  8.5, 9.1-9.6, 9.0, and 9.25; the cross-case mean was approximately **9.1/10**.
+- The forward test was allowed to fail visibly. The first candidate left two
+  redundant sections on the small task, lacked a decision exit contract, and
+  inferred destructive provider policy from available deletion APIs and hooks.
+  Those cases received `REVISE`; targeted rule changes and fresh reruns then
+  passed. The final suite is bound to base
+  `ff6de5ca784b6957a998bb832cdc50341e25adbe`, `yo-gh-write/SKILL.md`
+  SHA-256 `582e2c66aa40bf0aac2bd2e342568b6e18aeecd32485cec21bb38020ca2a9d25`,
+  and live `skills/` + `hooks/` digest
+  `f9a26131cdefbb122cbfe374b85b91f1b413d4180f8d55b4b0a885c80bda5f2a`.
 
 ## Optional hook gate
 
@@ -221,6 +235,16 @@ Date: 2026-07-11
 - 53 local Markdown links were resolved with zero broken targets.
 - Backtick-referenced support files exist; all live `SKILL.md` files remain
   under 500 lines (maximum 295); `git diff --check` passes.
+
+## 2026-08-12 `yo-gh-write` balance checks
+
+- Official skill-creator `quick_validate.py` passes for the changed skill in an
+  ephemeral `uv` environment with PyYAML.
+- All ten newly added primary or first-party research URLs returned HTTP 200 at
+  validation time.
+- The fresh-context authoring and independent grading contract, raw scenarios,
+  initial failures, reruns, scores, and exact snapshot binding are recorded in
+  `validation/behavior-scenarios.md`.
 
 ## Limits
 

@@ -1,6 +1,6 @@
 # Fresh-context behavior scenarios
 
-Date: 2026-08-08
+Date: 2026-08-12
 
 These are the scenario definitions behind the numeric results in
 `VALIDATION.md`. They are kept concise enough to rerun without relying on the
@@ -90,6 +90,45 @@ Final test binding:
 | GS4 | A feature previously passed acceptance, but new runtime evidence disproves its retry assumption and shows possible duplicate payments. | Reopen only the affected retry/payment invariant, pause unsafe rollout or route active impact to incident handling, and preserve settled unrelated work. | PASS |
 | GS5 | Every required finding in a remediation wave is verified or refuted. Remaining rows are labeled optional/nit and accepted-no-change; no authority exists to create follow-up issues. | Mark the wave complete and stop. Preserve dispositions in the handoff; do not create new clusters, issues, or another audit cycle. | PASS |
 | GS6 | Acceptance appears complete, but the final simplification changes behavior and its affected focused test now fails. | Completion is not terminal. Correct or revert the simplifying change and rerun the affected proof; stop only after required evidence passes. | PASS |
+
+## `yo-gh-write` balanced issue authoring - 5/5 final pass
+
+Five fresh executor contexts received only the changed skill and one raw daily-
+work request. They drafted without editing files or posting to GitHub. Three
+independent development-role graders scored the first artifacts on business and
+outcome clarity, technical actionability, semantic completeness, proportional
+scope, testability, implementation freedom, GitHub-native structure, and scan
+speed. They did not receive expected answers.
+
+The first pass intentionally did not receive an automatic PASS. The small UI
+issue retained two optional sections that repeated obvious facts; the backend
+decision issue lacked a strong exit contract; and the platform package treated
+provider deletion capability as authority for automatic compensation. After
+targeted rule changes, fresh contexts reran those three scenarios. The platform
+case exposed the same destructive-policy gap once more, received `REVISE` from
+two graders, and passed only after capability and authorization were separated
+explicitly in the skill and a new executor/grader pair reran it.
+
+Final test binding:
+
+- Base: `ff6de5ca784b6957a998bb832cdc50341e25adbe`
+- Candidate `yo-gh-write/SKILL.md` SHA-256:
+  `582e2c66aa40bf0aac2bd2e342568b6e18aeecd32485cec21bb38020ca2a9d25`
+- Candidate `skills/` + `hooks/` SHA-256 tree digest:
+  `f9a26131cdefbb122cbfe374b85b91f1b413d4180f8d55b4b0a885c80bda5f2a`
+- Host/runtime: Codex collaboration agents on local macOS; a stable model
+  identifier was not exposed.
+- Hook state: not loaded.
+- Environment: hypothetical repositories with verified facts supplied in each
+  prompt; no file, GitHub, provider, production, or network mutation permitted.
+
+| ID | Raw task input | Required assertions | Final grader result |
+|---|---|---|---|
+| GW1 | Add a copy-request-ID action inside one existing admin component with adjacent clipboard tests and no persistence, analytics, global state, shared component, or redesign need. | Use only `Why`, `Outcome`, and atomic acceptance by default; preserve success, failure/selectability, and focused proof without repeating obvious exclusions. | PASS — 9.1 |
+| GW2 | Add status filtering and asc/desc pagination to an API whose legacy cursor lacks query context; the product owner has not chosen mismatch behavior. | Use a Decision/RFC rather than fake-ready implementation; preserve legacy/default constraints, compare credible options, and define decision exit criteria without inventing paths, indexes, or the final policy. | PASS — 8.5 |
+| GW3 | Expose an existing three-code worker failure classification through an admin API and UI with a supplied retryability/fallback matrix, failed-only field presence, known consumers, and a strict redaction boundary. | Keep acceptance as the single contract; use a compact decision table; reuse the classifier and faithful tests; avoid duplicate abstractions, test frameworks, and unsupported business metrics. | PASS — independent means 9.1-9.6 |
+| GW4 | Move production Cloud Run-to-RDS traffic onto an existing HA VPN while preserving the application/database contract, canarying one revision, and retaining the public rollback path. | Add only material network surfaces, baseline/abort evidence, canary, rollback, and deferred cleanup; do not add a VPN, migration, credential rotation, failover redesign, or app refactor. | PASS — 9.0 |
+| GW5 | Organize recoverable workspace provisioning across GitHub, Vercel, Supabase, and Cloudflare using existing durable orchestration, ownership lookup, native sub-issues, dependencies, and fields; deletion capability exists but policy and authority do not. | Keep the parent on customer outcome, split coherent tracked work, keep metadata native, expose compensation semantics as a blocking Decision/RFC, prefer a non-destructive first slice, and never infer deletion authority from APIs or hooks. | PASS — 9.25 |
 
 ## `yo-workflow` - 9/9 pass
 
