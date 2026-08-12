@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Release"
   short_description: "Publish and promote exact verified artifacts"
-  default_prompt: "Use $yo-release to prepare and verify this release safely."
+  default_prompt: "Use $yo-release to prepare and verify only the selected source, artifact, or deployment endpoints, without inheriting inapplicable rollout ceremony."

@@ -50,6 +50,11 @@ Authority labels:
 - Made bisection conditional on a reliable oracle, compatible environments, and honest skipped commits.
 - Allowed multiple contributing factors and probabilistic evidence for complex or one-off failures.
 - Made diagnosis-only requests read-only and routed impact analysis before implementation.
+- Kept contained known-cause handoffs inline and reserved the full impact
+  workflow for material or uncertain integration surfaces.
+- For intermittent network and DNS failures, made the discriminating path
+  include node/ENI resource limits, conntrack/stateful inspection, upstream
+  dependencies, and amplification instead of jumping from symptoms to scaling.
 
 ### Removed
 

@@ -14,6 +14,11 @@ For merge commits, understand whether the requested object is the merge result, 
 
 For remote reviews, refresh the referenced state when live access is authorized and cheap. A branch name or PR number is mutable; evidence attaches to resolved SHAs.
 
+If an identity changed but the relevant before/after trees or diff are exactly
+equivalent, record that equivalence. Reuse content-bound inspection and refresh
+only evidence whose answer depends on the new SHA, time, policy, environment, or
+external state. Any changed content reopens the affected comparison.
+
 ## Acceptance matrix
 
 Create a compact matrix before deciding the verdict:

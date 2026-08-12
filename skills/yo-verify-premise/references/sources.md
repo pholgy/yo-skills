@@ -29,7 +29,8 @@ Use this file when maintaining or auditing `yo-verify-premise`.
 - Verify before changing product code.
 - Trace the real behavior rather than trusting a cited line or proposed fix.
 - Surface changed or wider scope instead of silently redefining the task.
-- Hand unknown cause to `yo-debug` and blast-radius analysis to `yo-impact`.
+- Hand unknown cause to `yo-debug`; keep contained blast-radius checks inline
+  and hand material or uncertain boundaries to `yo-impact`.
 - Produce a compact evidence artifact for later audit.
 
 ### Improve
@@ -41,6 +42,8 @@ Use this file when maintaining or auditing `yo-verify-premise`.
 - Separate symptom, cause, impact, and proposed fix.
 - Reserve `known cause` for a mechanism that explains the important conditions
   and justifies the next intervention, not merely the closest failing boundary.
+- Carry still-applicable premise evidence into the next workflow and use an
+  inline local impact check unless a material boundary earns the full map.
 - Add `not reproduced` and `insufficient evidence` instead of treating every
   failed reproduction as a broken premise.
 - Inspect available issue, PR, repository, and runtime state before asking the

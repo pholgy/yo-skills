@@ -30,6 +30,11 @@ Authority labels:
 
 - **K - Git, `git diff`:** defines comparisons between explicit endpoints, merge bases, index, and working tree. This supports naming the actual audit object rather than assuming every target is one commit.
   <https://git-scm.com/docs/git-diff>
+- **K - Git, Git objects:** tree objects identify tracked directory content
+  independently from commit metadata. This supports proving content equivalence
+  before reusing content-bound inspection while still refreshing external or
+  state-dependent evidence.
+  <https://git-scm.com/book/en/v2/Git-Internals-Git-Objects>
 - **K - GitHub pull-request review API:** binds a review to a commit ID and warns that comments can become outdated after new commits. GitHub also supports distinct comment, approve, and request-changes actions. This supports SHA-bound evidence and explicit publication authority.
   <https://docs.github.com/en/rest/pulls/reviews>
 
@@ -49,6 +54,14 @@ Authority labels:
 - Defined actionable finding criteria and severities; separated pre-existing debt and preferences.
 - Clarified that test/build execution can use an isolated workspace without authorizing source edits or external effects.
 - Made chat the default report destination and all GitHub actions explicit-authority operations.
+- Made independent review validate one exact-release evidence bundle and
+  selectively reproduce challenged, stale, or decision-critical proof instead
+  of rerunning a valid matrix wholesale.
+- Separated immutable-artifact audit from per-batch external-state proof so a
+  long rollout does not create one stale fleet-wide terminal gate.
+- Ordered the single release-candidate audit after an authorized representative
+  canary when its verdict includes canary evidence; a pre-canary readiness
+  review remains narrower and cannot imply a mandatory duplicate pass.
 
 ### Removed
 

@@ -405,3 +405,43 @@ or its project tests actually ran.
   explicit material sensitivity gap; never claim the high-risk regression is
   closed from green-after-only evidence.
 - **Result:** PASS (2026-07-14 fresh context).
+
+## Golden execution continuity daily-work - 31/31 pass
+
+The final follow-up reused the 31 raw backend, frontend, difficult full-stack,
+cloud/DevOps, and platform cases in
+[`daily-work-benchmark.md`](daily-work-benchmark.md). Five fresh read-only Codex
+CLI contexts received all raw jobs but not their required assertions, score
+formula, prior results, or expected outputs. A sixth fresh context later reran
+the only case affected by the final incident-stop clarification. Each returned
+one risk lane and continuity chain, explicit omissions, the smallest complete
+solution, decisive proof, and an authority/stop boundary.
+
+Final test binding:
+
+- Base: `2153e01d7bf961eaff56531dd32e2c1bbecab3e5`.
+- Final candidate `skills/` + `hooks/` SHA-256 tree digest:
+  `ab69c97ffa154f550df22c7f1bfe56a32d4ab2769d6c3eee7f8f170e768cc01c`.
+- Host/runtime: local macOS; Codex CLI `0.147.0-alpha.6.5`;
+  `gpt-5.6-sol`; reasoning `max`; approval `never`; read-only sandbox.
+- Hook state: not loaded.
+- Environment: hypothetical systems only; no repository implementation, cloud,
+  SaaS, production, GitHub, deployment, or destructive mutation was available.
+
+Independent graders applied C/K/S/R/V/B/T metrics and the published hard gates.
+The final evidence-bound overall mean was 9.78: backend 9.71, frontend 9.96,
+difficult full-stack 9.70, cloud/DevOps 9.87, and platform 9.57. Every required
+assertion passed. A separate adversarial termination-only challenge passed the
+full predecessor run 31/31 with every T score at least 9; the final-digest PE1
+delta independently received T 9.
+
+The suite was allowed to fail before passing. Earlier challenge cases exposed
+premature design after owner stops, audit/replay placement, and a missing durable
+provider inbox. A later release-bound run failed FE3 because profiling lacked a
+rendered-correctness oracle and FE5 because its settlement-order matrix was
+incomplete. Those rules were corrected, targeted fresh contexts passed, and the
+entire 31-case suite was then rerun against digest `89fb8db...`. A later static
+review clarified that incident recovery cannot authorize permanent follow-up;
+only PE1 was affected, so a sixth fresh context reran it at the final digest and
+passed at 9.00 while the other 30 content-bound results were reused. Full scores,
+grader-separation notes, and limitations are recorded in the benchmark file.

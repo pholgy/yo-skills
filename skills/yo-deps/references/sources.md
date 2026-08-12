@@ -115,6 +115,9 @@ Derived rules: confirm the installed path and affected range, distinguish
 presence from reachable exposure, prioritize from local impact plus threat
 evidence, and prove removal or containment after remediation.
 
+For update waves, the bundle keeps one dependency-domain owner and reuses the
+finding ledger rather than creating a `yo-deps` / `yo-fix-loop` re-entry cycle.
+
 ## License identifiers are data, not legal conclusions
 
 SPDX standardizes license identifiers and expressions. deps.dev explicitly warns

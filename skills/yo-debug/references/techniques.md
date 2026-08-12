@@ -14,12 +14,18 @@ Choose a technique because it can separate live hypotheses, not because it is fa
 | One-off crash | Dump, symbols, full exception chain, correlated logs/traces | Match the exact binary/build and preserve evidence before rotation. |
 | State corruption | Invariants, write/read tracing, provenance and timeline | Avoid mutating original evidence; work from a safe copy when possible. |
 | Performance anomaly | Profiles/traces plus controlled benchmark comparison | Warm-up, load, resource contention, and sampling overhead can confound results. |
+| Intermittent network or DNS failure | Bidirectional packet/request path plus resource-limit differential | Discriminate application/resolver behavior, node or ENI/IP/port capacity, conntrack/stateful inspection, upstream dependency, retry/search amplification, and load before changing capacity or topology. |
 
 ## Reliable observation
 
 Name the oracle before automating experiments. It should identify the target failure rather than any nonzero exit, timeout, or error message.
 
 For probabilistic observations, record trial count, successes/failures, environment, and confidence limits or at least the observed rate. A rate change can support a hypothesis; one pass does not prove an intermittent fix.
+
+When judging an intervention, preserve the original load shape and distinctive
+oracle, repeat enough equivalent trials to compare failure rates, and choose a
+recurrence window from the observed intermittency rather than an arbitrary
+duration. A lighter workload or one clean run is not closure.
 
 For captured evidence, preserve the original artifact, build identity, symbol/version match, timestamps, and correlation identifiers. Derive sanitized or synthetic reproductions without discarding the source evidence.
 

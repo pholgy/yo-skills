@@ -43,7 +43,41 @@ Use for public contracts or persisted data:
 4. Reconcile and prove the new state.
 5. Contract only after old consumers and data are gone.
 
+Use one migration runner or an explicit lease/fence, prove the real lock and
+latency behavior, bound and throttle backfill batches, and rehearse rollback or
+recovery from an interrupted step.
 Do not combine an irreversible contract step with the initial expansion.
+
+## Transactional outbox
+
+Use when a committed database decision must cause queued, brokered, or external
+side effects. Commit the domain mutation and durable outbox intent in one local
+transaction. Give each event a stable identity and, where consumers depend on
+aggregate order, a monotonic aggregate sequence; dispatch and consume without
+silently reordering that sequence. Relays may retry or republish, so consumers
+remain duplicate-safe and no workflow claims exactly-once delivery. Cover the
+crash windows before commit, after commit/before publish, and after
+publish/before acknowledgement, plus backlog reconciliation.
+
+## Infrastructure identity transition
+
+Use when an infrastructure-as-code refactor changes resource addresses or state
+identity without intending to replace real infrastructure. Inventory every
+address and physical object, encode explicit moves or a controlled state
+migration, require a zero-create/delete/replace plan for protected resources,
+then canary and batch. Rehearse the reverse or recovery procedure before the
+first apply with a disposable or representative state copy; a clean forward plan
+or an unexecuted runbook alone is not a rollback.
+The handoff records the rehearsal target, command or path, observed result, and
+recovery point; saying a runbook exists is insufficient.
+
+## Stateful network transition
+
+Use for cross-cloud routing, stateful firewalls, NAT, or multiple live paths.
+Build one bidirectional packet-path model, assign inspection and route ownership,
+prove representative capacity, drain existing flows before withdrawing a path,
+fail over deterministically, and rehearse failback. Verify expected-allow and
+expected-deny paths; a healthy tunnel or BGP session is not user-path proof.
 
 ## Progressive rollout or canary
 

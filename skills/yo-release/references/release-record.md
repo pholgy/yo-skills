@@ -39,6 +39,9 @@ For a monorepo, repeat the previous/candidate/version/artifact fields per produc
 
 ## State ledger
 
+Include only requested or repository-coupled boundaries. Do not add empty
+staging, canary, or production rows to a source/tag or artifact-only release.
+
 | Boundary | Intended identity | Current state | Evidence | Authority / next action |
 | --- | --- | --- | --- | --- |
 | Source | commit SHA | planned/validated | CI and review | |
@@ -101,18 +104,28 @@ public draft.
 
 ## Preflight
 
+### Every selected endpoint
+
 - exact source and previous release resolved;
 - contents and exclusions reconciled;
 - version/tag/registry collision checks clean;
 - review and required CI bound to candidate;
 - generated version/notes/manifests agree;
+
+### Artifact endpoint, when selected
+
 - artifacts built through the controlled workflow and identified by digest;
-- provenance/SBOM/signature/checksum/security/license policy passes;
+- required provenance/SBOM/signature/checksum/security/license policy passes;
 - platform, integration, upgrade, and migration verification passes;
 - rollback/disable/deprecate/roll-forward path is executable and state-compatible;
+
+### Deployment endpoint, when selected
+
 - rollout stages, signals, abort thresholds, observer, and stability windows set;
 - approvals, permissions, release lock, support, and incident escalation available;
 - no unresolved active incident or freeze blocks the release.
+
+Omit an unselected section; do not fill it with `N/A` placeholders.
 
 ## Rollout gate
 

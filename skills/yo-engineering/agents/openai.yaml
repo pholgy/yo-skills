@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Engineering"
   short_description: "Maximize quality and leverage with minimal complexity"
-  default_prompt: "Use $yo-engineering to choose the smallest complete production-quality solution and lightest effective execution shape, then stop when acceptance and fresh evidence close the work."
+  default_prompt: "Use $yo-engineering to choose the smallest complete production-quality solution and lightest effective execution shape, reuse equivalent evidence, refresh only changed state, and stop when acceptance closes the work."

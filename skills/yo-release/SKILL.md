@@ -124,6 +124,20 @@ Do not dump commit subjects. Mention dependencies or internal work only when the
 change user behavior, compatibility, security, licensing, or operator action.
 Hand final prose to `yo-gh-write` when the destination is a GitHub artifact.
 
+### Select the endpoint contract
+
+Apply release gates only to requested endpoints:
+
+| Endpoint | Required proof | Do not inherit automatically |
+|---|---|---|
+| Source/tag or GitHub release record | Pinned source, identifier collision/immutability, required review/CI, remote record | Artifact install, deployment, canary, stability window, support coverage |
+| Package, binary, or image artifact | Source plus controlled build, digest, registry availability, install/fetch path, and policy-required attestations | Environment promotion, canary/control, production telemetry, incident staffing |
+| Environment promotion or deployment | Immutable artifact, target config/state, rollout/abort/rollback controls, runtime and operational verification | Unrelated registries, platforms, or channels outside the requested target |
+
+An omitted inapplicable endpoint or gate needs no `N/A` record and is not a
+blocker. If the repository's documented release contract couples endpoints,
+follow that contract and name the coupling.
+
 ## 4. Gate the candidate before publication
 
 The preflight must bind evidence to the exact candidate:
@@ -132,17 +146,18 @@ The preflight must bind evidence to the exact candidate:
 2. required CI, focused behavior, compatibility, and platform tests pass on that
    revision or on the exact release-generated diff;
 3. version, notes, manifests, generated files, and release configuration agree;
-4. the controlled build produces identified artifacts with recorded digests;
-5. required SBOM, provenance, signatures, checksums, vulnerability/license policy,
-   and reproducibility checks pass;
-6. migrations and configuration are forward/backward compatible for the rollout,
-   or their irreversible cutover and recovery plan is explicitly authorized;
-7. rollout stages, canary/control signals, abort thresholds, observer, and
-   stability windows are defined;
-8. rollback, disablement, yanking/deprecation, or roll-forward path is valid for
-   this artifact and ecosystem;
-9. required approvers, credentials, release window, support coverage, and
-   incident escalation are available.
+4. when an artifact endpoint is selected, the controlled build produces
+   identified artifacts with recorded digests;
+5. SBOM, provenance, signatures, checksums, vulnerability/license policy, and
+   reproducibility checks required by the selected artifact endpoint pass;
+6. when migrations or configuration change, they are compatible with the real
+   transition or their irreversible cutover and recovery plan is authorized;
+7. for staged promotion or deployment, rollout stages, canary/control signals,
+   abort thresholds, observer, and stability windows are defined;
+8. the endpoint's rollback, disablement, yanking/deprecation, or roll-forward
+   path is valid for its artifact and ecosystem;
+9. approvers, credentials, release window, support coverage, and incident
+   escalation required by policy or the selected deployment endpoint are available.
 
 Prefer build once and promote the same immutable artifact through environments.
 Rebuilding at each stage changes what was tested. If an ecosystem necessarily
@@ -192,6 +207,9 @@ Do not run later stages while an earlier required stage is pending or failed.
 At each rollout gate, compare canary and control or the declared baseline, verify
 incident-specific abort signals, and stop on threshold breach. Do not continue a
 rollout because most stages already succeeded.
+
+These rollout-gate instructions apply only when staged promotion or deployment
+is a selected endpoint.
 
 ## 7. Verify what users receive and production runs
 

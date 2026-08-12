@@ -19,7 +19,7 @@ automatically. Do not ask the user to choose a mode or require the full workflow
 when this compact path is sufficient:
 
 1. Discover the target's local test idiom, applicable instructions, focused
-   command, and proportionate repository gates. Note a pre-existing failure
+   command, and affected repository-required gates. Note a pre-existing failure
    before attributing it to the change.
 2. State one given/when/then proposition and choose the narrowest faithful layer
    with an observable behavior, invariant, or owned-boundary oracle.
@@ -31,9 +31,15 @@ when this compact path is sufficient:
 4. Use red-before-green proof only when the risk justifies proving sensitivity,
    using a valid pattern in step 5 below. An ordinary clear, low-risk bug does
    not need a separate RED phase merely to satisfy ceremony.
-5. Run the narrow focused command first, then the repository completion gate;
-   add a surrounding or contract suite only when it protects a distinct risk.
+5. Run the narrow focused command first, then the smallest affected
+   repository-required gate; add a surrounding or contract suite only when it
+   protects a distinct risk.
    Report the test, any required sensitivity evidence, post-fix checks, and gap.
+
+The affected required gate is the narrowest native lint, type, build, or test
+gate that repository policy assigns to the touched surface. Run a root-wide
+gate only when policy explicitly requires it, shared build/test infrastructure
+changed, a named risk spans packages, or CI owns that delivery proof.
 
 This is the default for a production bug fix, not an absolute claim that every
 defect has a faithful executable seam. If the cause is unknown, route through
@@ -169,7 +175,10 @@ Emergency fixes may ship before complete coverage when incident policy requires 
 
 ### 8. Verify and ship atomically
 
-Run the focused test, the relevant surrounding suite, and the repository's proportionate verification gate. Confirm the test is discovered in the normal CI path.
+Run the focused test, any surrounding suite that protects a distinct risk, and
+the smallest affected repository-required gate. Confirm the test is discovered
+in the normal CI path. Do not broaden to a root-wide gate without the policy or
+cross-surface trigger defined in the compact regression path.
 
 Review the test diff for accidental complexity. Remove helpers, branches,
 fixtures, snapshots, or duplicated cases that do not protect a distinct
@@ -182,7 +191,7 @@ Production behavior and its regression protection should land in the same review
 For one straightforward regression, this short form is sufficient:
 
 ```text
-Regression: <test name> — sensitivity <required proof, not required with reason, or limitation>; post-fix <focused command then repo gate>.
+Regression: <test name> — sensitivity <required proof, not required with reason, or limitation>; post-fix <focused command then affected required gate>.
 Gap: <none, or the explicit unprotected boundary/follow-up>.
 ```
 
@@ -215,9 +224,11 @@ Do not require a commit SHA when no commit was requested or created.
 ## Handoff
 
 - `yo-verify-premise` supplies the confirmed behavior and `yo-debug` supplies the mechanism or reproducible signal.
-- `yo-impact` identifies consumers that may need coverage at more than one layer.
+- Inline impact identifies local consumers; `yo-impact` maps a material or
+  uncertain surface that may need coverage at more than one layer.
 - `yo-fix-loop` keeps the test and fix inside the same finding lifecycle.
-- `yo-audit` independently checks test sensitivity and missing risk.
+- `yo-audit` independently checks test sensitivity and missing risk when an
+  inherited consequential tier, policy, or explicit review request requires it.
 - `yo-engineering` owns the broader verification gate; `yo-branch` owns commit conventions.
 
 ## References

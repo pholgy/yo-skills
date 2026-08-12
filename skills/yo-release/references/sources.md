@@ -18,6 +18,10 @@ time-limited deployment evaluated against a control before proceeding.
 Derived rules: pin one source and artifact identity, automate the path, promote
 in stages, compare canary/control, and verify after rollout.
 
+Derived applicability rule: canary/control and operational stability gates apply
+to staged promotion or deployment. A source/tag or artifact-only endpoint does
+not inherit deployment ceremony unless the repository contract couples them.
+
 ## Build once, promote immutable artifacts
 
 DORA's deployment-automation guidance describes CI-produced packages in an

@@ -37,8 +37,9 @@ deploy, or publish anything.
   one coherent compatibility unit.
 - **Advisory response** - confirm the installed path, affected range, exposure,
   and safest remediation before assigning local priority.
-- **Update wave** - cluster related packages and drive each cluster through
-  `yo-fix-loop` without losing individual alerts or updates.
+- **Update wave** - remain the dependency-domain owner, cluster related
+  packages, and apply `yo-fix-loop` ledger/disposition mechanics without losing
+  individual alerts or updates. Do not hand an unchanged cluster back and forth.
 
 Restoring an already-declared graph without changing manifests or resolution is
 ordinary setup, not a dependency decision.
@@ -223,8 +224,10 @@ dependency that is not required by the current capability or evidence, and
 rerun affected checks. A clean abstraction is still unnecessary when direct use
 at the existing seam is clearer and equally safe.
 
-For a broad or high-risk upgrade, use a fresh `yo-audit` pass. Test the resolved
-set together: compatibility is a property of the graph, not isolated packages.
+For a broad or high-risk upgrade, use one `yo-audit` pass. Reuse an audit bound
+to equivalent graph content and rerun only a changed delta or state-dependent
+evidence. Test the resolved set together: compatibility is a property of the
+graph, not isolated packages.
 
 ## Advisory response
 
@@ -248,9 +251,10 @@ ordering rationale, and any deadline in plain language; do not invent P-levels.
 6. Re-run the advisory scan, prove the vulnerable path is removed or contained,
    and run behavioral and regression checks.
 
-Route a multi-alert wave through `yo-fix-loop`. Preserve each alert, deduplicate
-aliases, cluster shared root packages and coupled upgrades, and keep blocked or
-accepted-risk items visible.
+For a multi-alert wave, preserve each alert, deduplicate aliases, cluster shared
+root packages and coupled upgrades, and keep blocked or accepted-risk items
+visible using `yo-fix-loop` mechanics. `yo-deps` remains the domain owner; do not
+re-enter `yo-fix-loop` after it returns the same unchanged cluster.
 
 ## Stop and report
 

@@ -66,6 +66,34 @@ Do not expand into unrelated cleanup or every imaginable edge case. Do not
 leave a known same-cause path broken merely to keep the diff superficially
 small.
 
+## Execution continuity
+
+Treat a chain of workflows as one execution, not a series of fresh jobs.
+
+- Classify the risk lane once, then carry it forward. Crossing a code, API, or
+  stack boundary is a signal to inspect, not sufficient by itself to make work
+  consequential. Escalate only when new evidence exposes a material contract,
+  data, security, reliability, operational, rollback, or uncertainty risk.
+- A handoff transfers the current acceptance, decisions, authorization, risk,
+  and evidence. The receiving workflow must not restart completed discovery,
+  impact mapping, verification, or review merely because ownership changed.
+- Reuse evidence while the relevant content, conditions, and environment remain
+  equivalent. Rerun only the affected proof when content changed, the evidence
+  is state- or time-dependent, repository policy requires it, or independent
+  verification is the explicit purpose.
+- Before adding a workflow, artifact, or gate, name the unanswered question or
+  material risk and how its result can change the next action. If it cannot,
+  keep the check inline or omit it.
+- Apply only gates relevant to the requested endpoint. An inapplicable rollout,
+  remote, release, or operational field may be omitted without `N/A` ceremony
+  and is not a blocker.
+
+For S0/S1 work, default to one scoped implementation pass, focused behavioral
+proof, the smallest affected repository-required gate, one self-review and
+simplification pass, then stop. Preserve the stronger compatibility, migration,
+security, rollback, authorization, and independent-verification controls when
+S2/S3 evidence actually triggers them.
+
 ## Final simplification pass
 
 Before completion, inspect the final solution and ask:
@@ -87,7 +115,8 @@ simplest complete fit.
 End the current implementation loop when all are true:
 
 1. the authorized acceptance criteria and requested delivery boundary are met;
-2. the relevant fresh behavioral and repository evidence passes; and
+2. the relevant behavioral and repository evidence is current for, or proven
+   equivalent to, the state being handed off; and
 3. no Blocker, Major, failed required check, material unresolved risk, or
    user-owned decision prevents completion.
 
@@ -131,7 +160,10 @@ This bundle derives the standard from these engineering practices:
 - OpenAI describes preparing the smallest tested fix and using scoped tasks,
   existing module patterns, and validation to preserve speed and control:
   [Engineering solutions](https://openai.com/business/solutions/engineering/)
-  and [How OpenAI uses Codex](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf).
+  and [How OpenAI uses Codex](https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf). OpenAI's
+  [agent guide](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)
+  recommends clear exit conditions, preserving context through handoffs, and
+  adding orchestration only when it improves the workflow.
 - Meta describes root-cause analysis as necessary to fix the cause rather than
   repeatedly treating symptoms:
   [Minesweeper root cause analysis](https://engineering.fb.com/2021/02/09/developer-tools/minesweeper/).

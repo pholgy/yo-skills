@@ -36,6 +36,19 @@ Authority labels:
 - **I - Software Engineering at Google, Testing Overview:** separates test scope and size and ties tests to observable behavior in a controlled environment. This supports selecting a faithful proof layer per slice.
   <https://abseil.io/resources/swe-book/html/ch11.html>
 
+### URL state preserves an explicit router contract
+
+- **K - Angular Router, QueryParamsHandling:** defines merge, preserve, and
+  replace behavior for query parameters. This supports preserving unrelated
+  parameters and choosing normalization/history behavior intentionally instead
+  of letting every filter navigation use an implicit default.
+  <https://angular.dev/api/router/QueryParamsHandling>
+- **K - Angular Router, RouterConfigOptions:** exposes same-URL, canceled-
+  navigation, URL-update, and default query-parameter behavior. This supports
+  one canonical URL transition without feedback loops or accidental history
+  semantics.
+  <https://angular.dev/api/router/RouterConfigOptions>
+
 ## Bundle decisions
 
 ### Kept

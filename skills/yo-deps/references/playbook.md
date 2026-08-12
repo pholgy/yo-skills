@@ -56,8 +56,9 @@ privileged build plugin, foundational data model, unknown license, fork, or broa
 major migration.
 
 Use senior engineering and design review, inspect provenance and source more
-deeply, define rollback/containment, exercise supported platforms, and get fresh
-audit evidence.
+deeply, define rollback/containment, exercise supported platforms, and obtain
+independent audit evidence bound to the candidate. Reuse equivalent
+content-bound evidence and refresh only changed or state-dependent proof.
 
 These are calibration examples, not fixed labels. A patch can be high risk when
 actively exploited; a major can be routine when it is a narrow development tool

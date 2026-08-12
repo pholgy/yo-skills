@@ -32,6 +32,9 @@ revision and is the current NIST incident-response recommendation.
 
 Derived rule: distinguish declaration, containment, recovery, resolution, and
 post-incident improvement; security incidents need their own response path.
+Verified resolution ends the incident endpoint. Preserve evidence for later
+learning, but do not automatically launch that separate work unless the user's
+request, organization policy, or incident owner includes it.
 
 ## Containment must consider evidence and business impact
 
@@ -80,6 +83,16 @@ false causal conclusions during response.
 
 Derived rules: verify user behavior plus system/data/security invariants, and
 wait for signal propagation before judging a mitigation.
+
+For network and security-policy mutations, the bundle makes that proof explicit:
+use a representative canary, expected-allow and expected-deny probes, capacity
+signals, and a named production operator rather than inferring recovery from one
+successful request.
+
+For cross-provider access deactivation, incident containment hands the same
+authority, identity, generation, idempotency, and reconciliation evidence into
+one scoped implementation-and-audit chain. This prevents both unsafe design-only
+closure and a duplicate rediscovery cycle.
 
 ## Communications cadence and role separation
 

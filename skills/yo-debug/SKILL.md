@@ -1,6 +1,6 @@
 ---
 name: yo-debug
-description: Diagnose a confirmed failure whose causal mechanism is unknown. Use for crashes, regressions, intermittent or CI-only failures, performance anomalies, data corruption, and debugging that has become speculative; route here after yo-verify-premise and before impact analysis or a fix.
+description: Diagnose a confirmed failure whose causal mechanism is unknown. Use for crashes, regressions, intermittent or CI-only failures, performance anomalies, data corruption, and debugging that has become speculative; skip it when the supplied failing transition or schedule already predicts the scoped intervention and discriminating test.
 ---
 
 # Yo Debug
@@ -13,9 +13,21 @@ Use this skill when the failure is observable but the mechanism is not known wel
 
 - If the claim itself is unverified, use `yo-verify-premise` first.
 - If production is actively impaired, use `yo-incident` to mitigate and preserve evidence before cold diagnosis.
-- If the mechanism is already intervention-sufficient, skip this loop and use `yo-impact` before editing.
+- If the mechanism is already intervention-sufficient, skip this loop. Map
+  contained local impact inline before editing; use `yo-impact` only when the
+  diagnosed change reaches a material shared, public, dynamic, persisted,
+  authorization, external, mixed-version, or uncertain-consumer surface.
 
 An explanation is intervention-sufficient when it identifies the mechanism and conditions well enough to predict why a specific change should prevent the failure. A suspicious line, correlation, or component name is not enough.
+
+The evidence may come from the user's current report. A stated causal schedule
+such as stale completion overwriting newer state, snapshot rollback erasing a
+later intent, arrival-ordered events reversing authoritative state, or a
+specified partial-failure window is sufficient to skip this workflow when it
+already selects the correction and a discriminating test. Confirm it while
+implementing; do not run a separate hypothesis loop solely to re-prove the
+premise. A vague component association, timing correlation, or unexplained
+symptom still requires diagnosis.
 
 ## Investigation loop
 
@@ -75,6 +87,31 @@ Do not retrofit a prediction after seeing the result. Updating a hypothesis from
 
 Use [references/techniques.md](references/techniques.md) to choose among reduction, boundary tracing, differential comparison, instrumentation, dumps/debuggers, repeated trials, and history bisection.
 
+For intermittent network or DNS failures, explicitly disposition endpoint or
+resolver behavior, pod/service saturation, node and ENI/IP/port limits,
+conntrack or stateful inspection, upstream dependency, amplification, and
+directional routing. Mark each supported, refuted, or still unknown; do not hide
+an untested branch inside “networking.”
+
+Initialize the following matrix before adding more specific hypotheses. A
+network/DNS diagnosis is incomplete while a row is missing; `unknown` is honest
+and preferable to omission:
+
+| Branch | Supported / refuted / unknown | Discriminating evidence |
+|---|---|---|
+| Endpoint/resolver behavior | | |
+| Pod/service saturation | | |
+| Node and ENI/IP/port limits | | |
+| Conntrack/stateful inspection | | |
+| Upstream dependency | | |
+| Amplification/retry/search behavior | | |
+| Directional routing/path | | |
+
+For a claimed intervention or permanent fix, repeat the same distinctive oracle
+under an equivalent load and environment, compare the failure rate, and observe
+for a recurrence-aware window derived from the original intermittency. One
+successful trial or a different/lighter workload cannot close the diagnosis.
+
 Important constraints:
 
 - Reduction needs an oracle that preserves the same failure signature.
@@ -104,10 +141,16 @@ Failure signature: <distinct symptom and scope>
 Evidence: <artifacts, reproduction strength, and comparisons>
 System boundary: <path traced and relevant environment>
 Hypotheses tested: <results, including negative evidence>
+Network/DNS disposition when applicable: <endpoint/resolver; pod/service;
+node/ENI/IP/port; conntrack/stateful path; upstream; amplification/retry;
+directional route — each supported, refuted, or unknown>
 Causal explanation: <trigger, conditions, mechanism, failure>
 Confidence and gaps: <high/medium/low with unresolved alternatives>
 Next: <more evidence, yo-impact, or authorized fix workflow>
 ```
+
+Do not collapse the network/DNS disposition into a generic hypothesis sentence;
+every listed branch must remain visible until evidence closes it.
 
 If cause remains unknown, say so. A high-quality partial diagnosis narrows the next observation; it does not manufacture certainty.
 
@@ -124,10 +167,14 @@ If cause remains unknown, say so. A high-quality partial diagnosis narrows the n
 
 ## Handoff
 
-- Use `yo-impact` to map consumers and compatibility before changing the diagnosed mechanism.
+- Carry the causal evidence forward. Map contained local consumers inline; use
+  `yo-impact` for a material boundary or uncertain blast radius before changing
+  the diagnosed mechanism.
 - Turn a safe reproduction into a regression test with `yo-test-coverage`.
 - Use `yo-fix-loop` for multiple findings or `yo-feature` for genuinely new behavior.
-- Use `yo-audit` to independently verify that a completed change matches the causal explanation.
+- Use `yo-audit` to independently verify the completed change when the inherited
+  lane is S2/S3, repository policy requires it, or independence is the explicit
+  purpose. Otherwise finish with focused proof and scoped self-review.
 
 ## References
 

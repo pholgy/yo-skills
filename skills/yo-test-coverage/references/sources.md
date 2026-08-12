@@ -44,6 +44,26 @@ Authority labels:
 
 - **R - Michael Feathers, _Working Effectively with Legacy Code_ (2004):** provides the canonical characterization-test term for learning and pinning existing behavior before change. The bundle explicitly adds intent labels so observed defects are not mistaken for desired contracts.
 
+### Stateful UI tests cover the user-visible contract
+
+- **K - W3C WAI-ARIA APG, Modal Dialog Pattern:** defines contained focus,
+  Escape behavior, accessible naming, initial focus, visible close affordance,
+  and focus restoration. This supports exercising the established dialog
+  primitive without silently dropping existing interaction paths.
+  <https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/>
+- **K - TanStack Query, Optimistic Updates:** documents cancellation,
+  snapshots/rollback, settlement invalidation, and list updates through owned
+  query keys. The bundle adds the concurrency-specific requirement to test all
+  meaningful settlement orders and reconcile every owned projection rather
+  than treating one rendered cache as the whole invariant.
+  <https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates>
+- **K - React, `useMemo` and `Profiler`:** `useMemo` recomputes from declared
+  reactive dependencies and is explicitly a performance optimization, while
+  Profiler measures commits. The bundle therefore pairs measurement/call-count
+  proof with rendered-result correctness for unchanged and changed inputs.
+  <https://react.dev/reference/react/useMemo>
+  <https://react.dev/reference/react/Profiler>
+
 ## Bundle decisions
 
 ### Kept
@@ -59,6 +79,9 @@ Authority labels:
 - Characterization no longer declares every observed behavior a contract.
 - Disabled/quarantined tests are reported as gaps, not counted as protection.
 - Atomicity is defined at the reviewable-change level; `yo-branch` owns commit topology.
+- Completion uses the smallest repository-required gate that observes the
+  affected surface; root-wide verification needs an explicit policy or
+  cross-surface risk trigger.
 
 ### Removed
 

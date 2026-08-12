@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Fix Loop"
   short_description: "Clear finding waves with verified closure"
-  default_prompt: "Use $yo-fix-loop to remove the root causes behind this finding wave with the smallest complete corrections, regression proof, same-cause path coverage, and verified closure."
+  default_prompt: "Use $yo-fix-loop to keep one owner per cluster, remove root causes with the smallest complete corrections, reuse valid evidence, cover realistic same-cause paths, and stop at verified closure."

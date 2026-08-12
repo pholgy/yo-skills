@@ -74,6 +74,10 @@ test the proposed change against the latest queued target state.
 Derived rule: inspect live requirements, distinguish pending from failed, and do
 not demand manual rebases when the repository's merge queue owns latest-base proof.
 
+Derived scope rule: query live remote, protection, review, and CI state only for
+an endpoint whose decision depends on it. A local commit does not inherit PR or
+merge ceremony.
+
 ## Updating and retargeting can invalidate review state
 
 GitHub documents merge- and rebase-based branch updates, and warns that changing

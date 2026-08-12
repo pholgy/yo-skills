@@ -25,9 +25,15 @@ true in the current target before changing product code.
   issue or PR state as authoritative for the target being changed.
 - Use evidence proportionate to the claim. Prefer a cheap decisive check over a
   broad ritual.
+- Reuse credible evidence while its revision, environment, and triggering
+  conditions still match; validate identity instead of repeating the same check.
 - For a clear low-risk task, the focused read or existing check can be the whole
   premise verification. Escalate into this workflow only when its verdict or
   evidence record changes the safe next action.
+- For an authorized implementation request that already states a causal
+  transition/schedule and a discriminating regression can prove it, inspect the
+  relevant code/test inline. Do not create this standalone verdict step merely
+  because the final fix still needs RED/green evidence.
 - Distinguish observed symptom, proposed cause, impact, and proposed fix; each
   can have a different evidence state.
 - Never turn failure to reproduce under one environment into proof that the
@@ -130,7 +136,10 @@ the root cause. A confirmed symptom is not proof of the reported cause.
 
 ### 6. Choose the next owner
 
-- Confirmed with known cause -> use `yo-impact` before editing existing behavior.
+- Confirmed with known cause -> map contained local impact inline as
+  `target -> direct consumers -> focused proof`; use the full `yo-impact`
+  workflow only for a material shared, public, dynamic, persisted,
+  authorization, external, mixed-version, or uncertain-consumer surface.
 - Confirmed with unknown cause -> `yo-debug`.
 - Confirmed differently or broader -> surface the changed scope; ask only when
   it changes product intent, risk, or authorization materially.

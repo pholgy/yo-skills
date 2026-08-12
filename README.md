@@ -51,11 +51,18 @@ contract, demonstrated risk, existing repository boundary, or faithful proof.
 Hypothetical future use does not count. Every substantive change ends with a
 final simplification pass.
 
-When the accepted outcome and delivery boundary are met, relevant fresh evidence
-passes, and no Blocker or Major remains, the work stops. Optional polish, Minor
-or Note findings, speculative reuse, unrelated cleanup, and another confidence
-audit do not reopen the implementation loop. New material evidence reopens only
-the affected scope.
+When the accepted outcome and delivery boundary are met, relevant current or
+proven-equivalent evidence passes, and no Blocker or Major remains, the work
+stops. Optional polish, Minor or Note findings, speculative reuse, unrelated
+cleanup, and another confidence audit do not reopen the implementation loop.
+New material evidence reopens only the affected scope.
+
+One task keeps one execution record. Its risk lane, accepted decisions,
+authority, and still-valid evidence travel across workflow handoffs instead of
+being rediscovered. Direct and scoped work keeps impact analysis inline, runs
+focused proof plus the smallest affected required gate, and ends with
+self-review. Root-wide gates and independent audits remain for repository policy
+or a named material risk—not as universal completion ceremony.
 
 Defects must be fixed at the cause: cover realistic in-scope paths that share
 the mechanism, add regression evidence, and verify that related behavior still

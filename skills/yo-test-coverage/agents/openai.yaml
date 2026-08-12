@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Test Coverage"
   short_description: "Add tests that prove meaningful behavior"
-  default_prompt: "Use $yo-test-coverage to add focused, faithful protection and require pre-fix sensitivity proof only when the risk warrants it."
+  default_prompt: "Use $yo-test-coverage to add focused, faithful protection, run the smallest affected required gate, and require pre-fix sensitivity proof or root-wide checks only when risk or repository policy warrants them."
