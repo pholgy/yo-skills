@@ -40,6 +40,12 @@ Use `references/ledger.md` for the finding states and the compact ledger shape.
 
 Do not force work through this skill merely to preserve the original labels.
 
+Keep one domain owner for each cluster. When `yo-deps` owns an update or
+advisory cluster, use this skill's ledger and disposition mechanics without
+handing unchanged work back and forth. A bounded specialist handoff returns its
+decision and evidence to the current owner; it does not restart the source
+workflow.
+
 ## Preserve authority and workspace state
 
 - Obey the user's delivery boundary. "Local only" means no public or version-
@@ -147,10 +153,12 @@ and branch shape when version-control delivery is requested.
 
 ### Re-establish current truth
 
-Re-read the source findings and current code before the first edit. Use
-`yo-impact` to map callers, contracts, siblings, tests, and why the code may have
-been written this way. If the cause is not explainable, stop editing and use
-`yo-debug`.
+Re-read the source findings and current code before the first edit. Reuse current
+premise, cause, and impact evidence bound to the same cluster and content. For a
+contained cluster, map `target -> direct consumers -> focused proof` inline.
+Use `yo-impact` only for a material shared, public, dynamic, persisted,
+authorization, external, mixed-version, or uncertain-consumer surface. If the
+cause is not explainable, stop editing and use `yo-debug`.
 
 ### Choose the smallest complete correction
 
@@ -158,8 +166,9 @@ Name the root cause, the invariant being restored, compatibility constraints,
 and rollback or containment path. Prefer a focused correction over unrelated
 cleanup, but include every layer required to make the invariant true. Apply
 `yo-engineering` for security, data, concurrency, migration, API, operational,
-or otherwise high-risk clusters; use `yo-deps` if remediation changes a
-dependency.
+or otherwise high-risk clusters. If remediation changes a dependency, use
+`yo-deps` for the graph decision, consume its result here, and do not re-enter
+this loop for the unchanged cluster.
 
 Fix at the narrowest seam that removes the cause for all realistic in-scope
 paths. Do not patch one symptom while leaving a known sibling path exposed. Do
@@ -195,8 +204,10 @@ Verification must cover the cluster's actual claims, not just compilation:
   preserve a current contract, or prove the correction, then rerun affected
   checks.
 
-For broad or high-risk changes, use a fresh read-only `yo-audit` pass. A cold
-self-review is useful but is not independent verification.
+For broad or high-risk changes, use one read-only `yo-audit` pass. Reuse a pass
+already bound to equivalent content; rerun only a changed delta or
+state-dependent evidence. A cold self-review is useful but is not independent
+verification.
 
 Only move a cluster to verified when the evidence satisfies every mapped source
 claim. If verification fails, keep it nonterminal, record the counterevidence,
@@ -215,8 +226,9 @@ changed.
 
 After all planned clusters pass individually:
 
-1. run interaction and regression checks across the combined working tree;
-2. run the repository's proportionate required gates;
+1. run only interaction and regression checks that individual cluster proof
+   could not establish across the combined working tree;
+2. run the smallest affected repository-required gates;
 3. inspect the complete diff and working-tree state;
 4. reconcile the final source list against the ledger, including late intake;
 5. confirm that no in-scope required item is blocked, unresolved, or merely

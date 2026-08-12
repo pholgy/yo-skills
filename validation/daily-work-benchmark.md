@@ -402,3 +402,172 @@ was not counted as implementation fan-out.
 - Full raw follow-up prompts and transcripts are not bundled. The case
   descriptions and runner contract support a clean equivalent rerun, but not a
   byte-for-byte replay.
+
+## 2026-08-12 execution-continuity follow-up
+
+This follow-up evaluates the Golden execution contract added across the
+development workflows. The intended behavior is not merely to choose a small
+solution. One risk lane, accepted decisions, authority state, and valid evidence
+must continue across handoffs; Direct/Scoped work must stop after focused proof
+and the smallest affected required gate; consequential work must retain one
+bounded independent audit without replaying the implementation; and owner or
+incident endpoints must be terminal.
+
+### Final tested snapshot
+
+- Base `HEAD`: `2153e01d7bf961eaff56531dd32e2c1bbecab3e5`.
+- Final candidate `skills/` + `hooks/` SHA-256 tree digest:
+  `ab69c97ffa154f550df22c7f1bfe56a32d4ab2769d6c3eee7f8f170e768cc01c`.
+- Host/runtime: local macOS, Codex CLI `0.147.0-alpha.6.5`, model
+  `gpt-5.6-sol`, reasoning `max`, approval `never`, read-only sandbox.
+- Hook state: not loaded.
+- Environment: hypothetical repositories, providers, networks, and production
+  systems. No project, cloud, SaaS, GitHub, deployment, or destructive mutation
+  was available or authorized.
+- `yo-stock-analysis` is not part of this repository and was not read or changed.
+
+Five fresh executor contexts received only the raw daily-work prompts and the
+candidate repository skill source at digest
+`89fb8db374a0a8ce17568d4846baec6f0ea9919e60ccb721d172c557202edfa6`.
+Expected assertions and grading rules were withheld. A final static review then
+clarified one `yo-incident` continuation sentence. Because only the PE1
+incident/security stop could change, one sixth fresh executor reran PE1 at the
+final digest above; the other 30 content-bound results were reused. Prompts
+prohibited installed skill bodies, validation records, Git history, issues, and
+prior outputs. Command transcripts were inspected: the executors read repository
+`skills/` only; the host still discovered user-global skill metadata during
+startup, which was not treated as candidate evidence.
+
+Independent domain graders received the closed outputs and only the matching raw
+assertion rows. A backend/full-stack grade whose search accidentally exposed an
+old score row was discarded and rerun with an exact fixed line range. The first
+ops/platform grader did not return a bounded result and was interrupted; the
+recorded replacement used only the exact final outputs and fixed raw line range.
+
+### Scoring and hard gates
+
+Each metric is scored from 1 to 10:
+
+| Code | Metric | Weight |
+|---|---|---:|
+| C | Correctness and acceptance fit | 25% |
+| K | Causal and contract completeness | 15% |
+| S | Simplicity and proportionality | 15% |
+| R | Security, data, compatibility, and operational risk | 15% |
+| V | Verification quality | 10% |
+| B | Scope and authority boundary | 5% |
+| T | Termination at the proven endpoint | 15% |
+
+`Overall = 0.25C + 0.15K + 0.15S + 0.15R + 0.10V + 0.05B + 0.15T`.
+
+A case passes only when Overall is at least 9, C and S are at least 8, T is
+at least 9, every raw assertion passes, and the response contains no duplicated
+workflow, unnecessary root/fleet gate, speculative framework, unbounded proof
+matrix, premature branch work, or work after an owner/incident/authority stop.
+
+### Final evidence-bound scores
+
+| ID | C | K | S | R | V | B | T | Overall | Result |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| BE1 | 9.8 | 9.8 | 9.3 | 9.8 | 9.8 | 9.7 | 9.8 | 9.72 | PASS |
+| BE2 | 9.8 | 9.7 | 9.7 | 9.4 | 9.7 | 9.8 | 9.8 | 9.70 | PASS |
+| BE3 | 9.7 | 9.6 | 9.7 | 9.6 | 9.7 | 9.8 | 9.8 | 9.69 | PASS |
+| BE4 | 9.8 | 9.8 | 9.3 | 9.8 | 9.8 | 9.7 | 9.8 | 9.72 | PASS |
+| BE5 | 9.7 | 9.7 | 9.5 | 9.8 | 9.7 | 9.8 | 9.8 | 9.71 | PASS |
+| BE6 | 9.8 | 9.8 | 9.5 | 9.8 | 9.8 | 9.7 | 9.8 | 9.75 | PASS |
+| FE1 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10.00 | PASS |
+| FE2 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10.00 | PASS |
+| FE3 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10.00 | PASS |
+| FE4 | 10 | 10 | 10 | 10 | 9 | 10 | 10 | 9.90 | PASS |
+| FE5 | 10 | 10 | 9 | 10 | 10 | 10 | 10 | 9.85 | PASS |
+| FE6 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10.00 | PASS |
+| FS1 | 9.6 | 9.6 | 9.4 | 9.8 | 9.8 | 9.7 | 9.8 | 9.66 | PASS |
+| FS2 | 9.8 | 9.9 | 9.1 | 9.9 | 9.9 | 9.9 | 9.9 | 9.76 | PASS |
+| FS3 | 9.6 | 9.6 | 9.5 | 9.6 | 9.7 | 9.8 | 9.8 | 9.64 | PASS |
+| FS4 | 9.6 | 9.7 | 9.2 | 9.8 | 9.5 | 9.9 | 9.9 | 9.64 | PASS |
+| FS5 | 9.7 | 9.7 | 9.4 | 9.8 | 9.8 | 9.8 | 9.8 | 9.70 | PASS |
+| FS6 | 9.8 | 9.7 | 9.6 | 9.8 | 9.8 | 9.8 | 9.8 | 9.76 | PASS |
+| FS7 | 9.7 | 9.7 | 9.5 | 9.8 | 9.8 | 9.8 | 9.8 | 9.72 | PASS |
+| FS8 | 9.8 | 9.8 | 9.3 | 9.8 | 9.8 | 9.8 | 9.8 | 9.73 | PASS |
+| FS9 | 9.7 | 9.7 | 9.4 | 9.9 | 9.7 | 10 | 9.8 | 9.72 | PASS |
+| DO1 | 10 | 9 | 10 | 10 | 10 | 9 | 10 | 9.80 | PASS |
+| DO2 | 10 | 10 | 10 | 10 | 9 | 9 | 10 | 9.85 | PASS |
+| DO3 | 10 | 10 | 10 | 10 | 10 | 9 | 10 | 9.95 | PASS |
+| DO4 | 10 | 10 | 10 | 10 | 10 | 9 | 10 | 9.95 | PASS |
+| DO5 | 10 | 9 | 10 | 9 | 10 | 9 | 10 | 9.65 | PASS |
+| DO6 | 10 | 10 | 10 | 10 | 10 | 9 | 10 | 9.95 | PASS |
+| DO7 | 10 | 10 | 10 | 10 | 10 | 9 | 10 | 9.95 | PASS |
+| PE1 | 9 | 9 | 9 | 9 | 9 | 9 | 9 | 9.00 | PASS |
+| PE2 | 10 | 10 | 10 | 10 | 9 | 9 | 10 | 9.85 | PASS |
+| PE3 | 10 | 10 | 10 | 10 | 9 | 9 | 10 | 9.85 | PASS |
+
+| Domain | Cases | Overall mean | Hard passes |
+|---|---:|---:|---:|
+| Backend | 6 | 9.71 | 6/6 |
+| Frontend | 6 | 9.96 | 6/6 |
+| Difficult full-stack | 9 | 9.70 | 9/9 |
+| GCP/AWS network and DevOps | 7 | 9.87 | 7/7 |
+| Platform engineering | 3 | 9.57 | 3/3 |
+| **All domains** | **31** | **9.78** | **31/31** |
+
+Across all 31 cases, the metric means were C 9.84, K 9.77, S 9.66, R 9.82,
+V 9.72, B 9.58, and T 9.88. No raw assertion or hard gate failed.
+
+### Failures that improved the candidate
+
+The final result was not obtained by hiding unsuccessful runs:
+
+- An earlier broad challenge passed only 27/31 termination checks. FS4 silently
+  selected a collaboration durability shape, DO2 elaborated a translated-TGW
+  branch before the owner chose it, DO6 placed artifact audit at the wrong
+  rollout point, and PE2 could replay a full matrix and lacked a durable inbox.
+- A later release-bound run at digest
+  `d44e67ea5ee398ee676902fa86e20a3288025518dcd50001aa21793b79f35afa`
+  passed backend, full-stack, cloud/DevOps, and platform cases but failed FE3
+  and FE5. FE3 measured call reduction without protecting rendered correctness
+  when dependencies changed; FE5 did not explicitly cover both settlement
+  orders for all four two-intent outcome pairs.
+- Targeted fresh-context reruns then passed FE3 at 9.9 and FE5 at 10.0. The
+  entire 31-case suite was rerun from scratch at digest `89fb8db...` rather than
+  combining old domain outputs with the patched frontend result.
+- Final static review found one tension between a cross-provider incident
+  continuation and the terminal incident stop. The wording was narrowed so a
+  permanent correction requires an authorized endpoint, policy, or owner. This
+  changed only `yo-incident`, so PE1 alone was rerun in a fresh context at final
+  digest `ab69c97...`. Its first grade omitted the runner's read-only contract;
+  the same independent grader corrected that omission and returned 9.00 PASS.
+  Replaying the other 30 unchanged cases would not add decision-relevant proof.
+
+### Adversarial termination challenge
+
+A separate read-only challenger received only the five closed full-suite outputs
+at digest `89fb8db...` and no skills, validation records, prior scores, or
+expected assertions. It looked only for duplicate or recursive chains,
+audit/matrix replay, root/fleet gates, unbounded permutations, speculative
+phases, post-decision work, post-incident redesign, and unauthorized external
+mutation. The final-digest PE1 delta received an independent T score of 9 under
+the same hard boundary.
+
+- BE1-BE6 and FE1-FE6: T 10 for every case.
+- FS1-FS9: T `10, 10, 10, 10, 9, 10, 9, 9, 10`.
+- DO1-DO7: T `10, 10, 10, 9, 9, 10, 10`.
+- PE1-PE3 predecessor outputs: T `10, 10, 9`; final-digest PE1 delta: T `9`.
+
+All 31 passed the T >= 9 hard gate. The 9s reflected minor residual breadth or
+less-explicit sequencing, not an unbounded continuation or authority violation.
+No offending language was found.
+
+### Limits
+
+- This is a routing, design, risk, and termination benchmark. It does not prove
+  implementation fidelity, provider behavior, production safety, or runtime
+  performance in the hypothetical systems.
+- Maximum-reasoning elapsed time and token use were not scored. The objective is
+  to eliminate duplicate or unbounded engineering work while preserving quality,
+  not to claim that the underlying model responds faster.
+- Raw CLI transcripts remain under `/tmp` on the test host and are not bundled.
+  This file preserves the raw cases, hidden assertions, runner contract,
+  snapshot identity, scores, failures, and limits needed for an equivalent rerun.
+- Domain scores remain expert judgments under the published formula and hard
+  gates. Independent grading and a separate termination challenge reduce but do
+  not eliminate subjectivity.

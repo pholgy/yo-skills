@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Audit"
   short_description: "Verify exact changes with independent evidence"
-  default_prompt: "Use $yo-audit to review this exact change read-only for acceptance, defects, regression proof, and evidence-backed accidental complexity, then return PASS, FAIL, or INCONCLUSIVE bound to its revision."
+  default_prompt: "Use $yo-audit to review this exact change read-only for acceptance, defects, regression proof, and accidental complexity; judge one exact evidence bundle, selectively reproduce only decision-relevant proof, refresh state-dependent evidence, and bind PASS, FAIL, or INCONCLUSIVE to the current revision."

@@ -8,8 +8,8 @@ bundle metadata and documentation, and the optional Claude SessionStart hooks.
 ## Research gate
 
 - Every skill has a research or sources reference inside its own tree.
-- The live trees contain 239 per-skill unique source-link entries, representing
-  189 unique URLs across the bundle.
+- The live trees contain 275 per-skill unique source-link entries, representing
+  218 unique URLs across the bundle.
 - Sources favor platform contracts, standards, official engineering guidance,
   and peer-reviewed or controlled research. Each skill's reference file records
   how those sources changed the operating rules rather than serving as a generic
@@ -159,6 +159,24 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
   SHA-256 `582e2c66aa40bf0aac2bd2e342568b6e18aeecd32485cec21bb38020ca2a9d25`,
   and live `skills/` + `hooks/` digest
   `f9a26131cdefbb122cbfe374b85b91f1b413d4180f8d55b4b0a885c80bda5f2a`.
+- Golden execution continuity: 31/31 final evidence-bound daily-work cases passed
+  across backend, frontend, difficult full-stack, GCP/AWS network/DevOps, and
+  multi-provider platform work. The weighted mean was **9.78/10**: backend 9.71,
+  frontend 9.96, difficult full-stack 9.70, cloud/DevOps 9.87, and platform
+  engineering 9.57. Every raw assertion and hard gate passed; a separate
+  termination-only challenger also returned 31/31 with every T score at least 9.
+- The evidence is bound to base `2153e01d7bf961eaff56531dd32e2c1bbecab3e5`
+  and final live `skills/` + `hooks/` digest
+  `ab69c97ffa154f550df22c7f1bfe56a32d4ab2769d6c3eee7f8f170e768cc01c`.
+  Five fresh read-only Codex CLI contexts ran all 31 cases at predecessor digest
+  `89fb8db374a0a8ce17568d4846baec6f0ea9919e60ccb721d172c557202edfa6`.
+  A final incident-stop clarification changed only `yo-incident`; one sixth
+  fresh context reran the affected PE1 case at the final digest and passed at
+  9.00. The other 30 content-bound results remained applicable. All executors
+  used `gpt-5.6-sol` with maximum reasoning and no hook; expected assertions
+  were withheld. Earlier failures, targeted reruns, grader-independence
+  corrections, the full score table, and design-level limitations are preserved in
+  `validation/daily-work-benchmark.md`.
 
 ## Optional hook gate
 
@@ -246,6 +264,30 @@ Date: 2026-07-11
   initial failures, reruns, scores, and exact snapshot binding are recorded in
   `validation/behavior-scenarios.md`.
 
+## 2026-08-12 execution-continuity checks
+
+- Official skill-creator `quick_validate.py`: 19/19 pass in an ephemeral `uv`
+  environment with PyYAML.
+- The 19 frontmatter and `agents/openai.yaml` records parse and match their skill
+  directories; the bundle manifest parses and matches all 19 live skills.
+- Local Markdown links, strict UTF-8/mojibake checks, Bash installer/verifier and
+  hook syntax, SessionStart hook JSON, and `git diff --check` pass.
+- The Bash and PowerShell hook payloads are text-identical. PowerShell is not
+  installed on this macOS host, so no new PowerShell parser pass is claimed.
+- The live research corpus contains 275 per-skill unique source entries and 218
+  bundle-unique URLs. Every live `SKILL.md` remains below 500 lines; maximum is
+  391 (`yo-design`).
+- All 31 source URLs added by this change resolved at validation time: 30
+  returned HTTP 200 to `curl`; the remaining official OpenAI page rejected the
+  command-line client with 403 but loaded through an independent web fetch.
+- The five full-suite executor transcripts contain all 31 endpoints and the
+  final PE1 delta transcript contains its affected endpoint. They remain within
+  their prompt word bounds, read no prohibited skill body or validation source,
+  and preserve the digest bindings recorded above.
+- The unchanged Bash installer copied the candidate into a new isolated macOS
+  home; independent verification reported 19/19 matching skills for both Codex
+  and Claude. Optional hooks were not installed.
+
 ## Limits
 
 - Structural validation proves package shape, not behavioral correctness; the
@@ -254,8 +296,8 @@ Date: 2026-07-11
   repositories or execute those hypothetical project test commands.
 - Daily-work benchmark scores measure design and routing judgment. They do not
   prove implementation fidelity, provider behavior, runtime performance, or
-  live cloud state; six executor cases also carry the explicitly recorded
-  follow-up-context limitation.
+  live cloud state. The original 2026-08-08 suite carries a six-case follow-up-
+  context limitation; all final 2026-08-12 executors used fresh CLI contexts.
 - External documentation and platform capabilities can change after this date.
   Platform skills therefore require live capability and configuration checks.
 - Hook installation and verification are opt-in because an existing hook is

@@ -18,7 +18,11 @@ Choose depth by risk, uncertainty, and integration surface, not sentence length 
 
 - **Direct change:** clear, low-risk, one coherent slice with known verification.
 - **Planned feature:** multiple behaviors/boundaries or unfamiliar code; use an internal/existing tracker and explicit slices.
-- **Designed feature:** consequential contract, data, security, concurrency, operational, or costly-to-reverse decision; use `yo-design` before implementation.
+- **Designed feature:** a consequential contract, data, security, concurrency,
+  operational, or costly-to-reverse decision remains unresolved; use
+  `yo-design` before implementation only when resolving it can change the
+  approach. A consequential but already-settled pattern stays in the inherited
+  engineering brief and feature workflow.
 
 A one-sentence destructive admin endpoint is not trivial. A many-file mechanical addition behind an established abstraction may still be straightforward.
 
@@ -53,12 +57,77 @@ Ask one focused question only when an answer would materially change behavior, s
 
 ### 3. Run proportional decision gates
 
-- Use `yo-engineering` to classify relevant risk and verification depth.
-- Use `yo-impact` before changing existing behavior, contracts, persisted/transmitted shapes, or shared infrastructure.
+- Inherit a supplied Yo risk tier and valid evidence. When none exists, classify
+  risk inline; invoke the full `yo-engineering` gate only for broad or
+  consequential judgment, not every direct feature.
+- For contained existing behavior with known consumers, map impact inline as
+  `target -> direct consumers -> focused proof`. Use `yo-impact` for material
+  contracts, persisted/transmitted shapes, shared infrastructure, dynamic or
+  external consumers, authorization, mixed versions, or uncertain blast radius.
+  A small established, additive, reversible query-parameter or response-field
+  extension with known consumers may remain inline when compatibility is
+  preserved.
+  The same is true for an established cursor endpoint when the default path and
+  issued cursors remain valid. For non-default filtered/ordered pagination,
+  bind every query dimension into the cursor or reject mismatches; an anchor-
+  only cursor plus a caller promise to repeat parameters is not sufficient.
 - Use `yo-design` for contested or architecturally significant choices.
 - Use `yo-deps` before adding or materially upgrading a dependency.
 
-Do not run every gate mechanically. Do not skip a gate merely because the feature is new; new routes and data flows already have consumers, authorization, and operational consequences.
+Do not run every gate mechanically. A handoff carries completed decisions and
+evidence; do not restart them without changed content, conditions, or material
+risk. Do not skip a gate merely because the feature is new; new routes and data
+flows already have consumers, authorization, and operational consequences.
+
+When an inherited S2 engineering brief already names the finite services or
+providers, field/lifecycle authority, stable identities, failure model,
+transition, and proof, keep that impact/design record inside this feature and
+implement it. Provider count is not an impact or design trigger. Invoke a
+standalone gate only when a specific unknown consumer or unresolved alternative
+can still change scope or architecture; do not repeat the same integration
+record in three workflows.
+
+For that inline multi-provider record, preserve every applicable closure item:
+field/lifecycle authority and stable identity; monotonic lifecycle generation;
+idempotent inbox/admission; deterministic internal state; transactional outbox;
+recurring reconciliation; ownership-safe adoption/compensation; durable audit
+trail; provider contract or sandbox tests including partial failure; and secret
+references plus log/error redaction. These are implementation acceptance fields,
+not reasons to launch additional workflows.
+
+#### Cursor compatibility invariant
+
+When adding filter or direction dimensions to a keyset cursor:
+
+- preserve the legacy cursor format and semantics for the normalized default
+  request;
+- accept legacy cursors only on that default semantic path;
+- issue a new opaque/versioned cursor for non-default requests that binds the
+  anchor plus every filter and direction dimension affecting page membership or
+  order; and
+- reject an explicit request/cursor dimension mismatch.
+
+Inspect the actual query plan and index contract as part of this slice. Each
+supported filtered/order path needs an index whose leading equality dimensions
+and complete deterministic ordering tuple match the keyset predicate; reverse
+both tuple comparison and ordering for reverse traversal. Reuse a proven
+existing index when it satisfies the plan—do not add one ceremonially.
+
+Do not interpret an anchor-only legacy cursor under non-default dimensions and
+do not rely on documentation that asks the caller to repeat parameters. This is
+the smallest complete compatibility rule, not a generic cursor framework.
+
+For a fixed set of filters local to one UI surface, keep the URL impact map and
+typed parse/serialize decision inline. A hypothetical larger filter set does not
+earn a registry, schema framework, or standalone design/impact workflow.
+Preserve the surface's established navigation-history contract: user filter
+changes must create or update history intentionally, and back/forward must
+restore the exact three-filter state while unrelated query parameters survive.
+Do not silently replace every navigation merely to simplify synchronization.
+The URL is canonical: parsing absent, malformed, duplicate, or noncanonical
+values must produce the documented state and, when normalization is needed,
+write one canonical URL using the appropriate replace/history behavior without
+losing unrelated parameters or creating a feedback loop.
 
 ### 4. Slice for value, learning, and safe integration
 
@@ -133,6 +202,9 @@ Mark a slice complete only when its acceptance is observed and the repository re
 
 After slices pass, verify interactions the slice checks cannot prove:
 
+Apply only dimensions introduced, touched, or named by acceptance and risk.
+Omitting an inapplicable dimension is not a gap and needs no `N/A` record.
+
 - every feature-level acceptance example;
 - old/new, enabled/disabled, and authorized/denied states;
 - cross-slice data/control flow, retries, ordering, and cleanup;
@@ -145,7 +217,7 @@ Use staged or canary evidence only when deployment is in scope and authorized. A
 ### 8. Handoff at the authorized boundary
 
 When feature-level acceptance and the requested delivery boundary are met,
-relevant fresh evidence passes, and no Blocker or Major remains, treat the work
+relevant current or proven-equivalent evidence passes, and no Blocker or Major remains, treat the work
 as terminal: report and stop. Do not manufacture another slice for optional
 polish, possible future reuse, unrelated cleanup, or extra confidence. Reopen
 only the smallest slice invalidated by new material evidence.
@@ -196,7 +268,9 @@ If commit/PR work was requested, use `yo-branch` for readiness and topology, the
 - `yo-flow` routes new-capability work here.
 - `yo-fix-loop` handles a list of existing findings; `yo-debug` handles an unexplained confirmed failure.
 - `yo-engineering`, `yo-impact`, `yo-design`, and `yo-deps` provide proportional decision gates.
-- `yo-test-coverage` and `yo-audit` strengthen verification.
+- `yo-test-coverage` resolves a materially ambiguous test strategy; `yo-audit`
+  strengthens verification when consequence, policy, or an explicit request
+  requires independence.
 - `yo-branch` and `yo-gh-write` own authorized delivery artifacts.
 
 ## References

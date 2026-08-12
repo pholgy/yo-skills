@@ -57,6 +57,10 @@ priority, and tracking identifier, and recommends grouping large sets by theme.
 Derived rule: retain stable IDs, cluster related work, and require an explicit
 owner or next step for deferred items.
 
+The bundle extends that ownership rule to workflow continuity: one domain owns
+a cluster at a time, and a specialist handoff returns evidence rather than
+restarting the same cluster.
+
 ## Severity is not local remediation priority
 
 FIRST's CVSS v4 specification separates intrinsic severity from threat and
@@ -94,7 +98,8 @@ managerial, and financial independence from the development organization.
   https://swehb.nasa.gov/spaces/SWEHBVD/pages/102695499/SWE-141%2B-%2BSoftware%2BIndependent%2BVerification%2Band%2BValidation
 
 Derived rule: a cold self-review is useful but must not be called independent;
-route broad or high-risk changes to a genuinely fresh read-only audit.
+route broad or high-risk changes to one genuinely independent read-only audit,
+reusing it only while the audited content and material conditions remain equivalent.
 
 ## Root-cause completeness without speculative scope
 

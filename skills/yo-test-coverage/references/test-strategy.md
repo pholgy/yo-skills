@@ -15,6 +15,38 @@
 
 The layer is wrong if the test bypasses the mechanism or cannot distinguish the failure from unrelated noise.
 
+For concurrent optimistic or intent-based state, one representative race is not
+enough when other settlement orders can produce a different visible result.
+Enumerate the meaningful success, failure, cancellation, and out-of-order
+settlement classes; drive each with controlled promises, barriers, or fake time;
+and assert that visible state is recomputed from the authoritative base plus the
+intents still pending. Reconcile every owned projection of that entity, including
+list and detail caches, rather than proving only the currently visible component.
+Do not rely only on generation checks or restoring an old snapshot when several
+operations can overlap.
+
+For two optimistic intents, make the finite matrix explicit: run both settlement
+orders for success/success, success/failure, failure/success, and
+failure/failure, plus cancellation only when the product supports it. This is a
+bounded decision-relevant matrix, not permission to create a general
+permutation framework.
+
+For a memoization or rendering-performance fix, instrumentation alone is not a
+behavior oracle. Under unchanged calculation inputs, assert the same rendered
+result while unrelated state changes and show the measured work is skipped;
+then change each real calculation dependency and assert both recomputation and
+the correct new rendered result under the comparable workload.
+
+For latest-request-wins UI behavior, drive controlled success, failure, clear,
+loading, cancellation, and repeated-identical-query sequences. Prove that no
+terminal path from an obsolete request can alter any visible state.
+
+When replacing a custom interactive shell with an established accessible
+primitive, preserve the existing accepted behavior and layout unless the request
+changes them. Exercise every existing close/dismiss path as well as accessible
+name/description, initial focus, focus containment, Escape policy, and focus
+restoration.
+
 ## Regression sensitivity
 
 Separate the test change from the production change conceptually even when they land together. In an isolated workspace, apply or retain only the test and necessary test-support changes while production code remains at the pre-fix behavior. Confirm:

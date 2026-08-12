@@ -28,6 +28,14 @@ Record the repository, comparison, and immutable identity before reading conclus
 
 Check repository status and avoid mixing unrelated local changes into the evidence. For a PR, confirm the head again before reporting. If it moved, the earlier evidence remains valid only for the old SHA; re-audit the delta and rerun affected checks before judging the new head.
 
+When only a container identity changes—for example, a new commit points to the
+same relevant tree or an audited diff is replayed unchanged—and commit metadata
+is not itself part of acceptance or policy, do not silently copy the verdict.
+Prove the content equivalence, carry the earlier content-bound review forward,
+and refresh only state-dependent evidence such as CI, remote policy, deployment,
+or environment state. Re-audit changed content, changed acceptance, materially
+changed conditions, or an explicitly requested new independent review.
+
 Use [references/review-method.md](references/review-method.md) for comparison and verdict rules.
 
 ### 2. Establish intent and acceptance
@@ -83,6 +91,29 @@ Run proportionate checks against the exact audited revision:
 2. relevant surrounding or contract/integration tests;
 3. repository verification gate when risk and environment justify it;
 4. current CI/check status for a PR, bound to the same head SHA.
+
+Reuse still-valid content-bound evidence and rerun only the affected proof. A
+new SHA alone does not require a full test matrix when proven-equivalent content
+is running under equivalent conditions; moving CI, policy, or runtime state
+still requires a fresh read.
+
+Independence means independently judging the implementation, oracles, evidence
+provenance, coverage, and residual risk—not automatically rerunning every valid
+test, interleaving matrix, reconciliation, migration rehearsal, compatibility
+suite, or rollback exercise. Start from one exact-release evidence bundle.
+Reproduce only a decision-critical sample or evidence that is stale, challenged,
+untrusted, state-dependent, or needed to distinguish PASS from INCONCLUSIVE.
+
+For a batched external-state rollout, run the single release-candidate audit
+after the authorized representative canary when the verdict is meant to bind
+canary evidence. Bind it to the immutable artifact, transition contract,
+recovery rehearsal, and that canary. Each later authorized batch owns fresh
+just-in-time operational proof against its current identity. Do not delay or
+repeat the artifact audit until every batch finishes, and do not invalidate
+earlier completed batches merely because later external state changed. Re-audit
+the smallest changed artifact or invariant. A pre-canary readiness review may
+judge only the evidence that exists; it must not claim canary coverage or
+silently require the same full review again.
 
 Record exact commands, revision/environment, exit status, counts, and the relevant failure signature. Preserve raw output locally when useful, but report concise sanitized evidence; do not paste secrets or indiscriminate logs.
 
@@ -174,7 +205,9 @@ If the user explicitly asks for a GitHub artifact, use `yo-gh-write` to format i
   require a current need for every added moving part.
 - Do not turn a PASS with only Minor or Note findings into an implementation and
   re-audit loop.
-- Do not reuse a verdict after the audited object changes.
+- Do not reuse a verdict after relevant content, acceptance, or material
+  conditions change. For a container-identity-only change, prove equivalence and
+  refresh state-dependent evidence as defined above.
 - Do not claim merge or production safety beyond the declared scope, environment, and evidence.
 
 ## Handoff

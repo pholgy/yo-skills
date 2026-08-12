@@ -1,22 +1,44 @@
 ---
 name: yo-impact
-description: Map consumers, contracts, persisted data, sibling paths, and observable effects before changing existing behavior or integrating a new boundary. Use after the premise and cause are understood, before fixes, refactors, signature or schema changes, routes, config changes, migrations, and standalone "where is this used?" or "is this safe to change?" requests.
+description: Map consumers, contracts, persisted data, sibling paths, and observable effects before changing existing behavior or integrating a material boundary. Use the full workflow after the premise and cause are understood for shared, public, dynamic, persisted, authorization, external, mixed-version, or uncertain-consumer changes, and for standalone "where is this used?" or "is this safe to change?" requests. Keep contained local impact checks inline in the owning workflow.
 ---
 
 # Yo Impact
 
 Map what can observe a proposed change before editing so implementation covers
-the real surface and no more. The output is a compact impact brief and a
-one-sentence blast-radius summary, not permission to implement, speculative
-compatibility work, or a ritual search quota.
+the real surface and no more. Use either an inline local result or a compact
+impact brief, not duplicate artifacts, speculative compatibility work, or a
+ritual search quota.
+
+Do not take ownership from an additive `yo-feature` merely because its words
+include API, cursor, URL, query parameter, or serialized state. An established
+cursor filter/order extension preserving default/issued behavior and a fixed
+local URL-filter set remain inline impact checks. Return to the feature owner;
+do not create this standalone workflow.
 
 ## Calibrate the depth
 
 Analyze the integration surface, not whether the diff adds or edits lines.
 
-- Skip only S0 wording/formatting changes and truly isolated, unused artifacts with no integration point.
-- For a private local symbol with one known caller, inspect the definition, caller, focused tests, and plausible dynamic references. Stop when the evidence closes the local surface.
-- For routes, schemas, serialized fields, data, auth, config, public exports, jobs, events, or operational behavior, map the relevant boundary even when the code is new.
+- Skip S0 wording/formatting changes and truly isolated, unused artifacts with no integration point.
+- For contained S0/S1 work with statically knowable consumers, let the owning
+  workflow inspect the target, direct consumers, focused tests, and plausible
+  dynamic references inline. Record `target -> consumers -> proof`, then stop;
+  do not invoke this standalone workflow or create a separate brief.
+- Use the full workflow when one of these surfaces creates material risk or
+  uncertain reach: shared/public contracts, dynamic lookup,
+  persisted/transmitted data, auth, config, public exports, jobs, events,
+  external systems, mixed versions, or operational behavior. An established,
+  additive, reversible contract—including a small local query-parameter
+  extension—with known consumers may stay inline when compatibility is
+  preserved and the local search closes its observable surface.
+  The same applies to an established cursor endpoint when legacy default cursors
+  remain valid and new query dimensions are bound or rejected deterministically.
+- A finite, explicitly named multi-provider implementation does not require this
+  standalone workflow when its owning engineering/feature brief already maps
+  every lifecycle boundary, authority, identity, side effect, and proof. Use
+  full impact only for a reach question still capable of changing the affected
+  surface—not to restate the provider list.
 - If the map reveals multiple components, irreversible data effects, or a staged transition, use `yo-engineering` to reclassify risk and `yo-design` when a design is needed.
 
 Do not turn a small edit into archaeology. Do not call a boundary change "additive" to avoid compatibility analysis.
@@ -86,6 +108,41 @@ persisted data, authorized rollout, or demonstrated failure mode.
 
 For destructive or externally observable operations, include authorization, idempotency, retries, cascades, auditability, and recovery. A new endpoint can have a large impact surface before any caller exists.
 
+For an infrastructure-as-code refactor that changes resource addresses or state
+identity, inventory the old address, new address, and physical object for every
+affected state. Prefer explicit configuration moves; isolate exceptional state
+commands and require a zero-create/delete/replace plan for protected resources.
+Before the first real apply, execute the reverse or recovery path against a
+disposable copy of representative state and record the state version, exact
+path, observed plan/result, and recovery point. Keeping an old module version or
+an unexecuted rollback command is not a rehearsal.
+
+Inventory every affected state before rollout, but produce state-dependent plans
+just in time: first for the canary, then for each authorized batch against its
+current lineage and serial. Apply the zero-destructive-action assertion to every
+workspace before that workspace changes. Do not precompute a fleet of saved
+plans that drift will invalidate or rerun all workspaces after each batch; reopen
+only the states whose content or identity changed.
+
+Separate the release-candidate audit from authorized external rollout. The
+default continuity is `implementation and recovery rehearsal -> authorized
+representative canary -> one audit of the exact artifact, mapping, rehearsal,
+and canary evidence -> authorized batches`. Do not place that audit before the
+canary while claiming its verdict binds canary evidence. Each later S3 batch
+then terminates on its own current lineage/serial, just-in-time plan,
+immutable-ID check, functional probes, and immediate no-change plan. Do not
+make the audit verdict depend on collecting terminal evidence from all
+workspaces or re-gate earlier batches at fleet completion. Re-audit only an
+artifact or invariant that changed; separately audit shipped fleet state only
+when that is the user's requested endpoint.
+
+When the physical identities, address mapping, zero-destructive-action
+invariant, and recovery rehearsal are known, this impact brief is the sufficient
+transition record: resume normal implementation and consequential audit. Do not
+add `yo-design` just because many states or workspaces participate. Add it only
+when an unresolved topology, ownership, compatibility, or end-state choice can
+change the mapping or migration mechanism.
+
 ### 7. Establish only the baseline evidence you need
 
 Locate existing focused, contract, integration, and transitive tests that define the surface. Run a pre-edit baseline when failure attribution matters or the surface is already suspect. For a clean, tiny local change, reading an adequate focused test may be enough.
@@ -94,7 +151,13 @@ Record what was checked, what was not available, and any coverage gap. Baseline 
 
 ## Output
 
-Write a compact brief:
+For a contained local check, return only:
+
+```text
+Impact: <target> -> <direct consumers> -> <focused proof>; <closed local surface or escalation trigger>.
+```
+
+For a standalone request or material boundary, write a compact brief:
 
 ```markdown
 Change: <target and before/after observable behavior>
@@ -108,11 +171,14 @@ Decision: <safe as scoped, needs compatibility/design, or blocked on evidence>
 Minimum affected surface: <paths that must change and mechanisms not justified>
 ```
 
-Then summarize:
+The `Decision` and `Minimum affected surface` fields are the downstream handoff.
+Add this one-sentence summary only when another artifact or workflow needs a
+standalone blast-radius statement:
 
 > This changes `<behavior>` observed by `<consumers/flows>`; `<siblings and compatibility decision>`; `<remaining unknowns or why the searched surface is closed>`.
 
-The sentence is a durable handoff, not a substitute for the evidence above. If its claims cannot be supported, the map is incomplete.
+Do not require both forms for the local path. If a summary claim cannot be
+supported by the brief, the full map is incomplete.
 
 ## Guardrails
 
@@ -120,6 +186,10 @@ The sentence is a durable handoff, not a substitute for the evidence above. If i
 - Do not infer safety from a single reference search, a clean compiler result, or an absent in-repository caller.
 - Do not claim there are no external consumers unless the contract and search boundary make that knowable.
 - Do not require blame, a fixed number of searches, a fixed duration, or a test run when it cannot affect the decision.
+- Do not repeat an impact map already bound to equivalent content and consumers;
+  inspect only the delta or state that changed.
+- Do not turn a fleet-wide inventory into a fleet-wide pre-canary execution
+  gate; schedule volatile proof at the smallest batch where it authorizes action.
 - Do not widen implementation scope merely because similar code exists.
 - Do not turn an explicit unknown into speculative compatibility machinery
   without a supported contract or real transition requirement.
@@ -131,9 +201,12 @@ The sentence is a durable handoff, not a substitute for the evidence above. If i
 - `yo-verify-premise` establishes whether the claim is current and real.
 - `yo-debug` establishes the causal mechanism when it is unknown.
 - `yo-engineering` owns proportional risk and quality gates.
-- `yo-design` records a multi-component or staged change before implementation.
+- `yo-design` records a multi-component or staged change only when an unresolved
+  design choice can change the implementation; scale alone is not a handoff.
 - `yo-fix-loop` and `yo-feature` consume the impact brief when implementing.
-- `yo-audit` later checks whether the implementation stayed inside the declared radius.
+- `yo-audit` later checks whether consequential implementation stayed inside the
+  declared radius when independence is required; routine local work uses scoped
+  self-review.
 
 ## References
 

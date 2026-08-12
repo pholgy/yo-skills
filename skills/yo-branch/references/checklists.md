@@ -4,19 +4,33 @@ Use only the sections relevant to the requested endpoint.
 
 ## State snapshot
 
+Start with the local fields. Add an extension only when the requested endpoint
+uses it; omitted inapplicable fields are not blockers.
+
 ```markdown
-Repository / authenticated remote:
+Repository:
 Current worktree and branch or detached HEAD:
 HEAD SHA:
 Staged / unstaged / untracked / conflicts:
 Other worktrees using relevant branches:
+Applicable local commit policy:
+```
 
+### Branch, synchronization, or push extension
+
+```markdown
+Authenticated remote and intended refspec:
 Intended base ref and fetched SHA:
 Head ref and local/remote SHA:
-Merge base:
 Ahead / behind:
-Existing PR and draft state:
+Name / worktree collisions:
+```
 
+### PR or merge extension
+
+```markdown
+Merge base:
+Existing PR and draft state:
 Repository instructions:
 Naming / signing / history policy:
 Protection / rulesets / required checks:
@@ -59,6 +73,11 @@ Template / CODEOWNERS / reviewers:
 Draft or ready, with reason:
 Known gaps:
 ```
+
+For Direct/Scoped work, `Risk / rollback / audit` may be a focused self-review
+with no residual material risk. Require a specialist review only when repository
+policy, an explicit request, an inherited consequential tier, or a named
+uncertainty triggers it.
 
 Use `Refs #N`, `Part of #N`, or plain links when a PR contributes to but does not
 complete an issue. Use a closing keyword only when the PR truly owns completion

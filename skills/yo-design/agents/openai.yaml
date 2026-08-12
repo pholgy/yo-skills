@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Design"
   short_description: "Design consequential changes and record decisions"
-  default_prompt: "Use $yo-design to compare the simplest viable direct option with real alternatives, require current evidence for every added mechanism, design the transition and verification, and avoid writing files unless authorized."
+  default_prompt: "Use $yo-design only for a materially significant decision, compare the simplest viable direct option with real alternatives, stop before detailing an unselected branch, use bounded decision-relevant proof rather than exhaustive permutations, and keep reversible local choices inline."

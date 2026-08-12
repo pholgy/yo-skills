@@ -127,6 +127,43 @@ For each candidate, write a one-line decision record:
 - reversibility and rollback/abort path;
 - owner, authority, start time, and observation window.
 
+For a production network, firewall, routing, identity, or security-policy
+mutation, also name the representative canary, an expected-allow probe, an
+expected-deny probe, capacity or saturation signal, and the exact Operations
+Lead or delegated authority. A correlation with the latest change may prioritize
+a reversible mitigation, but it does not eliminate competing cause checks.
+
+A network/security mitigation proposal is incomplete until all six fields below
+are filled with concrete observations or explicitly blocked with an owner. Do
+not replace them with generic black-box, compatibility, or security wording:
+
+```markdown
+Representative canary and promotion rule:
+Expected-allow probe on the intended path:
+Expected-deny probe from an unauthorized or unrelated path:
+Capacity/saturation signal:
+Named operator and mutation authority:
+Abort and rollback trigger:
+```
+
+`Named operator and mutation authority` means the actual operator when supplied,
+or the designated Operations Lead role plus `unassigned — mutation blocked`
+when the scenario provides no human or runbook. Never invent a person or treat a
+role placeholder as authorization; the honest blocked handoff is complete for a
+read-only recommendation, while the mutation remains forbidden.
+
+For an intermittent network or DNS incident, explicitly discriminate endpoint
+or resolver behavior, pod/service capacity, node and ENI/IP/port limits,
+conntrack or stateful inspection, upstream dependencies, retry/search
+amplification, and directional routing before declaring a causal fix. A durable
+network change must prove symmetry, representative capacity, failover, and
+failback; recovery from one successful path is insufficient.
+
+The canary and denial proof must be stated as executable observations: identify
+the limited representative target, exercise the intended path, and confirm an
+unrelated or unauthorized source/destination remains denied. Do not treat a
+generic black-box request as both proofs.
+
 Candidate mitigations include disabling a feature, revoking a credential,
 quiescing writes, entering read-only mode, pausing a queue, load shedding, rate
 limiting, scaling capacity, shifting or failing over traffic, reverting config,
@@ -159,6 +196,28 @@ For suspected corruption, stop or isolate harmful writes, preserve queues and
 in-flight state, confirm backups or point-in-time recovery, snapshot where safe,
 and define reconciliation before replay. A healthy page over corrupt data is not
 recovery.
+
+For cross-provider access deactivation, make one internal authorization boundary
+the immediate deny authority. Treat vendor session revocation and notifications
+as asynchronous idempotent effects keyed by a stable subject and revocation
+generation; reconcile them until inactive identities and derivative sessions
+are accounted for. A notification channel never determines access state.
+The incident handoff must explicitly name the lifecycle identity authority,
+external-to-internal stable identity key, current revocation generation,
+idempotency key, reconciliation result or gap, and audit trail. Do not leave
+these implied by product names.
+
+When the authorized endpoint, organization policy, or incident owner also
+includes the permanent cross-provider correction, carry that exact incident
+evidence into one durable execution chain: reuse the lifecycle/impact/design
+decisions, implement the scoped authorization and vendor-revocation correction,
+run lifecycle tests plus reconciliation proof, and obtain one consequential
+audit. Do not restart incident discovery or create another design cycle while
+content and conditions remain equivalent. That continuation ends at verified
+immediate internal denial, eventual vendor-session revocation, reconciled
+notification state, and no Blocker/Major—not merely an accepted design. Without
+that continuation authority, stop at stable incident recovery and hand off the
+evidence as a recommendation.
 
 ## 5. Execute one controlled mutation at a time
 
@@ -229,10 +288,14 @@ For long incidents, hand off roles and live state explicitly: impact, current
 status, actions and outcomes, active hypotheses, hazards, pending decisions,
 credentials/access boundaries, next update, and recovery criteria.
 
-After stable recovery, route causal analysis to `yo-debug` using the timeline and
-artifacts. Separate trigger, contributing conditions, detection gaps, mitigation
-gaps, and systemic causes; do not force one human or one line of code into a
-single "root cause."
+Stable recovery and deliberate resolution complete the current incident
+endpoint. Do not automatically continue into debugging, a permanent fix, an
+audit, or a postmortem. Preserve the timeline and artifacts and name a separate
+recommended continuation. Route causal analysis to `yo-debug` only when the
+user's request, organization policy, or an authorized incident owner explicitly
+includes that post-recovery work. In that continuation, separate trigger,
+contributing conditions, detection gaps, mitigation gaps, and systemic causes;
+do not force one human or one line of code into a single "root cause."
 
 Create a post-incident review when organization policy or incident impact,
 novelty, duration, data/security risk, near miss, or learning value warrants it.
@@ -256,6 +319,13 @@ recommended action, and who must act.
 At handoff or resolution include incident ID/status, impact window, roles, current
 state, mitigations and outcomes, recovery evidence, residual risk, frozen or
 altered system state, pending communications, follow-up owners, and next action.
+If recommending a production network or security-policy mutation, include the
+named operator/authority and the allow, deny, capacity, abort, and rollback
+evidence explicitly rather than leaving them implied.
+
+Repeat these fields in the handoff when the mutation changes production network
+reach or a security policy; one generic black-box check cannot fill both allow
+and deny.
 
 ## Anti-patterns
 

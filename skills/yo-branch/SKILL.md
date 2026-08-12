@@ -55,11 +55,21 @@ branch name merely because it is common elsewhere.
 
 ## 1. Snapshot current state
 
-Before creating, switching, committing, syncing, pushing, or merging, capture the
-`references/checklists.md` state snapshot: repository/worktree and dirty state;
-current branch or detached `HEAD`; remotes and fresh refs; exact base, head, merge
-base, and ahead/behind relation; name collisions and existing PRs; governing
-rulesets and merge methods; issue/stack links; and current CI/review state.
+Use only the `references/checklists.md` snapshot fields that can change the
+requested endpoint:
+
+- local inspection or commit -> repository/worktree state, current branch or
+  detached `HEAD`, scoped diff, and applicable local commit policy;
+- branch creation, synchronization, or push -> add the intended base, relevant
+  local/remote refs, ahead/behind state, worktree/name collisions, and refspec;
+- PR creation or readiness -> add exact base/head/merge base, existing PR,
+  rulesets, merge methods, issue/stack links, and current CI/review state;
+- merge -> refresh every live protection, approval, check, deployment, conflict,
+  queue, and merge-method field required by repository policy.
+
+Do not fetch remotes or query PR, ruleset, CI, reviewer, or merge state for a
+local endpoint when those facts cannot change the action. Unknown inapplicable
+fields need no `N/A` record.
 
 Read-only network refresh is permitted unless the user says offline. It updates
 local knowledge, not remote branches. Keep the reviewed SHAs in the handoff when
@@ -186,8 +196,10 @@ Run the PR readiness record in `references/checklists.md`. Its four gates are:
    accidental generated output.
 2. **History and policy** - naming, signatures, DCO, linear history, rulesets,
    push destination, and issue-closing semantics pass.
-3. **Evidence** - focused proof, required project gates, and proportionate
-   `yo-engineering` or fresh `yo-audit` review pass.
+3. **Evidence** - focused proof, the smallest affected required project gates,
+   and proportionate self-review. Require `yo-engineering` or `yo-audit` only
+   when an inherited S2/S3 risk, repository policy, explicit request, or named
+   material uncertainty calls for that specialist gate.
 4. **Review contract** - the actual template, `CODEOWNERS`, dependencies,
    rollout/migration context, and reviewer verification path are clear.
 
@@ -220,6 +232,8 @@ without changing the hypothesis or patch unrelated base failures into the branch
 
 Review updates return to `yo-fix-loop`; review replies use `yo-gh-write`. Pushing
 new commits may dismiss approvals or invalidate checks, so reassess live state.
+Reuse content-bound implementation and audit evidence; refresh the PR's
+state-dependent checks and rerun only proof affected by new commits.
 
 ## 9. Merge and prove landing
 

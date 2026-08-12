@@ -1,4 +1,4 @@
 interface:
   display_name: "Yo Branch"
   short_description: "Use repository-correct branch and PR delivery"
-  default_prompt: "Use $yo-branch to verify and execute this branch or PR workflow."
+  default_prompt: "Use $yo-branch to verify and execute only the requested branch, commit, push, PR, or merge endpoint, reusing content evidence and refreshing only state that can change that action."

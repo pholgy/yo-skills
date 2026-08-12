@@ -10,11 +10,13 @@ Candidate action:
 Hypothesis:
 Scope / blast radius:
 Expected user and system signal:
+Representative canary / expected allow and deny probes:
+Capacity or saturation signal:
 Propagation / observation delay:
 Compatibility and data hazards:
 Security / forensic hazards:
 Reversibility and abort path:
-Operator / peer check / authority:
+Named operator / peer check / authority:
 Result and next decision:
 ```
 

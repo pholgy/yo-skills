@@ -10,7 +10,11 @@ single-bug regression path, target-scoped pre-edit gates, and an opt-in verified
 hook lifecycle. On 2026-08-08 it gained a bundle-wide Golden Engineering
 Standard: maximum correctness and clarity with minimum necessary complexity,
 root-cause defect closure, focused regression proof, and a final simplification
-pass. The previous version of every skill is preserved under
+pass. On 2026-08-12 it added bundle-wide execution continuity: classify risk
+once, carry valid decisions and evidence through handoffs, keep scoped impact
+inline, run the smallest affected required gate, and stop at the proven endpoint
+without duplicate audit or release ceremony. The previous version of every
+skill is preserved under
 `archive/yo-<name>-2026-07-10/`.
 
 ## Golden Engineering Standard
@@ -33,10 +37,11 @@ behavior. Finish substantive work by deleting any moving part that does not
 protect a requirement, invariant, contract, or testable risk.
 
 Treat a proven definition of done as terminal. Once acceptance and the requested
-delivery boundary are met, relevant fresh evidence passes, and no Blocker or
-Major remains, stop. Keep optional polish, Minor or Note findings, speculative
-reuse, unrelated cleanup, and extra confidence audits outside the implementation
-loop; reopen only the smallest scope invalidated by new material evidence.
+delivery boundary are met, relevant current or proven-equivalent evidence
+passes, and no Blocker or Major remains, stop. Keep optional polish, Minor or
+Note findings, speculative reuse, unrelated cleanup, and extra confidence audits
+outside the implementation loop; reopen only the smallest scope invalidated by
+new material evidence.
 
 The exact complexity budget and its primary Google, Microsoft, Anthropic,
 OpenAI, and Meta sources are recorded in
@@ -90,13 +95,14 @@ The common routes are deliberately short:
 Alleged bug
   clear + contained + known cause -> direct compact regression path
   uncertain premise -> yo-verify-premise -> yo-debug if cause is unknown
-  consequential edit -> yo-impact; yo-audit when independent proof is useful
+  material/uncertain impact -> yo-impact; otherwise keep impact inline
+  consequential edit -> one exact-change audit when a named risk justifies it
 
 New consequential capability
   yo-engineering -> yo-design when a decision needs approval -> yo-feature
 
 Multiple findings
-  yo-fix-loop -> per-item premise, impact, test, and verification disciplines
+  yo-fix-loop -> one owner and one evidence record per causal cluster
 
 PR or GitHub handoff
   yo-branch -> yo-gh-write
@@ -106,14 +112,16 @@ Active production impact
 ```
 
 Optional steps stay optional. The user's requested outcome and stopping point
-control the route.
+control the route. Handoffs inherit the current lane, decisions, authority, and
+content-equivalent evidence; they do not restart completed discovery or proof.
 
 A regression test protects behavior from returning; observed RED proof is the
 stronger claim that the same test fails against the pre-fix mechanism. Daily
 known-cause bugs use the focused repository runner (focused Bun test in Bun
-projects), keep test and fix together, and run the repository completion gate.
-RED proof is reserved for risk that justifies sensitivity evidence, not a
-mandatory phase for every fix.
+projects), keep test and fix together, and run the smallest affected required
+gate. A root-wide gate is used only when repository policy or the changed risk
+requires it. RED proof is reserved for risk that justifies sensitivity evidence,
+not a mandatory phase for every fix.
 
 ## What makes `yo-workflow` a deep-review workflow
 
