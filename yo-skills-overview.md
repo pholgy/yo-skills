@@ -108,7 +108,8 @@ PR or GitHub handoff
   yo-branch -> yo-gh-write
 
 Active production impact
-  yo-incident first -> yo-debug after recovery -> yo-fix-loop for follow-up
+  yo-incident -> stop at stable recovery/resolution
+  separately authorized follow-up -> yo-debug -> yo-fix-loop when needed
 ```
 
 Optional steps stay optional. The user's requested outcome and stopping point
