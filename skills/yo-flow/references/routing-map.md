@@ -17,10 +17,11 @@ still decide eligibility, and changed-line count alone never does.
 
 The direct lane still discovers the applicable repository instructions and
 verification commands, preserves user work, and runs focused plus the smallest
-affected required gates. Exit it when inspection exposes a disputed premise, unknown
-cause, wider consumer/contract surface, unexplained baseline failure, unfaithful
-test seam, or consequential/irreversible effect; route that discovered need
-normally.
+affected required gates. Exit it when inspection of the active task exposes a
+disputed premise, unknown cause, wider consumer/contract surface, failure in
+required evidence, unfaithful test seam, or consequential/irreversible effect.
+An unrelated baseline failure does not create a route; ask before separate work
+only when it blocks the requested proof.
 
 A local reveal/control for API-key or secret **metadata** may remain direct only
 when the slice explicitly proves that the secret value is never returned,

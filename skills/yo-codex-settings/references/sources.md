@@ -63,7 +63,9 @@ favor minimal fixes, focused relevant tests, and reporting commands/results.
   https://developers.openai.com/codex/prompting
 
 Derived rules: establish goal/context/boundaries, make focused changes, and bind
-completion to observable verification rather than narration.
+completion to observable verification rather than narration. Repository context
+helps execute the requested task; it does not authorize ambient work, tracking,
+or follow-ups.
 
 ## Permissions, delegation, and process safety
 

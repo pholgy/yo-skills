@@ -26,7 +26,9 @@ conversations, and recommends tracking out-of-scope feedback in a linked issue.
   https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request
 
 Derived rule: reconcile every source thread and resolve it only after its claim
-is addressed. Create a follow-up issue only when delivery authority permits it.
+is addressed. Out-of-scope feedback may become a linked issue only when the user
+explicitly authorizes that separate tracking work; discovering it is not
+authority to create or populate a follow-up.
 
 ## Small batches are conceptual, not line quotas
 
@@ -111,4 +113,4 @@ mapped in [the bundle quality standard](../../yo-engineering/references/quality-
 
 Derived rule: remove the diagnosed mechanism at the narrowest correct seam,
 cover realistic in-scope paths sharing it, add regression proof, and exclude
-unrelated cleanup or hypothetical future machinery.
+unrelated cleanup, tracking, or hypothetical future machinery.

@@ -64,6 +64,8 @@ fork, clear, compact, and the danger of resuming one session in two terminals.
 
 Derived rules: decide from actual context use, preserve causal state, reload
 nested guidance after compaction, and never duplicate an unknown side effect.
+Continuity preserves the active task only; prior or ambient work is not resumed
+without an explicit request.
 
 ## Parallel work and isolation
 

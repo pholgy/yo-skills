@@ -50,6 +50,11 @@ Read the user request, issue/spec, PR description, linked design or decision, an
 
 If a material requirement is missing, do not invent it. Verify what is knowable and return `INCONCLUSIVE` for the decision that depends on the ambiguity.
 
+Freeze the active audit surface from the current request and accepted
+clarifications. Track scope separately from attribution: a pre-existing defect
+inside that surface remains reviewable, while an issue outside it does not
+become a finding because surrounding inspection or a broad command exposed it.
+
 ### 3. Inspect scope and context
 
 Review every human-authored changed line in scope, then read enough surrounding code, callers, tests, configuration, and history to understand its effect. Classify generated, vendored, lockfile, migration, and documentation changes rather than scanning them as equivalent source.
@@ -62,6 +67,10 @@ serve current acceptance, a supported contract, a demonstrated risk, an
 existing repository boundary, or faithful verification. Do not fail a change
 solely for a reasonable preference, raw line count, or an out-of-scope
 pre-existing issue.
+
+Read outside the changed lines only to understand the in-scope behavior. Do not
+turn neighboring defects, old issues, or unrelated debt into audit findings,
+baselines, tracker entries, or follow-up recommendations.
 
 ### 4. Trace behavior against acceptance
 
@@ -117,6 +126,11 @@ silently require the same full review again.
 
 Record exact commands, revision/environment, exit status, counts, and the relevant failure signature. Preserve raw output locally when useful, but report concise sanitized evidence; do not paste secrets or indiscriminate logs.
 
+If a command reveals an unrelated failure, do not investigate, baseline, or
+route it. Mention it only when it prevents a required check from supporting the
+verdict; then narrow the claim or return `INCONCLUSIVE` and ask before any
+separate work.
+
 If a required check cannot run, distinguish an evidence gap from a code defect. Use `INCONCLUSIVE` when the missing evidence is material to the merge/ship decision.
 
 ### 6. Write only defensible findings
@@ -148,7 +162,8 @@ Classify findings:
   unnecessarily difficult or risky to change and verify; must resolve before
   approval.
 - **Minor:** bounded robustness, maintainability, test, or operability issue that does not invalidate the primary behavior.
-- **Note:** optional improvement, question, or pre-existing/out-of-scope observation.
+- **Note:** optional in-scope improvement, question, or necessary scope/evidence
+  limitation. Pre-existing describes attribution, not scope or severity.
 
 Explain why. Keep suggestions separate from requirements and avoid comments about the author.
 
@@ -201,6 +216,8 @@ If the user explicitly asks for a GitHub artifact, use `yo-gh-write` to format i
 - Do not report speculative edge cases as defects without a reachable scenario and consequence.
 - Do not let green CI replace code/behavior review, or let static review replace needed execution evidence.
 - Do not fail a change for style preference, unrelated debt, or a requirement invented during review.
+- Do not record or recommend work outside the active audit surface merely
+  because review exposed it.
 - Do not approve speculative architecture merely because it is cleanly coded;
   require a current need for every added moving part.
 - Do not turn a PASS with only Minor or Note findings into an implementation and

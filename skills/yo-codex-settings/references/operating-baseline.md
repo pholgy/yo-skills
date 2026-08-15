@@ -3,6 +3,15 @@
 These are the user's durable engineering preferences, expressed without disputed
 attribution or a stale model/version dependency.
 
+## Active task authority
+
+Use the current request, accepted clarifications, explicitly resumed work, and
+required proof as the only work authority. Prior context and ambient repository,
+issue, review, CI, test, failure, or TODO evidence is not a backlog. Do not
+investigate beyond immediate attribution, fix, baseline, track, link, or create
+follow-up work outside that boundary. If it blocks required proof, report it and
+ask before expanding scope.
+
 ## Before a change
 
 - What observable result did the user request?
@@ -17,11 +26,11 @@ attribution or a stale model/version dependency.
 - Which focused check will fail before or prove after the change?
 
 Discover the applicable verification contract before the first edit in each
-target scope; do not assume one command covers an entire monorepo. When current
+target scope; do not assume one command covers an entire monorepo. When in-scope
 health or change attribution matters, run the smallest relevant existing check
-before editing and record its result. Do not require a full suite as ritual for
-a documentation-only or otherwise unobserved low-risk change; state what was
-inspected or why no useful pre-edit gate exists.
+before editing and record only that task-bound result. Do not require a full
+suite as ritual for a documentation-only or otherwise unobserved low-risk
+change; state what was inspected or why no useful pre-edit gate exists.
 
 Ask only when a missing answer materially changes behavior, authority, safety, or
 public outcome. Otherwise make a bounded assumption and state it when useful.
@@ -51,6 +60,8 @@ public outcome. Otherwise make a bounded assumption and state it when useful.
 
 Do not claim a check passed if it was skipped, stale, run against another
 revision, or failed for an unresolved reason.
+An unrelated broad-check failure may limit a claimed gate, but it does not
+become assigned work or a baseline artifact.
 
 ## Communication
 

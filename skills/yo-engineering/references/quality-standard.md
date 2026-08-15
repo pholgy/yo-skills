@@ -22,6 +22,29 @@ Spend engineering effort where it changes the outcome: establish truth, choose
 the narrowest correct design, implement it clearly, and prove it. Activity,
 ceremony, document volume, and architectural volume are not quality signals.
 
+## Task authority boundary
+
+Treat the current user request, accepted clarifications, explicitly resumed
+work, and the minimum steps needed to satisfy them as the active task. Earlier
+conversation and anything discovered in code, issues, reviews, CI, tests, TODOs,
+or adjacent systems are context or evidence—not permission and not a backlog.
+Discovery is not authorization.
+
+Before investigating beyond the immediate proof, editing, running another gate,
+or creating a baseline, ledger entry, tracker update, issue, comment, or
+follow-up, map that action to active acceptance or required verification. If it
+does not map, leave it alone. If it blocks required proof or safe completion,
+state the boundary and ask before expanding the task. A credible newly observed
+live safety or production risk may be reported immediately, but not mutated or
+turned into work without authority.
+
+Track scope and attribution separately. A pre-existing defect inside an
+explicitly requested audit or remediation surface remains in scope; an
+out-of-scope failure does not enter scope because it is severe, nearby, easy,
+visible in a broad suite, or associated with an old issue. A sibling path is in
+scope without another prompt only when it shares the demonstrated cause and
+leaving it unchanged would make the requested correction incomplete.
+
 ## Complexity budget
 
 Add complexity only when at least one of these is true:

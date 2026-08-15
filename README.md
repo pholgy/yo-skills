@@ -64,6 +64,14 @@ focused proof plus the smallest affected required gate, and ends with
 self-review. Root-wide gates and independent audits remain for repository policy
 or a named material risk—not as universal completion ceremony.
 
+The active task is only the current request, accepted clarifications, explicitly
+resumed work, and the proof needed to finish it. Prior tasks and anything merely
+discovered in code, issues, reviews, CI, tests, or TODOs do not become an agent-
+created backlog. If unrelated work blocks required proof, the agent reports the
+boundary and asks before expanding scope; otherwise it leaves that work alone.
+Pre-existing describes where a defect came from, not whether it belongs to the
+requested surface.
+
 Defects must be fixed at the cause: cover realistic in-scope paths that share
 the mechanism, add regression evidence, and verify that related behavior still
 works. Do not mask one symptom or expand into unrelated cleanup.

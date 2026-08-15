@@ -227,8 +227,10 @@ Observe required checks, reviews, conversations, deployments, and mergeability o
 the current head. Pending is neither failed nor complete; neutral or skipped is
 acceptable only when repository policy accepts it. For a failure, bind it to the
 revision, inspect the first cause, and distinguish branch regression, proven base
-failure, flake, and infrastructure. Use `yo-debug` when unexplained. Do not retry
-without changing the hypothesis or patch unrelated base failures into the branch.
+failure, flake, and infrastructure. Use `yo-debug` only for an in-scope
+unexplained failure. Do not investigate further, retry, baseline, link, create a
+follow-up, or patch an unrelated base failure. If a required check blocks the
+requested endpoint, report that limitation and ask before separate remediation.
 
 Review updates return to `yo-fix-loop`; review replies use `yo-gh-write`. Pushing
 new commits may dismiss approvals or invalidate checks, so reassess live state.
@@ -258,6 +260,9 @@ At every endpoint, report repository/worktree, base/head refs and SHAs, issue/PR
 and stack mapping, local and remote state, verification and unresolved gates,
 history rewrites or policy exceptions, and the next authorized action.
 
+Limit unresolved gates and next actions to the requested delivery surface. An
+ambient failure is not a new branch, issue, or remediation task.
+
 Never say "ready," "up to date," "green," "merged," or "clean" without naming
 the evidence and state that was checked. If remote state may have changed since
 the snapshot, say so and refresh before acting.
@@ -271,6 +276,7 @@ the snapshot, say so and refresh before acting.
 - Rewriting published/shared history or force-pushing without explicit safeguards.
 - Bypassing protection or duplicating proof owned by a merge queue.
 - Calling a draft, pending CI, or partial parent issue complete.
+- Turning an unrelated check failure into tracked or remediated work.
 - Deleting a branch that still anchors stacked work.
 
 ## Research basis

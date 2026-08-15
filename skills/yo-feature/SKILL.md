@@ -32,6 +32,11 @@ A one-sentence destructive admin endpoint is not trivial. A many-file mechanical
 
 Read repository instructions, status, relevant issue/spec/RFC, neighboring code/tests, and existing planning conventions. Preserve unrelated working-tree changes. Verify current behavior or assumptions that the feature depends on; use `yo-verify-premise` when the request asserts existing behavior that may be stale.
 
+The current request and accepted clarifications define the feature. Read an
+issue, failure, TODO, or adjacent surface only when it is named by that task or
+strictly needed for its acceptance. Discovery does not authorize another slice,
+fix, baseline, tracker update, or follow-up.
+
 Identify the delivery boundary: local implementation only, a branch/PR, deployment, or another explicit endpoint. Do not infer the later actions from "build."
 
 ### 2. Form the smallest sufficient feature brief
@@ -191,6 +196,11 @@ Run evidence proportionate to its risk:
 
 Verify negative and failure paths, not only the happy path. Bind evidence to the current revision/environment and distinguish unavailable proof from a pass.
 
+An unrelated failure revealed by a broader command remains outside this
+feature. Do not investigate, fix, baseline, assign, link, or create follow-up
+work for it. If it prevents a required gate from proving the feature, report the
+limitation and ask before bringing the separate work into scope.
+
 Before marking the slice complete, run a simplification pass over the final
 diff. Remove any new file, type, helper, branch, configuration, dependency, or
 indirection that does not protect acceptance, an invariant, a supported
@@ -259,6 +269,7 @@ If commit/PR work was requested, use `yo-branch` for readiness and topology, the
 - Do not optimize for raw line count when a slightly larger direct solution is
   clearer or required for correctness.
 - Do not expand scope for adjacent refactors unless needed for the accepted slice.
+- Do not turn discovered repository work into another slice or tracking item.
 - Do not continue after the accepted feature is proven merely because another
   improvement is possible.
 - Do not continue implementation when discovery invalidates a material design decision; return to `yo-design`.
