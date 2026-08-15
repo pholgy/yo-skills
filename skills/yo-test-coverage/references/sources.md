@@ -100,4 +100,6 @@ The primary links and full policy are in
 
 Derived rule: choose the smallest faithful test and do not build a fixture
 framework, helper hierarchy, or overlapping cases unless they close a distinct
-risk or reduce total test complexity now.
+in-scope risk or reduce total test complexity now. A failure discovered outside
+the requested behavior is not a baseline, quarantine, or follow-up assignment;
+report it only when it prevents required evidence.

@@ -13,8 +13,10 @@ root-cause defect closure, focused regression proof, and a final simplification
 pass. On 2026-08-12 it added bundle-wide execution continuity: classify risk
 once, carry valid decisions and evidence through handoffs, keep scoped impact
 inline, run the smallest affected required gate, and stop at the proven endpoint
-without duplicate audit or release ceremony. The previous version of every
-skill is preserved under
+without duplicate audit or release ceremony. On 2026-08-15 it added a task-
+authority boundary: current requests and explicit resumptions authorize work;
+prior tasks and ambient findings do not become baselines, routes, ledgers, or
+follow-ups. The previous version of every skill is preserved under
 `archive/yo-<name>-2026-07-10/`.
 
 ## Golden Engineering Standard
@@ -42,6 +44,13 @@ passes, and no Blocker or Major remains, stop. Keep optional polish, Minor or
 Note findings, speculative reuse, unrelated cleanup, and extra confidence audits
 outside the implementation loop; reopen only the smallest scope invalidated by
 new material evidence.
+
+Discovery is not authorization. Work outside the current request stays outside
+the implementation and reporting loop unless it blocks required proof, in which
+case the agent states the limit and asks before expanding scope. A pre-existing
+defect remains actionable when the user explicitly requested the surface, and a
+demonstrated same-cause sibling remains necessary when leaving it broken would
+make the requested correction incomplete.
 
 The exact complexity budget and its primary Google, Microsoft, Anthropic,
 OpenAI, and Meta sources are recorded in

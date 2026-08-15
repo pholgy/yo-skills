@@ -83,4 +83,6 @@ minimum necessary complexity. The full source-to-rule map is in
 
 Derived rule: use one direct slice when it completely satisfies acceptance;
 every additional concept or mechanism must answer a current requirement or
-demonstrated risk, and the final diff receives a simplification pass.
+demonstrated in-scope risk, and the final diff receives a simplification pass.
+Ambient failures, issues, and opportunities do not become slices or tracking
+work without an explicit scope expansion.

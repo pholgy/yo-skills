@@ -20,6 +20,9 @@ downstream workflow here.
 ## Core contract
 
 - Use only bundled `yo-*` skills. Never require an external skill.
+- Choose from the current request and accepted clarifications. Prior tasks and
+  ambient repository, issue, review, CI, test, or TODO findings are context,
+  not new destinations. Do not route work the user did not place in scope.
 - Bypass this router when the requested outcome is already clear and no
   specialized Yo workflow is needed.
 - Prefer one primary destination. Add a preceding risk or design gate only when
@@ -98,10 +101,11 @@ explicit acceptance and verification condition. Default the metadata to hidden
 with component-local state, and prove it resets to hidden on remount; do not
 invent persistence. Hidden markup is not a safe way to hold a secret.
 
-Exit the direct lane as soon as inspection reveals a disputed premise, unknown
-cause, broader consumer or contract surface, an unexplained failing baseline,
-an unfaithful test seam, or any consequential/irreversible effect. Route the
-newly discovered need rather than forcing the original classification.
+Exit the direct lane only when inspection of the active task reveals a disputed
+premise, unknown cause, broader consumer or contract surface, a failure in
+required evidence, an unfaithful test seam, or any consequential/irreversible
+effect. An unrelated failing baseline does not create a route. Leave it alone;
+if it blocks required proof, ask before expanding scope.
 
 Do not route a clear fix into a RED-test campaign. When the next action is
 obvious, use the normal task workflow: inspect, make the scoped fix, add the
@@ -265,6 +269,9 @@ Pass only the fields that exist:
 - risk or approval state
 - unresolved decision, if any
 
+Carry only context belonging to this active task. A handoff preserves scope; it
+does not reactivate a prior task or promote an ambient finding into work.
+
 Then stop routing. Let the destination skill own its workflow and later
 handoffs, but do not let it restart equivalent discovery or proof merely because
 the route changed.
@@ -289,6 +296,7 @@ to state the desired deliverable in their own words.
 - Do not default to a fixed Q1/Q2 wizard.
 - Do not duplicate the destination skill's intake questions or templates.
 - Do not begin implementation, diagnosis, review, or GitHub writing here.
+- Do not route, queue, or record work merely because inspection discovered it.
 - Do not add a risk gate to trivial, reversible work.
 - Do not use changed-line count alone as a proxy for risk; enforce the direct
   lane's bounded, directly related file scope as well as its risk conditions.

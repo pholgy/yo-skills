@@ -56,8 +56,10 @@ workflow.
   mutation, or material scope expansion that the user did not authorize.
 - Keep the ledger in the session or reuse the repository's existing tracker.
   Do not invent a scratch file merely to run the loop.
-- Use only the findings placed in scope. Newly discovered defects go into the
-  ledger, but do not silently expand the implementation wave.
+- Use only findings placed in scope by the current request or an accepted intake
+  amendment. Do not add newly discovered defects, prior-session work, old
+  issues, or ambient CI failures to the ledger. If one blocks the requested
+  wave, report it and ask before expanding scope.
 
 ## 1. Freeze the intake snapshot
 
@@ -173,8 +175,9 @@ this loop for the unchanged cluster.
 Fix at the narrowest seam that removes the cause for all realistic in-scope
 paths. Do not patch one symptom while leaving a known sibling path exposed. Do
 not turn "complete" into every imaginable edge case: include a sibling only
-when it shares the mechanism and supported invariant. Record unrelated defects
-separately rather than hiding them in the patch.
+when it shares the demonstrated mechanism and supported invariant and leaving
+it unchanged would make the requested correction incomplete. Leave unrelated
+defects unchanged and outside this wave; do not record or track them here.
 
 Use the minimum necessary complexity. New abstractions, compatibility layers,
 flags, dependencies, configuration, retries, or generalized infrastructure need
@@ -260,7 +263,7 @@ The local handoff includes:
 - exact verification commands or observations and their outcomes;
 - no-change, refuted, duplicate, deferred, blocked, and unresolved items;
 - working-tree and delivery state;
-- residual risks and unverified surfaces.
+- residual risks and unverified surfaces within the requested wave.
 
 If the user authorized GitHub delivery, hand the wording to `yo-gh-write` and
 resolve a review conversation only after its claim is actually addressed. If
@@ -281,6 +284,7 @@ Do not create follow-up issues or publish comments without that authorization.
 - Adding a framework, compatibility layer, or future-proofing that the defect
   does not require.
 - Bundling unrelated cleanup into a remediation cluster.
+- Adding an ambient finding to the intake, ledger, or handoff as new work.
 - Forcing arbitrary line, finding, commit, or retry counts.
 - Hiding blocked or unresolved items in an optimistic wrap-up.
 - Reopening a verified wave for optional or PASS-level feedback that was not

@@ -60,7 +60,8 @@ This reference records the evidence behind the workflow and the local decisions 
 - New routes, schemas, config, and destructive operations are not exempt merely because they are additive code.
 - History is conditional and evidentiary; deliberate history is not an automatic veto.
 - Search scope and unknown external consumers must be stated.
-- Siblings are enumerated and scoped rather than automatically edited.
+- Siblings are enumerated and scoped rather than automatically edited or
+  promoted into follow-up work.
 - The compact evidence brief supports the final sentence instead of making one sentence carry the entire analysis.
 - A test baseline is required when it improves attribution, not as ritual for every local edit.
 - A contained local check stays in the owning workflow; the full brief is
@@ -89,6 +90,7 @@ This reference records the evidence behind the workflow and the local decisions 
 - Unsupported supplementary-fix percentages.
 - The claim that the compiler sees a fixed fraction of usages.
 - Automatic escalation or implementation beyond the user's authorized scope.
+- Automatic tracking or follow-up creation for out-of-scope siblings.
 
 ## 2026 Golden Engineering Standard update
 

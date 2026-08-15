@@ -35,6 +35,12 @@ the quality floor: correctness, security, privacy, data integrity, required
 compatibility, reliability, faithful tests, and repository conventions are not
 optional simplifications.
 
+Keep the active task bounded by the current request, accepted clarifications,
+and required proof. Prior context and ambient findings may inform that task but
+cannot add work. Do not investigate, fix, baseline, track, route, or delegate an
+unrelated finding; if it blocks required proof or safe completion, ask before
+expanding scope. The full standard defines the scope-versus-attribution rule.
+
 ## Calibrate the process
 
 Use this local Yo taxonomy to choose the lightest sufficient process. These
@@ -105,6 +111,9 @@ test runs, and independent challenge. Keep one writer for coupled changes.
 Parallel writers require genuinely isolated ownership, separate workspaces when
 needed, an integration order, and one final verifier. Workers never make the
 user's product, policy, one-way-door, or production-mutation decision.
+Delegation never enlarges the active task; a worker returns an out-of-scope
+discovery as a blocker only when it prevents its assigned proof, not as a new
+lane, baseline, or follow-up.
 
 When delegation helps, use the current platform's native authorized mechanism;
 `yo-codex` owns Codex surface, contract, permission, supervision, and recovery
@@ -287,6 +296,7 @@ or release, not as an unbounded confidence loop.
 - Do not add ceremony without corresponding risk.
 - Do not invoke every lens by default.
 - Do not hide scope expansion inside the implementation.
+- Do not convert ambient evidence into unrequested work or tracking.
 - Do not confuse more architecture, more process, or more code with higher
   quality.
 - Do not delegate by tier, stack count, file count, or provider count alone.

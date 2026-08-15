@@ -1,6 +1,6 @@
 # Validation record
 
-Date: 2026-08-12
+Date: 2026-08-15
 
 Scope: the 19 live `skills/yo-*` trees, their dated pre-rewrite archives, root
 bundle metadata and documentation, and the optional Claude SessionStart hooks.
@@ -139,6 +139,22 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
   cases and retained the choice under follow-up pressure, so the update is
   recorded as explicit reinforcement against observed multi-day workflow drift,
   not a reproduced single-turn regression.
+- Task Authority Boundary: 8/8 fresh-context scenarios passed. Unrelated broad-
+  suite failures, nearby TODOs, and unresumed prior tasks remained outside the
+  active task without becoming baselines, ledger rows, routes, risks, or follow-
+  ups. A required unrelated gate failure correctly blocked a merge-ready claim
+  and asked before remediation. Positive controls still honored an explicitly
+  requested repository baseline, an Admin-wide audit, a demonstrated same-cause
+  authorization path, and explicitly resumed work.
+- The retained results used four fresh read-only Codex CLI contexts with
+  expected assertions withheld. They are bound to base
+  `de333a64fb9ef209d461dbd7e2e8500f7c132c99` and final live `skills/` +
+  `hooks/` digest
+  `427f9a5db558c3a57bbf363a03708dc2554b97d0b352f868fc4432cbc6f0bc4e`.
+  Runtime was Codex CLI `0.147.0-alpha.6.5`, `gpt-5.6-sol`, maximum reasoning,
+  approval `never`, read-only sandbox, and no hook. One earlier C1-C2 process
+  was excluded because its final output was not retained; a new fresh context
+  reran those cases and supplied the counted result.
 - The Golden Stop candidate is bound to base
   `81512395c77102fc79d1ce116fb5854f98e37fcf`,
   `yo-engineering/SKILL.md` SHA-256
@@ -188,6 +204,9 @@ merely restating the skill. The rerunnable inputs and expected assertions are in
 - The payload contains no fixed model, effort, context-window, tool, or
   instruction-discovery assumption. It points to the live skill bodies as the
   authority.
+- The payload keeps work inside the current request, accepted clarifications,
+  explicitly resumed work, and required proof; ambient failures and prior tasks
+  do not become baselines or follow-up work.
 - The canonical payload names the Golden Engineering Standard and says clear
   low-risk work bypasses `yo-flow`; it contains no blanket rule routing every
   fix through `yo-verify-premise` or another full workflow.
@@ -287,6 +306,29 @@ Date: 2026-07-11
 - The unchanged Bash installer copied the candidate into a new isolated macOS
   home; independent verification reported 19/19 matching skills for both Codex
   and Claude. Optional hooks were not installed.
+
+## 2026-08-15 task-authority checks
+
+- Official skill-creator `quick_validate.py` passes 19/19 skill trees in an
+  ephemeral `uv` environment with PyYAML.
+- All 19 frontmatter and `agents/openai.yaml` records parse and match their
+  directories; the manifest parses, declares revision `2026-08-15`, and exactly
+  matches the 19 live skills.
+- All 54 local Markdown links and 56 explicit live support-file references
+  resolve. Strict UTF-8 and mojibake checks pass across 96 live skill and hook
+  files. Every live `SKILL.md` remains below 500 lines; maximum is 391
+  (`yo-design`).
+- The research corpus remains 275 per-skill unique source entries and 218
+  bundle-unique URLs; this update adds no external source URL.
+- The Bash hook passes `bash -n` and emits parseable SessionStart JSON. The Bash
+  and PowerShell `additionalContext` strings are text-identical. PowerShell is
+  unavailable on this host, so no new PowerShell parser pass is claimed.
+- `install.sh`, `verify.sh`, and the Bash hook pass `bash -n`; the repository
+  passes `git diff --check`.
+- The final candidate is bound to base
+  `de333a64fb9ef209d461dbd7e2e8500f7c132c99` and live `skills/` + `hooks/`
+  digest
+  `427f9a5db558c3a57bbf363a03708dc2554b97d0b352f868fc4432cbc6f0bc4e`.
 
 ## Limits
 

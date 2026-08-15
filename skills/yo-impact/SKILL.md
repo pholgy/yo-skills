@@ -90,11 +90,14 @@ Use `yo-engineering` for the applicable risk lenses rather than exhaustively che
 
 Search for copied logic, parallel implementations, sync/async variants, API versions, platform variants, and other paths through the same cause. Enumerate relevant siblings and decide one of:
 
-- include them because the change would otherwise be inconsistent or incomplete;
-- exclude them with a concrete reason;
-- propose a follow-up because they are real but outside the authorized scope.
+- include them because leaving the demonstrated same cause would make the
+  requested correction inconsistent or incomplete;
+- exclude them with a concrete reason and leave them unchanged.
 
-Finding a sibling does not authorize editing it. Unstated siblings are the failure; deliberate scope is not.
+Finding a sibling does not authorize editing, tracking, or proposing work for
+it. If an excluded sibling blocks a safe or complete requested result, ask
+before expanding scope. Unstated siblings are the failure; deliberate scope is
+not.
 
 ### 6. Resolve compatibility and rollout implications
 
@@ -145,9 +148,14 @@ change the mapping or migration mechanism.
 
 ### 7. Establish only the baseline evidence you need
 
-Locate existing focused, contract, integration, and transitive tests that define the surface. Run a pre-edit baseline when failure attribution matters or the surface is already suspect. For a clean, tiny local change, reading an adequate focused test may be enough.
+Locate existing focused, contract, integration, and transitive tests that define
+the active surface. Run a pre-edit baseline when attribution inside that surface
+matters or its required evidence is already suspect. For a clean, tiny local
+change, reading an adequate focused test may be enough.
 
-Record what was checked, what was not available, and any coverage gap. Baseline evidence characterizes current behavior; it does not replace reasoning about untested consumers.
+Record only task-bound checks, unavailable required evidence, and in-scope
+coverage gaps. An unrelated failure does not become a baseline artifact or
+follow-up; mention it only when it prevents required proof.
 
 ## Output
 
@@ -164,7 +172,7 @@ Change: <target and before/after observable behavior>
 Consumers: <producers/consumers and searched boundaries>
 Observable effects: <relevant behavior dimensions>
 Compatibility/data: <old/new and rollout implications, or none>
-Siblings: <included, excluded with reason, or follow-up>
+Siblings: <included or excluded with reason>
 Evidence: <searches, tests, history when useful>
 Unknowns: <external or unverified surfaces>
 Decision: <safe as scoped, needs compatibility/design, or blocked on evidence>
@@ -191,6 +199,8 @@ supported by the brief, the full map is incomplete.
 - Do not turn a fleet-wide inventory into a fleet-wide pre-canary execution
   gate; schedule volatile proof at the smallest batch where it authorizes action.
 - Do not widen implementation scope merely because similar code exists.
+- Do not create tracking or follow-up work for an excluded sibling without
+  explicit authority.
 - Do not turn an explicit unknown into speculative compatibility machinery
   without a supported contract or real transition requirement.
 - Do not turn impact analysis into root-cause analysis. If the mechanism is unknown, return to `yo-debug`.

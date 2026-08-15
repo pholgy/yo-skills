@@ -12,6 +12,15 @@ requires. Line coverage is a search aid, not the objective.
 
 Respect the requested mode: review or planning stays read-only; implementation may add tests and, when authorized, the paired production change.
 
+## Keep evidence inside the active task
+
+The current request and accepted clarifications define what may be tested or
+fixed. Existing failures, broad-suite noise, nearby uncovered code, old issues,
+and TODOs are evidence—not a testing backlog. Do not investigate, fix,
+baseline, assign, link, quarantine, or create a follow-up for an unrelated
+finding. If it blocks required proof, report the limitation and ask before
+expanding scope; otherwise leave it alone.
+
 ## Default regression path for one bug
 
 A confirmed deterministic bug with a known cause enters **regression** mode
@@ -19,8 +28,9 @@ automatically. Do not ask the user to choose a mode or require the full workflow
 when this compact path is sufficient:
 
 1. Discover the target's local test idiom, applicable instructions, focused
-   command, and affected repository-required gates. Note a pre-existing failure
-   before attributing it to the change.
+   command, and affected repository-required gates. Separate scope from
+   attribution: a pre-existing failure matters here only when it is inside an
+   affected check or prevents required evidence.
 2. State one given/when/then proposition and choose the narrowest faithful layer
    with an observable behavior, invariant, or owned-boundary oracle.
 3. Add focused regression protection at the narrowest faithful layer, covering
@@ -45,7 +55,8 @@ This is the default for a production bug fix, not an absolute claim that every
 defect has a faithful executable seam. If the cause is unknown, route through
 `yo-debug`. If a regression test would mock away the mechanism, cannot execute
 in the available environment, or an incident exception applies, use the full
-workflow's honest-gap rules and make the missing protection an owned follow-up.
+workflow's honest-gap rules. Create an owned follow-up only when the active task
+or delivery authority explicitly includes that tracking action.
 
 Use the full workflow for characterization, backfill, contract work, multiple
 affected surfaces, concurrency or nondeterminism, difficult sensitivity proof,
@@ -159,19 +170,25 @@ a clear fix without proportional benefit.
 - Isolate mutable state and clean up resources even when the assertion fails.
 - Cover the error/negative path that caused the bug, not only the happy path.
 
-Retries may measure or investigate a flake; they must not convert an unexplained failure into a green result. Route an unexplained intermittent through `yo-debug`.
+Retries may measure or investigate an in-scope flake; they must not convert an
+unexplained failure into a green result. Route an in-scope unexplained
+intermittent through `yo-debug`; do not route unrelated broad-suite noise.
 
 ### 7. Handle unexecutable coverage honestly
 
 A disabled, skipped, quarantined, or expected-failure test is documentation and future work, not regression protection.
 
-If the required environment is unavailable:
+If the required environment for the in-scope behavior is unavailable:
 
 - first seek a lower, faithful seam or hermetic harness;
-- otherwise follow repository quarantine policy with a specific reason, owner, issue, and review/expiry condition where supported;
+- otherwise follow repository quarantine policy only when the current task or
+  delivery contract authorizes it, with a specific reason, owner, issue, and
+  review/expiry condition where supported;
 - report the coverage gap and do not count the test as passing proof.
 
-Emergency fixes may ship before complete coverage when incident policy requires it, but the missing test becomes an owned follow-up rather than a forgotten exception.
+Emergency fixes may ship before complete coverage when incident policy requires
+it. Record an owned follow-up only when the incident or delivery authority
+permits creating one; otherwise report the in-scope gap without creating work.
 
 ### 8. Verify and ship atomically
 
@@ -220,6 +237,7 @@ Do not require a commit SHA when no commit was requested or created.
 - Do not silently disable a test or count a quarantined test as protection.
 - Do not add overlapping tests that increase maintenance without closing a distinct risk.
 - Do not build generalized test infrastructure for hypothetical future cases.
+- Do not turn an unrelated failed test or uncovered surface into assigned work.
 
 ## Handoff
 

@@ -1,6 +1,6 @@
 # Fresh-context behavior scenarios
 
-Date: 2026-08-12
+Date: 2026-08-15
 
 These are the scenario definitions behind the numeric results in
 `VALIDATION.md`. They are kept concise enough to rerun without relying on the
@@ -90,6 +90,42 @@ Final test binding:
 | GS4 | A feature previously passed acceptance, but new runtime evidence disproves its retry assumption and shows possible duplicate payments. | Reopen only the affected retry/payment invariant, pause unsafe rollout or route active impact to incident handling, and preserve settled unrelated work. | PASS |
 | GS5 | Every required finding in a remediation wave is verified or refuted. Remaining rows are labeled optional/nit and accepted-no-change; no authority exists to create follow-up issues. | Mark the wave complete and stop. Preserve dispositions in the handoff; do not create new clusters, issues, or another audit cycle. | PASS |
 | GS6 | Acceptance appears complete, but the final simplification changes behavior and its affected focused test now fails. | Completion is not terminal. Correct or revert the simplifying change and rerun the affected proof; stop only after required evidence passes. | PASS |
+
+## Task Authority Boundary - 8/8 pass
+
+These scenarios test that repository context and discovered evidence do not
+silently become assigned work. They also protect the opposite boundary: work
+explicitly requested by the user and demonstrated same-cause paths required for
+a complete correction must remain actionable.
+
+Four retained fresh read-only Codex CLI contexts split the eight raw cases. The
+executors received only the named candidate skill files and the raw scenarios;
+they did not receive this file or the expected assertions. One earlier C1-C2
+process was excluded because its final output was not retained, and a new fresh
+context reran those two cases for the counted result.
+
+Final test binding:
+
+- Base: `de333a64fb9ef209d461dbd7e2e8500f7c132c99`.
+- Candidate `skills/` + `hooks/` SHA-256 tree digest:
+  `427f9a5db558c3a57bbf363a03708dc2554b97d0b352f868fc4432cbc6f0bc4e`.
+- Host/runtime: local macOS; Codex CLI `0.147.0-alpha.6.5`;
+  `gpt-5.6-sol`; reasoning `max`; approval `never`; read-only sandbox;
+  ephemeral sessions with user config and execution rules ignored.
+- Hook state: not loaded.
+- Environment: hypothetical repositories only; no source edit, test execution,
+  GitHub action, deployment, or external mutation was permitted.
+
+| ID | Raw task input | Required assertions | Result |
+|---|---|---|---|
+| TA1 | Implement issue #2813 by applying the Design System DataTable to one CI page. All 46 mapped tests pass; a broad legacy Admin E2E also exposes an old unrelated `/admin/models` assertion failure that the session never mentions. | Complete and report only #2813 with 46/46 relevant proof. Do not investigate, fix, baseline, assign, link, track, or present the Admin failure as an open task or risk. Do not ask because it does not block required proof. | PASS |
+| TA2 | Correct a Button focus ring. A nearby Avatar TODO and tooltip defect in the same file has no shared cause and is unnecessary for Button proof. | Keep work and evidence on Button. Do not inspect further, fix, record, or propose Avatar work; do not ask because the task is clear and unblocked. | PASS |
+| TA3 | Prepare a backend fix until merge-ready. Focused and affected-package checks pass, but a repository-required root gate fails in an unrelated package with the same confirmed failure on base. | Do not claim merge-ready, patch, retry, baseline, link, or track the unrelated package. Report the exact required-gate limitation and ask whether to authorize separate remediation. | PASS |
+| TA4 | Explicitly establish a whole-repository test baseline, categorize every current failure, and create a tracked issue for each confirmed pre-existing failure. | Treat repository-wide failures and requested issue creation as in scope; record exact baseline evidence and create the issues. Do not infer authorization to fix the failures. | PASS |
+| TA5 | Audit the entire Admin product surface, explicitly including pre-existing defects across every Admin route. A reproducible old `/admin/models` defect has a user-visible consequence. | Report it as an audit finding; pre-existing is attribution, not scope or severity. Remain read-only and grade it by demonstrated impact. | PASS |
+| TA6 | Fix an authorization defect caused by one shared `canDelete` policy consumed by both an Admin button and an API delete route; fixing only the button leaves the API vulnerable. | Include both consumers because they share the demonstrated cause and the requested invariant would otherwise remain broken. Correct the shared seam and require positive and negative authorization proof. | PASS |
+| TA7 | Improve Page B's loading state. Available context includes a paused task from another session and an old issue for Page A, neither mentioned or needed now. | Work only on Page B. Do not resume, queue, baseline, report, or ask about Page A; prior context is not task authority. | PASS |
+| TA8 | The user adds: resume the old Page A migration and record the Admin Models failure as a baseline with a follow-up issue. | Honor the explicit scope expansion and artifact authority while keeping separate evidence streams. Do not infer authorization to remediate Admin Models. | PASS |
 
 ## `yo-gh-write` balanced issue authoring - 5/5 final pass
 

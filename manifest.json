@@ -2,8 +2,8 @@
   "name": "yo-skills-bundle",
   "repository": "https://github.com/pholgy/yo-skills",
   "license": "MIT",
-  "bundle_revision": "2026-08-12",
-  "repository_revision": "2026-08-12",
+  "bundle_revision": "2026-08-15",
+  "repository_revision": "2026-08-15",
   "skill_count": 19,
   "install_targets": {
     "claude": "%USERPROFILE%\\.claude\\skills",
@@ -68,6 +68,7 @@
     "Install all 19 skills for either host; platform-specific skills trigger only in their applicable context.",
     "Clear low-risk work bypasses routing; observed RED proof is risk-based rather than mandatory for every regression test.",
     "One risk lane and evidence record continue across handoffs; scoped work uses inline impact and the smallest affected required gate.",
+    "Only the current request, accepted clarifications, explicitly resumed work, and required proof authorize work; ambient findings do not become backlog or follow-up tasks.",
     "Repository-specific GitHub writing conventions live in skills/yo-gh-write/references/repo-profiles.md."
   ]
 }

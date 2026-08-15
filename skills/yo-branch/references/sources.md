@@ -76,7 +76,8 @@ not demand manual rebases when the repository's merge queue owns latest-base pro
 
 Derived scope rule: query live remote, protection, review, and CI state only for
 an endpoint whose decision depends on it. A local commit does not inherit PR or
-merge ceremony.
+merge ceremony. A required check may limit the delivery verdict, but an
+unrelated failure does not authorize investigation, tracking, or remediation.
 
 ## Updating and retargeting can invalidate review state
 

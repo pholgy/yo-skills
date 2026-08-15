@@ -52,6 +52,9 @@ Authority labels:
 - Added exact base/head/working-tree identity, moving-head invalidation, acceptance mapping, and risk-proportional verification.
 - Added `INCONCLUSIVE` for material ambiguity or unavailable evidence instead of mislabeling the code FAIL.
 - Defined actionable finding criteria and severities; separated pre-existing debt and preferences.
+- Separated scope from attribution: pre-existing in-scope defects remain
+  reviewable, while ambient out-of-scope observations do not become findings or
+  follow-up work.
 - Clarified that test/build execution can use an isolated workspace without authorizing source edits or external effects.
 - Made chat the default report destination and all GitHub actions explicit-authority operations.
 - Made independent review validate one exact-release evidence bundle and
