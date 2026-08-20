@@ -1,19 +1,19 @@
 # Validation record
 
-Date: 2026-08-15
+Date: 2026-08-20
 
-Scope: the 19 live `skills/yo-*` trees, their dated pre-rewrite archives, root
+Scope: the 20 live `skills/yo-*` trees, the 19 dated pre-rewrite archives, root
 bundle metadata and documentation, and the optional Claude SessionStart hooks.
 
 ## Research gate
 
 - Every skill has a research or sources reference inside its own tree.
-- The live trees contain 275 per-skill unique source-link entries, representing
-  218 unique URLs across the bundle.
-- Sources favor platform contracts, standards, official engineering guidance,
-  and peer-reviewed or controlled research. Each skill's reference file records
-  how those sources changed the operating rules rather than serving as a generic
-  reading list.
+- The live trees contain 280 per-skill unique source-link entries, representing
+  222 unique URLs across the bundle.
+- Sources favor platform contracts, standards, official engineering and product
+  guidance, and peer-reviewed or controlled research. Each skill's reference
+  file records how those sources changed the operating rules rather than serving
+  as a generic reading list.
 - `yo-workflow` was specifically rebuilt around task-graph-aware orchestration,
   immutable review snapshots, system and coverage maps, independent evidence-
   grounded challenge, explicit unresolved states, centralized synthesis, and a
@@ -27,14 +27,14 @@ bundle metadata and documentation, and the optional Claude SessionStart hooks.
 
 | Check | Result |
 |---|---|
-| Declared skills equal live skill directories | 19/19 pass |
-| Dated archive exists for each live skill | 19/19 pass |
+| Declared skills equal live skill directories | 20/20 pass |
+| Dated archive exists for each pre-rewrite skill | 19/19 pass; new skill has no predecessor |
 | Archive trees byte-match their pre-rewrite source trees | 19/19 pass |
-| Live `SKILL.md` differs from its archived predecessor | 19/19 pass |
-| Skill-creator structural validator | 19/19 pass |
-| Frontmatter `name` equals directory name | 19/19 pass |
-| `agents/openai.yaml` present | 19/19 pass |
-| Research/sources reference present | 19/19 pass |
+| Live `SKILL.md` differs from its archived predecessor | 19/19 pass; not applicable to new skill |
+| Skill-creator structural validator | 20/20 pass |
+| Frontmatter `name` equals directory name | 20/20 pass |
+| `agents/openai.yaml` present | 20/20 pass |
+| Research/sources reference present | 20/20 pass |
 | Backtick-referenced local support files exist | pass |
 | Manifest parses and matches disk | pass |
 | Strict UTF-8 and mojibake scan | pass |
@@ -46,6 +46,9 @@ Fresh-context agents tested each rewrite against concrete scenarios rather than
 merely restating the skill. The rerunnable inputs and expected assertions are in
 `validation/behavior-scenarios.md`. The most risk-sensitive matrices included:
 
+- `yo-meet-summary`: one real weekly-product summary was accepted by the owner
+  after iterative voice, structure, follow-up, and `cc` refinement. MS2, MS3,
+  and MS6 pass fresh contexts; MS4 and MS5 remain explicitly `SELF-REVIEW`.
 - Golden Engineering Standard: 8/8 raw solution-shape scenarios passed with
   expected assertions withheld. The initial blind run exposed one audit-severity
   weakness: material needless architecture was identified but not approval-
@@ -329,6 +332,54 @@ Date: 2026-07-11
   `de333a64fb9ef209d461dbd7e2e8500f7c132c99` and live `skills/` + `hooks/`
   digest
   `427f9a5db558c3a57bbf363a03708dc2554b97d0b352f868fc4432cbc6f0bc4e`.
+
+## 2026-08-20 `yo-meet-summary` addition
+
+- Added `yo-meet-summary` with two modes only: outcome-driven Before Meeting
+  preparation and concise After Meeting notes. The live skill is 184 lines and
+  uses only `SKILL.md`, `agents/openai.yaml`, and `references/sources.md`.
+- Official skill-creator `quick_validate.py` passes all 20 live skill trees in
+  an ephemeral `uv` environment with PyYAML. Frontmatter, UI metadata,
+  `$skill-name` default prompts, and research/source references pass 20/20.
+- The manifest parses, declares revision `2026-08-20`, and exactly matches the
+  20 live skill directories. Bash installer and verifier counts were updated to
+  the same bundle size; the PowerShell scripts already derive it from the
+  manifest.
+- The canonical `yo-flow` routing map now covers all 20 manifest skills. B4
+  passed in a fresh read-only Codex CLI context on `gpt-5.6-sol` with `max`
+  reasoning and no hook: the router selected `yo-meet-summary`, preserved its
+  Before/After boundary, and added no engineering workflow.
+- The new research map adds five per-skill source entries and four bundle-unique
+  URLs, bringing the corpus to 280 per-skill entries and 222 unique URLs.
+- One real weekly-product Slack summary was accepted by the owner after
+  iterative structure and voice refinement. MS2, MS3, and MS6 additionally pass
+  fresh read-only Codex CLI contexts for unclear meeting context, missing
+  action ownership/dates, and owner/approver/visibility semantics. MS4 and MS5
+  retain current-context walkthroughs only.
+- The current remedial candidate installed and verified 20/20 Codex skills in
+  an isolated macOS home while preserving an unrelated custom skill. No Claude,
+  shared-agent, hook, or real-home state was touched by this rerun.
+- Strict UTF-8 and mojibake checks pass across 99 live skill and hook files; 55
+  local Markdown links and all 42 backtick support references found by the
+  current resolver exist. Every live `SKILL.md` remains below 500 lines; the
+  maximum remains 391 (`yo-design`).
+- `install.sh`, `verify.sh`, and the Bash hook pass `bash -n`; the repository
+  passes `git diff --check`. PowerShell, ShellCheck, and PSScriptAnalyzer are not
+  installed on this host, so no new checks from those tools are claimed.
+- The new skill is bound to base
+  `636d02d4c345dcb4f26c5bf7f3472ac31cad6965`. The live `skills/` + `hooks/`
+  digest is
+  `5a938cd8e8e908e67357a7aadfd92f713ba3bab4d3ac253c80e05dd8b3084bbb`.
+  SHA-256 identities are `2fd1914fee7cf5e7b3e9750bbd7aff2c0e1831d12570cfa42b7ae6669ecedbf8`
+  for `yo-meet-summary/SKILL.md`,
+  `277eda2d85e58a9de4f8e8413d64493b5ef84e1250bf2698284e7f0bac1670e4`
+  for its `agents/openai.yaml`,
+  `fafc7005576b93a3b6a5e2e4b9da3999dda92c6672b1bdc69b586d50484513a0`
+  for its source record,
+  `f42d64d2faebada18b230a44bb6192d027af36bef7302689190cd9b4439dc0ac`
+  for the `yo-flow` routing map, and
+  `aba88d8fab40d0f1da78ebf96bf65d4ccec7c55a1abeca61c63eed6dbec40284`
+  for the behavior matrix.
 
 ## Limits
 

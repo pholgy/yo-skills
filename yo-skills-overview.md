@@ -1,8 +1,9 @@
 # Yo skills bundle
 
-This is a self-contained pack of 19 software-engineering skills for Claude Code
-and Codex. The bundle favors live evidence, narrow ownership, reversible
-changes, explicit risk, and honest handoffs over ceremony or assumed success.
+This is a self-contained pack of 20 engineering and product-work skills for
+Claude Code and Codex. The bundle favors live evidence, narrow ownership,
+reversible changes, explicit risk, and honest handoffs over ceremony or assumed
+success.
 
 The bundle was rebuilt from primary engineering and platform sources on
 2026-07-10, then refined on 2026-07-14 with a risk-based direct lane, a compact
@@ -16,8 +17,10 @@ inline, run the smallest affected required gate, and stop at the proven endpoint
 without duplicate audit or release ceremony. On 2026-08-15 it added a task-
 authority boundary: current requests and explicit resumptions authorize work;
 prior tasks and ambient findings do not become baselines, routes, ledgers, or
-follow-ups. The previous version of every skill is preserved under
-`archive/yo-<name>-2026-07-10/`.
+follow-ups. On 2026-08-20 it added outcome-driven preparation and follow-up for
+product, engineering, sales/customer, and cross-functional meetings. The 19
+skills that existed before the 2026-07-10 rewrite retain their previous versions
+under `archive/yo-<name>-2026-07-10/`.
 
 ## Golden Engineering Standard
 
@@ -66,6 +69,7 @@ OpenAI, and Meta sources are recorded in
 | Broad, consequential engineering decision | `yo-engineering` |
 | Broad, read-only, cross-cutting review | `yo-workflow` |
 | Active production impact | `yo-incident` |
+| Prepare for a meeting or turn notes into action | `yo-meet-summary` |
 
 Clear requests route directly. `yo-flow` is for genuine ambiguity, not a menu
 that every task must pass through. Clear low-risk work with focused observable
@@ -91,6 +95,7 @@ by risk rather than line count.
 | `yo-gh-write` | Issues, PRs, reviews, replies, status evidence, releases, and incident updates in concise GitHub Markdown |
 | `yo-impact` | Pre-edit consumers, contracts, persisted state, sibling paths, and blast-radius analysis |
 | `yo-incident` | Active incident declaration, mitigation, recovery, handoff, and follow-up |
+| `yo-meet-summary` | Before-meeting briefs and concise channel-ready summaries with supported decisions, owned and dated actions or honest TBDs, and genuine follow-up |
 | `yo-release` | Versioning, publication, promotion, rollout, verification, and recovery |
 | `yo-test-coverage` | Behavior-protecting regression, characterization, contract, and risk-based tests |
 | `yo-verify-premise` | Revision- and environment-bound verification of a claim before acting |

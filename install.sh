@@ -59,8 +59,8 @@ for skill_dir in "$source_root"/yo-*; do
   [[ -d "$skill_dir" ]] || continue
   skill_names+=("$(basename "$skill_dir")")
 done
-if [[ ${#skill_names[@]} -ne 19 ]]; then
-  echo "Expected 19 source skills, found ${#skill_names[@]}." >&2
+if [[ ${#skill_names[@]} -ne 20 ]]; then
+  echo "Expected 20 source skills, found ${#skill_names[@]}." >&2
   exit 1
 fi
 
@@ -317,7 +317,7 @@ for host in "${selected_targets[@]}"; do
     exit 1
   fi
 
-  printf '  %-7s  19 installed, %s replaced; %s hooks installed, %s replaced  %s\n' \
+  printf '  %-7s  20 installed, %s replaced; %s hooks installed, %s replaced  %s\n' \
     "$host" "$replaced" "$hook_files" "$hooks_replaced" "$target_root"
 done
 

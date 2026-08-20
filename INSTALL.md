@@ -1,6 +1,6 @@
 # Install the Yo skills bundle
 
-This folder contains 19 self-contained Yo skills. Install the same complete set
+This folder contains 20 self-contained Yo skills. Install the same complete set
 for Claude Code, Codex, or both. Platform-specific skills are selected by their
 descriptions only when the matching host or delegation workflow applies.
 
@@ -10,7 +10,7 @@ moved to a timestamped backup before the bundled replacement is copied.
 ## Recommended installer
 
 The repository installers auto-detect existing user-global hosts, stage and
-verify the source, preserve same-named skills, install all 19, and verify every
+verify the source, preserve same-named skills, install all 20, and verify every
 copied file. They perform no network requests and do not modify unrelated skills
 or plugins. The default path does not install hooks or edit host settings.
 
@@ -162,7 +162,7 @@ $missingEntrypoints = $installed | Where-Object {
     -not (Test-Path -LiteralPath (Join-Path $_.FullName 'SKILL.md'))
 }
 
-$installed.Count       # expected: 19
+$installed.Count       # expected: 20
 $missingEntrypoints    # expected: no output
 ```
 
@@ -170,8 +170,8 @@ Bash:
 
 ```bash
 target="$HOME/.codex/skills" # or "$HOME/.claude/skills"
-find "$target" -mindepth 1 -maxdepth 1 -type d -name 'yo-*' | wc -l # expected: 19
-find "$target" -mindepth 2 -maxdepth 2 -type f -name SKILL.md | grep '/yo-' | wc -l # expected: 19
+find "$target" -mindepth 1 -maxdepth 1 -type d -name 'yo-*' | wc -l # expected: 20
+find "$target" -mindepth 2 -maxdepth 2 -type f -name SKILL.md | grep '/yo-' | wc -l # expected: 20
 ```
 
 Then start or continue the host and invoke its baseline plus the router. Claude
