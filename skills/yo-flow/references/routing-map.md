@@ -54,6 +54,7 @@ or fixed local URL-filter implementation stays with `yo-feature`.
 | Create a branch, choose a base, check PR readiness, push, or merge | `yo-branch` | Use `yo-gh-write` for the prose itself. |
 | Draft or post GitHub issues, PRs, reviews, replies, evidence, release notes, or incident updates | `yo-gh-write` | Let it classify the artifact and safety rules. |
 | Version, tag, publish, or verify a release | `yo-release` | It hands release prose to `yo-gh-write`. |
+| Prepare for a meeting or turn meeting notes into an actionable summary | `yo-meet-summary` | Use the two-stage meeting workflow; do not route ordinary standalone status writing here. |
 | Delegate from Claude to Codex | `yo-codex` | Direct platform workflow. |
 | Apply or inspect the user's Codex session baseline | `yo-codex-settings` | Direct settings request. |
 | Apply or inspect the user's Claude Code session baseline | `yo-claude-settings` | Direct settings request. |

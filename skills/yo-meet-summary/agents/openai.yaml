@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Meet Summary"
+  short_description: "Prepare meetings and turn notes into action"
+  default_prompt: "Use $yo-meet-summary to prepare this meeting or turn these notes into a concise, channel-ready summary with supported decisions, actions with owners and dates or honest TBDs, and genuine follow-up when needed."

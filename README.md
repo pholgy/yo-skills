@@ -1,6 +1,6 @@
 # Yo Skills
 
-My personal software-engineering playbook for coding agents.
+My personal engineering and product-work playbook for coding agents.
 
 Yo Skills helps Codex and Claude work the way I want: verify the real system
 before acting, understand impact before editing, produce the smallest complete
@@ -128,7 +128,7 @@ Install an explicit target when auto-detection is not what you want:
 ./install.sh --target all
 ```
 
-Run the same installer again to update. Existing copies of these 19 skills are
+Run the same installer again to update. Existing copies of these 20 skills are
 moved to a timestamped directory under `~/.yo-skills-backups/` before the new
 version is installed. Unrelated skills and plugins are not changed.
 
@@ -154,7 +154,7 @@ canonical hook files, backup-first, without changing `settings.json`:
 ```
 
 Verification compares every installed file with this repository. A valid
-installation reports 19 matching skills for each selected host.
+installation reports 20 matching skills for each selected host.
 
 Include the optional Claude hook in that comparison only when you installed or
 manage it from this bundle:
@@ -191,6 +191,7 @@ skill describes when it applies.
 | Write GitHub issues, PRs, reviews, or replies | `yo-gh-write` |
 | Handle active production impact | `yo-incident` |
 | Prepare, publish, or verify a release | `yo-release` |
+| Prepare for meetings or turn notes into action | `yo-meet-summary` |
 
 Examples:
 
@@ -204,7 +205,7 @@ Fix these review findings, prove each one, then draft the PR.
 Production login is failing right now. Mitigate safely first.
 ```
 
-See [the full skill map](yo-skills-overview.md) for all 19 skills and common
+See [the full skill map](yo-skills-overview.md) for all 20 skills and common
 handoff chains.
 
 ## What makes the bundle different
@@ -233,7 +234,7 @@ The installers:
 
 - read only this local repository;
 - perform no downloads or network requests;
-- replace only the 19 skill directories shipped under `skills/` by default;
+- replace only the 20 skill directories shipped under `skills/` by default;
 - preserve replaced copies before installation;
 - when explicitly opted in, replace only the two named Claude hook files after
   preserving their previous copies;

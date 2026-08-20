@@ -57,7 +57,7 @@ for skill_dir in "$source_root"/yo-*; do
   [[ -d "$skill_dir" ]] || continue
   skill_names+=("$(basename "$skill_dir")")
 done
-[[ ${#skill_names[@]} -eq 19 ]] || { echo "Expected 19 source skills." >&2; exit 1; }
+[[ ${#skill_names[@]} -eq 20 ]] || { echo "Expected 20 source skills." >&2; exit 1; }
 
 selected_targets=()
 add_target() {
@@ -155,7 +155,7 @@ for host in "${selected_targets[@]}"; do
       failed=true
     fi
   done
-  printf '  %-7s  %s/19 matching  %s\n' "$host" "$matching" "$target_root"
+  printf '  %-7s  %s/20 matching  %s\n' "$host" "$matching" "$target_root"
   if [[ ${#mismatches[@]} -gt 0 ]]; then
     printf '           mismatches: %s\n' "${mismatches[*]}"
   fi
